@@ -26,7 +26,7 @@ public class Bullet : MonoBehaviour
         if(other.gameObject.CompareTag("Enemy"))
         {
             //Restar vida al enemy
-
+            other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
             //Knockback al enemy
             //other.rigidbody.AddForce(force * 0.1f);
             //Destriur bala
