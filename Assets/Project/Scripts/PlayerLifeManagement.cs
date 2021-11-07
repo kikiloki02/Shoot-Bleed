@@ -6,11 +6,14 @@ public class PlayerLifeManagement : HealthSystem
 {
 
     public bool criticalState = false;
+    public HealthBar healthBar;
 
     // Start is called before the first frame update
     void Start()
     {
         currentHealth = maxHealth;
+        healthBar.SetMaxHealth(maxHealth);
+
     }
 
     // Update is called once per frame
@@ -22,6 +25,7 @@ public class PlayerLifeManagement : HealthSystem
     public void LoseLife()
     {
         currentHealth -= 1;
+        healthBar.SetHealth(currentHealth);
     }
 
     bool isCritical()
@@ -32,7 +36,11 @@ public class PlayerLifeManagement : HealthSystem
     public override void GetDamage(int damage)
     {
         if (criticalState) { Destroy(this.gameObject); }
-        else { currentHealth -= damage; }
+        else 
+        { 
+            currentHealth -= damage;
+            healthBar.SetHealth(currentHealth);
+        }
     }
 
 }
