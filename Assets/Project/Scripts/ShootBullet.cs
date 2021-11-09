@@ -8,6 +8,7 @@ public class ShootBullet : MonoBehaviour
     public GameObject bullet;
     public GameObject blueBullet;
     public GameObject player;
+    public CinemachineShake shake;
 
     public float startVelocity = 20f;
 
@@ -47,6 +48,13 @@ public class ShootBullet : MonoBehaviour
             player.GetComponent<PlayerLifeManagement>().LoseLife();
         }
         newBullet.GetComponent<Rigidbody2D>().AddForce((directionToMouse.normalized) * startVelocity, ForceMode2D.Force);
+
+
+        //Little Knockback to the player
+        Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
+        playerRb.AddForce( ((directionToMouse.normalized) * startVelocity) * -0.1f , ForceMode2D.Force);
+        //CameraShake
+        CinemachineShake.Instance.ShakeCamera(1.5f, 0.1f);
     }
 
 }
