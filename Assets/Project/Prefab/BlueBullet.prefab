@@ -119,6 +119,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 1
+  rb: {fileID: -7612474735780538361}
+  OutVelocity: 700
 --- !u!61 &-9134114366776797127
 BoxCollider2D:
   m_ObjectHideFlags: 0

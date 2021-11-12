@@ -6,19 +6,14 @@ public class Bullet : MonoBehaviour
 {
 
     public int damage;
+    public Rigidbody2D rb;
+    public float OutVelocity;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb.AddForce(this.transform.right * OutVelocity, ForceMode2D.Force);
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
 
     void OnCollisionEnter2D(Collision2D other)
     {

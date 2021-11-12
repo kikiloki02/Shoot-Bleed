@@ -40,6 +40,7 @@ public class PlayerLifeManagement : HealthSystem
         { 
             currentHealth -= damage;
             healthBar.SetHealth(currentHealth);
+            CinemachineShake.Instance.ShakeCamera(10f, 0.15f);
         }
     }
 

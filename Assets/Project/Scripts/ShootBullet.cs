@@ -8,9 +8,9 @@ public class ShootBullet : MonoBehaviour
     public GameObject bullet;
     public GameObject blueBullet;
     public GameObject player;
-    public CinemachineShake shake;
+    public ParticleSystem shootParticles;
 
-    public float startVelocity = 20f;
+    public float knockback = 4.5f;
 
     public Transform spawnPoint;
     Vector3 directionToMouse;
@@ -30,31 +30,32 @@ public class ShootBullet : MonoBehaviour
         {
             Shoot();
         }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+           player.GetComponent<PlayerLifeManagement>().GetDamage(1);
+        }
     }
 
     void Shoot()
     {
-
-
         GameObject newBullet;
 
         if (player.GetComponent<PlayerLifeManagement>().criticalState)
         {
-            newBullet = Instantiate(blueBullet, spawnPoint.position, Quaternion.identity);
+            newBullet = Instantiate(blueBullet, spawnPoint.position, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, directionToMouse)));
         }
         else
         {
-            newBullet = Instantiate(bullet, spawnPoint.position, Quaternion.identity);
+            newBullet = Instantiate(bullet, spawnPoint.position, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, directionToMouse)));
             player.GetComponent<PlayerLifeManagement>().LoseLife();
         }
-        newBullet.GetComponent<Rigidbody2D>().AddForce((directionToMouse.normalized) * startVelocity, ForceMode2D.Force);
-
 
         //Little Knockback to the player
         Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
-        playerRb.AddForce( ((directionToMouse.normalized) * startVelocity) * -0.1f , ForceMode2D.Force);
+        playerRb.AddForce( ((directionToMouse.normalized) * knockback) * -0.1f , ForceMode2D.Force);
         //CameraShake
-        CinemachineShake.Instance.ShakeCamera(1.5f, 0.1f);
+        CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
+        shootParticles.Play();
     }
 
 }
