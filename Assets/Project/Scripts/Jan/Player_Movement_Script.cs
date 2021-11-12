@@ -6,52 +6,29 @@ enum MovementDirection { NORTH, SOUTH, WEST, EAST, NW, NE, SW, SE, NOPARTICLES }
 
 public class Player_Movement_Script : MonoBehaviour
 {
+// ------ PUBLIC: ------
+
+    public int _healthValue;
     public float _movementSpeed;
     public float _dashDistance;
 
     public Rigidbody2D _rigidBody;
     public Animator _animator;
-
-    public ParticleSystem _runningParticlesNorth;
-    public ParticleSystem _runningParticlesSouth;
-    public ParticleSystem _runningParticlesWest;
-    public ParticleSystem _runningParticlesEast;
-    public ParticleSystem _runningParticlesNorthWest;
-    public ParticleSystem _runningParticlesNorthEast;
-    public ParticleSystem _runningParticlesSouthWest;
-    public ParticleSystem _runningParticlesSouthEast;
+    public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
+
+// ------ PRIVATE: ------
 
     private bool _isPlayerWalking = false;
     private bool _isPlayerDashing = false;
     private bool _canPlayerDash = true;
-    private bool _isPlayerInvincible = false;
-    private bool _firstTime = true;
+    // private bool _isPlayerInvincible = false;
 
-    MovementDirection movementDirection;
+    private MovementDirection movementDirection;
 
-    Vector2 movement; // X, and Y;
+    private Vector2 movement; // X, and Y;
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
-
-    // Start is called before the first frame update;
-    void Start()
-    {
-        if (_firstTime)
-        {
-            _firstTime = false;
-
-            _runningParticlesNorth.Stop();
-            _runningParticlesSouth.Stop();
-            _runningParticlesWest.Stop();
-            _runningParticlesEast.Stop();
-            _runningParticlesNorthWest.Stop();
-            _runningParticlesNorthEast.Stop();
-            _runningParticlesSouthWest.Stop();
-            _runningParticlesSouthEast.Stop();
-            _dashParticles.Stop();
-        }
-    }
+// ------ START / UPDATE / FIXEDUPDATE: ------
 
     // Update is called once per frame;
     void Update()
@@ -61,8 +38,6 @@ public class Player_Movement_Script : MonoBehaviour
         ProcessInputs();
 
         ProcessAnimations();
-
-        ProcessMovementDirection();
 
         ProcessParticles();
 
@@ -104,139 +79,9 @@ public class Player_Movement_Script : MonoBehaviour
 
     void ProcessParticles()
     {
-        switch (movementDirection)
-        {
-            case MovementDirection.NORTH:
-                {
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
+        // If the player is walking, don't emit particles.
 
-                    Debug.Log("Up");
-                    _runningParticlesNorth.Play();
-                    break;
-                }
-            case MovementDirection.SOUTH:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("Down");
-                    _runningParticlesSouth.Play();
-                    break;
-                }
-            case MovementDirection.WEST:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("Left");
-                    _runningParticlesWest.Play();
-                    break;
-                }
-            case MovementDirection.EAST:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("Right");
-                    _runningParticlesEast.Play();
-                    break;
-                }
-            case MovementDirection.NW:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("NW");
-                    _runningParticlesNorthWest.Play();
-                    break;
-                }
-            case MovementDirection.NE:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("NE");
-                    _runningParticlesNorthEast.Play();
-                    break;
-                }
-            case MovementDirection.SW:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("SW");
-                    _runningParticlesSouthWest.Play();
-                    break;
-                }
-            case MovementDirection.SE:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-
-                    Debug.Log("SE");
-                    _runningParticlesSouthEast.Play();
-                    break;
-                }
-            case MovementDirection.NOPARTICLES:
-                {
-                    _runningParticlesNorth.Stop();
-                    _runningParticlesSouth.Stop();
-                    _runningParticlesWest.Stop();
-                    _runningParticlesEast.Stop();
-                    _runningParticlesNorthWest.Stop();
-                    _runningParticlesNorthEast.Stop();
-                    _runningParticlesSouthWest.Stop();
-                    _runningParticlesSouthEast.Stop();
-
-                    Debug.Log("Nothing");
-                    break;
-                }
-            default:
-                {
-                    break;
-                }
-        }
+        _runningParticles.transform.right = -_rigidBody.velocity;
     }
 
     void ProcessAudio()
@@ -269,47 +114,9 @@ public class Player_Movement_Script : MonoBehaviour
         }
     }
 
-    void ProcessMovementDirection()
+    public void Heal(int value)
     {
-        if (_isPlayerWalking) { movementDirection = MovementDirection.NOPARTICLES; return; }
-
-        if (Input.GetAxisRaw("Vertical") > 0) // NORTH:
-        {
-            if (Input.GetAxisRaw("Horizontal") < 0) { movementDirection = MovementDirection.NW; } // NORTH WEST:
-            else if (Input.GetAxisRaw("Horizontal") > 0) { movementDirection = MovementDirection.NE; } // NORTH EAST:
-            else { movementDirection = MovementDirection.NORTH; } // JUST NORTH:
-
-            return;
-        }
-
-        if (Input.GetAxisRaw("Vertical") < 0) // SOUTH:
-        {
-            if (Input.GetAxisRaw("Horizontal") < 0) { movementDirection = MovementDirection.SW; } // SOUTH WEST:
-            else if (Input.GetAxisRaw("Horizontal") > 0) { movementDirection = MovementDirection.SE; } // SOUTH EAST:
-            else { movementDirection = MovementDirection.SOUTH; } // JUST SOUTH:
-
-            return;
-        }
-
-        if (Input.GetAxisRaw("Horizontal") < 0) // WEST:
-        {
-            if (Input.GetAxisRaw("Vertical") > 0) { movementDirection = MovementDirection.NW; } // NORTH WEST:
-            else if (Input.GetAxisRaw("Vertical") < 0) { movementDirection = MovementDirection.SW; } // SOUTH WEST:
-            else { movementDirection = MovementDirection.WEST; } // JUST WEST:
-
-            return;
-        }
-
-        if (Input.GetAxisRaw("Horizontal") > 0) // EAST:
-        {
-            if (Input.GetAxisRaw("Vertical") > 0) { movementDirection = MovementDirection.NE; } // NORTH EAST:
-            else if (Input.GetAxisRaw("Vertical") < 0) { movementDirection = MovementDirection.SE; } // SOUTH EAST:
-            else { movementDirection = MovementDirection.EAST; } // JUST EAST:
-
-            return;
-        }
-
-        movementDirection = MovementDirection.NOPARTICLES;
+        _healthValue += value;
     }
 
 // ------ COROUTINES: ------
@@ -323,7 +130,7 @@ public class Player_Movement_Script : MonoBehaviour
                 Debug.Log("Dashed");
 
                 _canPlayerDash = false;
-                _isPlayerInvincible = true;
+                // _isPlayerInvincible = true;
 
                 _dashParticles.Play();
 
