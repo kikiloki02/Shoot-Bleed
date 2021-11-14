@@ -4,13 +4,14 @@ using UnityEngine;
 
 enum MovementDirection { NORTH, SOUTH, WEST, EAST, NW, NE, SW, SE, NOPARTICLES };
 
-public class Player_Movement_Script : MonoBehaviour
+public class Player_Controller : MonoBehaviour
 {
 // ------ PUBLIC: ------
 
     public int _healthValue;
     public float _movementSpeed;
     public float _dashDistance;
+    public float _invincibilityTimeBetweenHitsInSeconds;
 
     public Rigidbody2D _rigidBody;
     public Animator _animator;
@@ -117,6 +118,11 @@ public class Player_Movement_Script : MonoBehaviour
     public void Heal(int value)
     {
         _healthValue += value;
+    }
+
+    public void GetHit(int value)
+    {
+        _healthValue -= value;
     }
 
 // ------ COROUTINES: ------

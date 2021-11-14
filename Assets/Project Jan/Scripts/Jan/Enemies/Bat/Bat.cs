@@ -11,6 +11,11 @@ public class Bat : Enemy
 
     public AudioManager _audioManager;
 
+    public GameObject _attackCollider;
+    // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.
+
+    // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
+
 // ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Update()
@@ -24,15 +29,12 @@ public class Bat : Enemy
 
         if (AmIDead())
         {
-            Debug.Log("Bat->Dead");
+            Die();
 
-            _audioManager.PlaySFX(3); // Die
-
-            _player.GetComponent<Player_Movement_Script>().Heal(5);
-
-            Destroy(this.gameObject);
+            HealPlayer();
         }
 
+        // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(1); }
         if (Input.GetKeyDown(KeyCode.T)) { _audioManager.PlaySFX(0); } // Should be: AudioManager.instance.PlaySFX(value);
     }
@@ -44,20 +46,21 @@ public class Bat : Enemy
 
 // ------ METHODS: ------
 
-    void Attack1()
+    public override void Die()
     {
-        Debug.Log("Bat->Attack1");
+        Debug.Log("Bat->Dead");
 
-        _attackParticles.Play();
+        _audioManager.PlaySFX(3); // Die SFX
 
-        _audioManager.PlaySFX(1); // Attack
-
-        _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        Destroy(this.gameObject);
     }
 
-    void GetHit(int value)
+    public override void HealPlayer()
+    {
+        _player.GetComponent<Player_Controller>().Heal(5);
+    }
+
+    public override void GetHit(int value)
     {
         _gotHit = true;
 
@@ -66,58 +69,105 @@ public class Bat : Enemy
         StartCoroutine(GetHitEffect());
     }
 
-    bool AmIDead()
+    public override bool AmIDead()
     {
         return _healthValue <= 0;
     }
 
+    void Attack1()
+    {
+        Debug.Log("Bat->Attack1");
+
+        _attackParticles.Play();
+
+        _audioManager.PlaySFX(1); // Attack1 SFX
+
+        _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance); // The attack move
+        StartCoroutine(AttackColliderSwitch(1f));
+
+        _attackCollider.transform.right = _rigidBody.velocity;
+
+        StartCoroutine(AttackCooldown(_cooldownTime));
+    }
+
 // ------ COROUTINES: ------
 
-    IEnumerator Attack2()
+    public override IEnumerator GetHitEffect()
+    {
+        _audioManager.PlaySFX(3); // Hit SFX
+
+        _spriteRenderer.color = new Color(0, 255, 0);
+        _spriteRenderer2.color = new Color(0, 255, 0);
+        _spriteRenderer3.color = new Color(0, 255, 0);
+
+        yield return new WaitForSeconds(_hitEffectDuration); // Wait
+
+        _spriteRenderer.color = _sprite1Color;
+        _spriteRenderer2.color = _sprite2Color;
+        _spriteRenderer3.color = _sprite3Color;
+
+        _gotHit = false;
+    }
+
+    IEnumerator Attack2(float seconds)
     {
         Debug.Log("Bat->Attack2");
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack
+        _audioManager.PlaySFX(1); // Attack1 SFX
 
+        // The Attack move:
         Vector3 _storedPosition = this.transform.position;
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
+        StartCoroutine(AttackColliderSwitch(1f));
 
-        yield return new WaitForSeconds(0.5f);
-
-        _chargeDirection = _storedPosition - this.transform.position;
-        _chargeDirection.Normalize();
+        yield return new WaitForSeconds(seconds); // Wait
 
         _attackParticles.Play();
 
+        _audioManager.PlaySFX(1); // Attack1 SFX
+
+        // The Attack move 2:
+        _chargeDirection = _storedPosition - this.transform.position;
+        _chargeDirection.Normalize();
+
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
+        StartCoroutine(AttackColliderSwitch(1f));
+        // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
 
-    IEnumerator Attack3()
+    IEnumerator Attack3(float seconds)
     {
         Debug.Log("Bat->Attack3");
 
+        _attackParticles.Play();
+
+        _audioManager.PlaySFX(1); // Attack1 SFX
+
+        // The Attack move:
         _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
         _chargeDirection.Normalize();
 
+        _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
+        StartCoroutine(AttackColliderSwitch(1f));
+
+        yield return new WaitForSeconds(seconds); // Wait
+
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack
+        _audioManager.PlaySFX(1); // Attack1 SFX
 
-        _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-
-        yield return new WaitForSeconds(0.5f);
-
+        // The Attack move 2:
         _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
         _chargeDirection.Normalize();
 
-        _attackParticles.Play();
-
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
+        StartCoroutine(AttackColliderSwitch(1f));
+        // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
@@ -126,28 +176,31 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Charging");
 
+        // Random attack move: (between 3 attacks)
         int _randomNumber = Random.Range(0, 7); // min included, max excluded
 
+        // Show the according particles and play the according sound to telegraph the attack:
         switch (_randomNumber)
         {
             case 0:
             case 1:
             case 2:
-                _audioManager.PlaySFX(2); // Charge
+                _audioManager.PlaySFX(2); // Charge1 SFX
                 _chargingParticlesBasic.Play();
                 break;
             case 3:
             case 4:
-                _audioManager.PlaySFX(2); // Charge
+                _audioManager.PlaySFX(2); // Charge1 SFX
                 _chargingParticlesForthAndBack.Play();
                 break;
             case 5:
             case 6:
-                _audioManager.PlaySFX(2); // Charge
+                _audioManager.PlaySFX(2); // Charge1 SFX
                 _chargingParticlesChain.Play();
                 break;
         }
 
+        // Logic:
         _canAttack = false;
 
         _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
@@ -155,12 +208,13 @@ public class Bat : Enemy
 
         _spriteRenderer.color = new Color(255, 0, 0);
 
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(seconds); // Wait
 
         Debug.Log("Bat->Finished charging");
 
         _spriteRenderer.color = new Color(255, 255, 255);
 
+        // Execute the corresponding attack move:
         switch (_randomNumber)
         {
             case 0:
@@ -172,12 +226,12 @@ public class Bat : Enemy
             case 3:
             case 4:
                 _chargingParticlesForthAndBack.Stop();
-                StartCoroutine(Attack2());
+                StartCoroutine(Attack2(0.5f));
                 break;
             case 5:
             case 6:
                 _chargingParticlesChain.Stop();
-                StartCoroutine(Attack3());
+                StartCoroutine(Attack3(0.5f));
                 break;
         }
     }
@@ -188,7 +242,7 @@ public class Bat : Enemy
 
         _spriteRenderer.color = new Color(0, 0, 255);
 
-        yield return new WaitForSeconds(seconds);
+        yield return new WaitForSeconds(seconds); // Wait
 
         Debug.Log("Bat->Cooldown finished");
 
@@ -197,21 +251,13 @@ public class Bat : Enemy
         _canAttack = true;
     }
 
-    IEnumerator GetHitEffect()
+    IEnumerator AttackColliderSwitch(float secondsActive)
     {
-        _audioManager.PlaySFX(3); // Hit
+        _attackCollider.SetActive(true);
 
-        _spriteRenderer.color = new Color(0, 255, 0);
-        _spriteRenderer2.color = new Color(0, 255, 0);
-        _spriteRenderer3.color = new Color(0, 255, 0);
+        yield return new WaitForSeconds(secondsActive);
 
-        yield return new WaitForSeconds(_hitEffectDuration);
-
-        _spriteRenderer.color = _sprite1Color;
-        _spriteRenderer2.color = _sprite2Color;
-        _spriteRenderer3.color = _sprite3Color;
-
-        _gotHit = false;
+        _attackCollider.SetActive(false);
     }
 }
 

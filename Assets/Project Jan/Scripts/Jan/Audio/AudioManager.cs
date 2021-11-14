@@ -11,7 +11,8 @@ public class AudioManager : MonoBehaviour
 
     Coroutine fadeIn = null;
 
-    // Start is called before the first frame update
+// ------ START / UPDATE / FIXEDUPDATE: ------
+
     void Start()
     {
         instance = this;
@@ -19,9 +20,14 @@ public class AudioManager : MonoBehaviour
         DontDestroyOnLoad(this.gameObject);
     }
 
+// ------ METHODS: ------
+
     public void PlaySFX(int soundToPlay)
     {
-        if (soundToPlay < sfx.Length) { sfx[soundToPlay].Play(); }
+        if (soundToPlay < sfx.Length)
+        { 
+            sfx[soundToPlay].Play();
+        }
     }
 
     public void PlayBGM(int musicToPlay)
@@ -52,6 +58,8 @@ public class AudioManager : MonoBehaviour
             }
         }
     }
+
+// ------ COROUTINES: ------
 
     IEnumerator FadeIn(int track, float speed, float maxVolume)
     {

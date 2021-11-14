@@ -29,4 +29,16 @@ public class Enemy : MonoBehaviour
     protected Color _sprite2Color;
     protected Color _sprite3Color;
     protected bool _canAttack = true;
+
+    // ------ METHODS: ------
+
+    public virtual void Die() {}
+
+    public virtual void HealPlayer() {}
+
+    public virtual void GetHit(int value) {}
+
+    public virtual bool AmIDead() { return true; }
+
+    public virtual IEnumerator GetHitEffect() { yield return new WaitForSeconds(0f); }
 }
