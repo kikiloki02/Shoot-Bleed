@@ -54,7 +54,8 @@ public abstract class SteeringBehavior : MonoBehaviour
 
         //set the new position to the calculated location based on the velocity and steering force
         //this causes the agent to steer and smoothly move towards the targets location every frame
-        transform.position = location;
+
+        //transform.position = location;
     }
 
     protected virtual void Steer(Vector3 targetPosition)
