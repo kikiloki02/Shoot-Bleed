@@ -246,7 +246,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 0.85, y: 0.85}
   m_EdgeRadius: 0
 --- !u!58 &5007677923832227779
 CircleCollider2D:
@@ -276,7 +276,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9d57f0afbd0cb468584b322a20b4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _healthValue: 3
   _attackValue: 1
   _movementSpeed: 100
   _chargeDistance: 25
@@ -308,6 +307,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 0
   currentHealth: 0
+  enemy: {fileID: 0}
 --- !u!1 &5007677924342488363
 GameObject:
   m_ObjectHideFlags: 0
