@@ -34,7 +34,7 @@ public class Bullet : MonoBehaviour
         else if(other.gameObject.CompareTag("Wall"))
         {
             //Destruir bala
-            Destroy(this);
+            Destroy(this.gameObject);
         }
     }
 }
