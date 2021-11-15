@@ -55,7 +55,5 @@ public class ManageRoom : MonoBehaviour
                 door[i].transform.position = doorEndPos[i].transform.position;
             }
         }
-
-
     }
 }

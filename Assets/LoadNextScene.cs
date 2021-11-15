@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -23,7 +24,14 @@ public class LoadNextScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            SceneManager.LoadScene(NextScene);
+            StartCoroutine(LoadNxtScene());
         }
+    }
+
+    IEnumerator LoadNxtScene()
+    {
+        SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
+        yield return new WaitForSeconds(0.5f);
+        Destroy(this.gameObject);
     }
 }
