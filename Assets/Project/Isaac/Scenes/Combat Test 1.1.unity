@@ -777,6 +777,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5007677923832227778, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: _healPlayer
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 5007677923832227778, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: _attackValue
       value: 5
       objectReference: {fileID: 0}
