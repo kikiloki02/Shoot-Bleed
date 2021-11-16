@@ -790,6 +790,7 @@ MonoBehaviour:
   - {fileID: 1327463941}
   - {fileID: 514624855}
   - {fileID: 1931345076}
+  player: {fileID: 0}
 --- !u!4 &877501058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4329700523412526829, guid: 6e27dce3f62d9004daf8d3119116ccc5, type: 3}
@@ -924,7 +925,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f57fb83932ad4485b9f111f1ea11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Move_Scene 1
+  NextScene: Combat Test 1
+  player: {fileID: 0}
 --- !u!61 &927136343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -969,7 +971,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3060272417040684032, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.9684396
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3060272417040684032, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1057,7 +1059,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f57fb83932ad4485b9f111f1ea11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Combat Test 2
+  NextScene: Combat Test 1
+  player: {fileID: 0}
 --- !u!61 &1029690021
 BoxCollider2D:
   m_ObjectHideFlags: 0

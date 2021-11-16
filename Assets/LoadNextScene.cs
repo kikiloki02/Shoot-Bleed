@@ -7,11 +7,12 @@ using UnityEngine.SceneManagement;
 public class LoadNextScene : MonoBehaviour
 {
     public string NextScene;
+    public GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        player = FindObjectOfType<PlayerLifeManagement>().gameObject;
     }
 
     // Update is called once per frame
@@ -24,14 +25,19 @@ public class LoadNextScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(LoadNxtScene());
+            Scene actualScene = SceneManager.GetActiveScene();
+            Scene followingScene = SceneManager.GetSceneByName(NextScene);
+            SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Additive);
+            Destroy(this.gameObject);
+            if(SceneManager.GetSceneByBuildIndex(actualScene.buildIndex) != SceneManager.GetSceneByName("Init Scene"))
+            {
+                SceneManager.UnloadSceneAsync(actualScene);
+            }
         }
     }
 
     IEnumerator LoadNxtScene()
     {
-        SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         yield return new WaitForSeconds(0.5f);
-        Destroy(this.gameObject);
     }
 }

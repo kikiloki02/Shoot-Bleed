@@ -878,7 +878,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f57fb83932ad4485b9f111f1ea11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Combat Test 1.1
+  NextScene: End Scene
   player: {fileID: 0}
 --- !u!61 &927136343
 BoxCollider2D:
@@ -950,7 +950,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 838f57fb83932ad4485b9f111f1ea11d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  NextScene: Combat Test 1.1
+  NextScene: End Scene
   player: {fileID: 0}
 --- !u!61 &1029690021
 BoxCollider2D:

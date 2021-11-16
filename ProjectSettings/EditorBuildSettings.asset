@@ -15,12 +15,21 @@ EditorBuildSettings:
     path: Assets/Project/Jan/Scenes/Jan/Combat Test.unity
     guid: a6806a38bb8d7ec4e8ebf3937b926657
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/Combat Test 1.unity
-    guid: dfb22a32131ca494c9d560999a606030
-  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/Init Scene.unity
+    guid: 10641ad725f316b409025c9b85d55436
+  - enabled: 0
     path: Assets/Project/Isaac/Scenes/Move_Scene 1.unity
     guid: c530be83210ec444997cbb8fe2a84f4a
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/Combat Test 2.unity
-    guid: 98eb00afdadf2814b9baa964230daa3e
+    path: Assets/Project/Isaac/Scenes/Combat Test 1.unity
+    guid: dfb22a32131ca494c9d560999a606030
+  - enabled: 0
+    path: 
+    guid: 00000000000000000000000000000000
+  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/Combat Test 1.1.unity
+    guid: fefbac50c5f803d4b9d1e8999a327a3f
+  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/End Scene.unity
+    guid: 537d9e819e475dc438455fa92a4c3deb
   m_configObjects: {}
