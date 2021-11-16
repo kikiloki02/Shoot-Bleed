@@ -461,31 +461,10 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 680646128}
+  - {fileID: 889363928}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &680646127 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5007677923832227784, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
-  m_PrefabInstance: {fileID: 889363926}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &680646128 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5007677923832227791, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
-  m_PrefabInstance: {fileID: 889363926}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &680646130 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 5007677923832227778, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
-  m_PrefabInstance: {fileID: 889363926}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 680646127}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ff9d57f0afbd0cb468584b322a20b4f8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &686646820
 GameObject:
   m_ObjectHideFlags: 0
@@ -732,7 +711,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemies:
-  - {fileID: 680646130}
+  - {fileID: 889363927}
   door:
   - {fileID: 686646820}
   - {fileID: 1953243584}
@@ -756,10 +735,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 623434968}
     m_Modifications:
+    - target: {fileID: 1226302043328788131, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: _healPlayer
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 2244401067969593386, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: enemy
       value: 
-      objectReference: {fileID: 680646127}
+      objectReference: {fileID: 0}
     - target: {fileID: 2244401067969593386, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: maxHealth
       value: 20
@@ -838,6 +821,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+--- !u!114 &889363927 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 1226302043328788156, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+  m_PrefabInstance: {fileID: 889363926}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56c6e73ee32b009498185870cbc28091, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &889363928 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+  m_PrefabInstance: {fileID: 889363926}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &927136340
 GameObject:
   m_ObjectHideFlags: 0

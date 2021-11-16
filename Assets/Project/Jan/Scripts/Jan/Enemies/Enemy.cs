@@ -38,7 +38,5 @@ public class Enemy : MonoBehaviour
 
     public virtual void GetHit() {}
 
-    public virtual bool AmIDead() { return true; }
-
     public virtual IEnumerator GetHitEffect() { yield return new WaitForSeconds(0f); }
 }

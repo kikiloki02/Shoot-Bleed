@@ -190,7 +190,6 @@ public class Bat : Enemy
 
         // Random attack move: (between 3 attacks)
         int _randomNumber = Random.Range(0, 7); // min included, max excluded
-        _randomNumber = 5;
 
         // Show the according particles and play the according sound to telegraph the attack:
         switch (_randomNumber)

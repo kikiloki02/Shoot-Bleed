@@ -414,6 +414,7 @@ MonoBehaviour:
   _attackValue: 5
   _movementSpeed: 100
   _chargeDistance: 25
+  _healPlayer: 10
   _chargeTime: 2
   _cooldownTime: 5
   _rigidBody: {fileID: 1226302043328788128}
@@ -426,7 +427,6 @@ MonoBehaviour:
   _chargingParticlesForthAndBack: {fileID: 1226302044031163600}
   _chargingParticlesChain: {fileID: 1226302044753651174}
   _attackParticles: {fileID: 1226302044711939049}
-  _audioManager: {fileID: 0}
   _attackPivot: {fileID: 1325115012255504708}
   _attackIndicator: {fileID: 6831443160963041919}
   _attack1: {fileID: 1226302043463136793}
@@ -20432,6 +20432,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862723033769132500, guid: 3d1beda3cced0ac4fbc90064ec175e76, type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4862723033769132501, guid: 3d1beda3cced0ac4fbc90064ec175e76, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4862723033769132503, guid: 3d1beda3cced0ac4fbc90064ec175e76, type: 3}

@@ -5,7 +5,7 @@ using UnityEngine;
 public class ManageRoom : MonoBehaviour
 {
 
-    public Enemy[] enemies;
+    public HealthSystem[] enemies;
     public GameObject[] door;
     public Transform[] doorEndPos;
     public GameObject player;
@@ -29,7 +29,7 @@ public class ManageRoom : MonoBehaviour
         bool allDead = true;
         for(int i = 0; i < enemies.Length; i++)
         {
-            if(enemies[i] != null && enemies[i].AmIDead() == false)
+            if(enemies[i] != null && enemies[i].currentHealth > 0)
             {
                 allDead = false;
             }
