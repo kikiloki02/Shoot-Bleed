@@ -30,6 +30,13 @@ public class HealthSystem : MonoBehaviour
 
     void Death()
     {
-        if(currentHealth <= 0) { Destroy(this.gameObject); }
+        if(currentHealth <= 0) 
+        {
+            if (this.gameObject.CompareTag("Enemy"))
+            {
+                FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
+            }
+            Destroy(this.gameObject); 
+        }
     }
 }
