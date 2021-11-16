@@ -11,6 +11,13 @@ public class Attack_Player : MonoBehaviour
 
     // ------ START / UPDATE / FIXEDUPDATE: ------
 
+    private void Start()
+    {
+        _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        // _enemy = FindObjectOfType<Enemy>().gameObject;
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.tag == "Player") { _player.GetComponent<PlayerLifeManagement>().GetDamage(_enemy.GetComponent<Enemy>()._attackValue); }

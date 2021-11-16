@@ -13,7 +13,6 @@ public class PlayerLifeManagement : HealthSystem
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
     }
 
     // Update is called once per frame

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BloodBat : Enemy
+public class Blade_Knight : Enemy
 {
     public ParticleSystem _chargingParticlesBasic;
     public ParticleSystem _chargingParticlesForthAndBack;
@@ -11,12 +11,23 @@ public class BloodBat : Enemy
 
     public AudioManager _audioManager;
 
-    public GameObject _attackCollider;
+    public GameObject _attackPivot;
     // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.
+
+    public AudioSource _attack1;
+    public AudioSource _attack2;
+    public AudioSource _charge;
+    public AudioSource _hit;
+    public AudioSource _death;
 
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
+// ------ START / UPDATE / FIXEDUPDATE: ------
+
+    private void Start()
+    {
+        _player = FindObjectOfType<Player_Controller>().gameObject;
+    }
 
     private void Update()
     {
@@ -27,16 +38,9 @@ public class BloodBat : Enemy
             _sprite3Color = _spriteRenderer3.color;
         }
 
-        if (AmIDead())
-        {
-            Die();
-
-            HealPlayer();
-        }
-
         // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        if (Input.GetKeyDown(KeyCode.T)) { _audioManager.PlaySFX(0); } // Should be: AudioManager.instance.PlaySFX(value);
+        if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -44,20 +48,13 @@ public class BloodBat : Enemy
         if (collision.gameObject.tag == "Player" && _canAttack) { StartCoroutine(Charging(_chargeTime)); }
     }
 
-    // ------ METHODS: ------
+// ------ METHODS: ------
 
     public override void Die()
     {
-        Debug.Log("Blood Bat->Dead");
+        Debug.Log("Blade Knight->Dead");
 
-        _audioManager.PlaySFX(3); // Die SFX
-
-        Destroy(this.gameObject);
-    }
-
-    public override void HealPlayer()
-    {
-        _player.GetComponent<Player_Controller>().Heal(5);
+        _death.Play(); // Die SFX
     }
 
     public override void GetHit()
@@ -67,32 +64,27 @@ public class BloodBat : Enemy
         StartCoroutine(GetHitEffect());
     }
 
-    public override bool AmIDead()
-    {
-        return GetComponent<HealthSystem>().currentHealth <= 0;
-    }
-
     void Attack1()
     {
-        Debug.Log("Blood Bat->Attack1");
+        Debug.Log("Blade Knight->Attack1");
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance); // The attack move
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(0, 1f));
 
-        _attackCollider.transform.right = _rigidBody.velocity;
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
 
-    // ------ COROUTINES: ------
+// ------ COROUTINES: ------
 
     public override IEnumerator GetHitEffect()
     {
-        _audioManager.PlaySFX(3); // Hit SFX
+        _hit.Play(); // Hit SFX
 
         _spriteRenderer.color = new Color(0, 255, 0);
         _spriteRenderer2.color = new Color(0, 255, 0);
@@ -109,30 +101,34 @@ public class BloodBat : Enemy
 
     IEnumerator Attack2(float seconds)
     {
-        Debug.Log("Blood Bat->Attack2");
+        Debug.Log("Blade Knight->Attack2");
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
 
         // The Attack move:
         Vector3 _storedPosition = this.transform.position;
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(1, 1f));
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         yield return new WaitForSeconds(seconds); // Wait
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
 
         // The Attack move 2:
         _chargeDirection = _storedPosition - this.transform.position;
         _chargeDirection.Normalize();
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(1, 1f));
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
@@ -140,31 +136,35 @@ public class BloodBat : Enemy
 
     IEnumerator Attack3(float seconds)
     {
-        Debug.Log("Blood Bat->Attack3");
+        Debug.Log("Blade Knight->Attack3");
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack2.Play(); // Attack2 SFX
 
         // The Attack move:
         _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
         _chargeDirection.Normalize();
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(2, 1f));
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         yield return new WaitForSeconds(seconds); // Wait
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack2.Play(); // Attack2 SFX
 
         // The Attack move 2:
         _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
         _chargeDirection.Normalize();
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(2, 1f));
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
@@ -172,7 +172,7 @@ public class BloodBat : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        Debug.Log("Blood Bat->Charging");
+        Debug.Log("Blade Knight->Charging");
 
         // Random attack move: (between 3 attacks)
         int _randomNumber = Random.Range(0, 7); // min included, max excluded
@@ -183,17 +183,17 @@ public class BloodBat : Enemy
             case 0:
             case 1:
             case 2:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesBasic.Play();
                 break;
             case 3:
             case 4:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesForthAndBack.Play();
                 break;
             case 5:
             case 6:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesChain.Play();
                 break;
         }
@@ -208,7 +208,7 @@ public class BloodBat : Enemy
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        Debug.Log("Blood Bat->Finished charging");
+        Debug.Log("Blade Knight->Finished charging");
 
         _spriteRenderer.color = new Color(255, 255, 255);
 
@@ -236,26 +236,26 @@ public class BloodBat : Enemy
 
     IEnumerator AttackCooldown(float seconds)
     {
-        Debug.Log("Blood Bat->Cooldown started");
+        Debug.Log("Blade Knight->Cooldown started");
 
         _spriteRenderer.color = new Color(0, 0, 255);
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        Debug.Log("Blood Bat->Cooldown finished");
+        Debug.Log("Blade Knight->Cooldown finished");
 
         _spriteRenderer.color = new Color(255, 255, 255);
 
         _canAttack = true;
     }
 
-    IEnumerator AttackColliderSwitch(float secondsActive)
+    IEnumerator AttackColliderSwitch(int attack, float secondsActive)
     {
-        _attackCollider.SetActive(true);
+        _attackPivot.GetComponent<AttackPivot_Manager>()._attacks[attack].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(secondsActive);
 
-        _attackCollider.SetActive(false);
+        _attackPivot.GetComponent<AttackPivot_Manager>()._attacks[attack].gameObject.SetActive(false);
     }
 }
 

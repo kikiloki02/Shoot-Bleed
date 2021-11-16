@@ -15,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     public Animator _animator;
     public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
+    public AudioSource _dashSound;
 
 // ------ PRIVATE: ------
 
@@ -111,16 +112,6 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    public void Heal(int value)
-    {
-        _healthValue += value;
-    }
-
-    public void GetHit(int value)
-    {
-        _healthValue -= value;
-    }
-
 // ------ COROUTINES: ------
 
     IEnumerator Dash()
@@ -132,7 +123,10 @@ public class Player_Controller : MonoBehaviour
                 Debug.Log("Dashed");
 
                 _canPlayerDash = false;
+
                 // _isPlayerInvincible = true;
+
+                _dashSound.Play();
 
                 _dashParticles.Play();
 
