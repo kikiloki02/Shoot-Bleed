@@ -7,7 +7,7 @@ public class Seek : MonoBehaviour
     [SerializeField]
     Transform target;
     Rigidbody2D rb;
-    public Collider2D col;
+    //public Collider2D col;
     public float velocity;
     public float avoidVelocity;
     public Vector2 vector2 = Vector2.zero;
@@ -15,12 +15,12 @@ public class Seek : MonoBehaviour
     float maxSeeAhead = 3;
     float xSize, ySize;
 
-    Vector3 topLeft, topRight, bottomLeft, bottomRight;
+    Vector3 topLeft, topRight, bottomLeft, bottomRight, center;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        col = GetComponent<Collider2D>();
+        //col = GetComponent<Collider2D>();
 
         SetInitialBoundingBoxInfo();
     }
@@ -70,18 +70,69 @@ public class Seek : MonoBehaviour
 
     private void CreateVirtualBoundingBox()
     {
-        /* Create the bounding box around the sprite for collision detection */
-        bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
-        bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+        center = transform.position + (-transform.right * 0) + (-transform.up * 0);
 
-        topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
-        topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
-        
-        Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
-        Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+        if (vector2.y > 0)
+        {
+            /* Create the bounding box around the sprite for collision detection */
+            bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+            bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+
+            topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
+            topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
+
+            // GIRA DEFORMANT-SE
+            //topRight = transform.position + ((transform.right * (xSize)) + (target.position.normalized * maxSeeAhead));
+            //topLeft = transform.position + (-transform.right * (xSize)) + (target.position.normalized * maxSeeAhead);
+
+            // GIRA EL SPRITE
+            //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomRight, target.position));
+            //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomLeft, target.position));
+
+            // AIXO ERA LO BUENO
+            // Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
+            // Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+
+        }
+
+        else if (vector2.x < 0)
+        {
+            bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+            bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+
+            topRight = transform.position + ((-transform.up * (xSize)) + (-transform.right * maxSeeAhead));
+            topLeft = transform.position + (transform.up * (xSize)) + (-transform.right * maxSeeAhead);
+        }
+        //ESTA A MEDIAS----------------------------------------------------------------------------------------------------------------
+        else if (vector2.y < 0 && vector2.x >vector2.y)
+        {
+            bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+            bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+
+            topRight = transform.position + ((-transform.right * (xSize)) + (-transform.up * maxSeeAhead));
+            topLeft = transform.position + (transform.right * (xSize)) + (-transform.up * maxSeeAhead);
+
+        }
+        //------------------------------------------------------------------------------------------------------------------------------
+        else if (vector2.x > 0)
+        {
+            bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+            bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+
+            topRight = transform.position + ((transform.up * (xSize)) + (transform.right * maxSeeAhead));
+            topLeft = transform.position + (-transform.up * (xSize)) + (transform.right * maxSeeAhead);
+        }
 
         Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
         Debug.DrawRay(topRight, (topLeft - topRight), Color.green);
+
+        Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
+        Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+
+        //My test
+        Debug.DrawRay(center, (topRight - center), Color.red);
+        Debug.DrawRay(center, (topLeft - center), Color.red);
+
     }
 
     private void CheckForCollisionDetected()
