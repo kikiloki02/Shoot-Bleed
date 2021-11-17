@@ -18,8 +18,6 @@ public class ObstacleAvoidance : SteeringBehavior
 
     new void Start()
     {
-        velocity2 = 10f;
-        avoidVelocity = 0.5f;
         rb = GetComponent<Rigidbody2D>();
         base.Start();
 
@@ -29,10 +27,11 @@ public class ObstacleAvoidance : SteeringBehavior
         //velocity = new Vector3(transform.up.x, transform.up.y, 0);
     }
 
-    void Update()
+    void FixedUpdate()
     {
         WrapAroundCameraView();
         CreateVirtualBoundingBox();
+
         CheckForCollisionDetected();
         //ApplySteeringToMotion();
         RotateTowardTarget();
@@ -76,9 +75,11 @@ public class ObstacleAvoidance : SteeringBehavior
         }
         /* If no obstacle was detected, then just steer it towards it's current velocity */
         else
+        {
             vector3 = target.transform.position - this.transform.position;
             rb.AddForce(vector3.normalized * velocity2);//Steer(location + (velocity.normalized * velocity.magnitude));
-    }
+        }
+     }
 
     private void CreateVirtualBoundingBox()
     {
@@ -86,8 +87,8 @@ public class ObstacleAvoidance : SteeringBehavior
         bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
         bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
 
-        topRight = transform.position + ((transform.right * (xSize )) + (transform.up * maxSeeAhead));
-        topLeft = transform.position + (-transform.right * (xSize )) + (transform.up * maxSeeAhead);
+        topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
+        topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
 
         Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
         Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);

@@ -102,7 +102,7 @@ public abstract class SteeringBehavior : MonoBehaviour
 
         //calculate the angle of rotation
         float rotZ = Mathf.Atan2(directionToDesiredLocation.y, directionToDesiredLocation.x) * Mathf.Rad2Deg;
-        rotZ -= 90;
+        rotZ += 90;
 
         //set the angle of rotation to the agent to make it rotate towards the target.
         transform.rotation = Quaternion.Euler(0, 0, rotZ);
