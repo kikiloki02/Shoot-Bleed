@@ -66,10 +66,9 @@ public class Seek : MonoBehaviour
             topRight = transform.position + ((-transform.up * (xSize)) + (-transform.right * maxSeeAhead));
             topLeft = transform.position + (transform.up * (xSize)) + (-transform.right * maxSeeAhead);
         }
-        //ESTA A MEDIAS----------------------------------------------------------------------------------------------------------------
+        //DOWN
         else if (vector2.y < 0 && (-(vector2.x) > vector2.y))
-        {
-            //DOWN
+        {  
             bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
             bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
 
@@ -77,7 +76,6 @@ public class Seek : MonoBehaviour
             topLeft = transform.position + (transform.right * (xSize)) + (-transform.up * maxSeeAhead);
 
         }
-        //------------------------------------------------------------------------------------------------------------------------------
         //RIGHT
         else if (vector2.x > 0 && vector2.x > vector2.y)
         {
@@ -88,13 +86,13 @@ public class Seek : MonoBehaviour
             topLeft = transform.position + (-transform.up * (xSize)) + (transform.right * maxSeeAhead);
         }
 
+        //Draw Raycast Lines
         Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
         Debug.DrawRay(topRight, (topLeft - topRight), Color.green);
 
         Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
         Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
 
-        //My test
         Debug.DrawRay(center, (topRight - center), Color.red);
         Debug.DrawRay(center, (topLeft - center), Color.red);
 
