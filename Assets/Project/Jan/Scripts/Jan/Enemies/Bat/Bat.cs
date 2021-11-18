@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
+    private bool _rotate;
+
     public ParticleSystem _chargingParticlesBasic;
     public ParticleSystem _chargingParticlesForthAndBack;
     public ParticleSystem _chargingParticlesChain;
@@ -42,6 +44,8 @@ public class Bat : Enemy
         // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
         if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
+
+        RotateIndicator();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -69,6 +73,8 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Attack1");
 
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
+
         _attackParticles.Play();
 
         _attack1.Play(); // Attack1 SFX
@@ -78,11 +84,23 @@ public class Bat : Enemy
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance); // The attack move
         StartCoroutine(AttackColliderSwitch(0, 1f));
 
-        _attackIndicator.SetActive(false);
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
 
-// ------ COROUTINES: ------
+    void RotateIndicator()
+    {
+        if (_rotate)
+        {
+            Vector2 _newDirection;
+
+            _newDirection = _player.transform.position - this.gameObject.transform.position;
+            _newDirection.Normalize();
+
+            _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _newDirection));
+        }
+    }
+
+    // ------ COROUTINES: ------
 
     public override IEnumerator GetHitEffect()
     {
@@ -105,6 +123,8 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Attack2");
 
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
+
         _attackParticles.Play();
 
         _attack1.Play(); // Attack1 SFX
@@ -113,7 +133,6 @@ public class Bat : Enemy
         Vector3 _storedPosition = this.gameObject.transform.position;
 
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
-        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
         StartCoroutine(AttackColliderSwitch(0, 0.5f));
@@ -129,13 +148,10 @@ public class Bat : Enemy
         _chargeDirection.Normalize();
 
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
-        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
         StartCoroutine(AttackColliderSwitch(0, 0.5f));
         // ------
-
-        StartCoroutine(DeactivateAttackIndicator(0.5f));
 
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
@@ -144,7 +160,8 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Attack3");
 
-        // _attackIndicator.SetActive(false);
+        _rotate = false;
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
         _attackParticles.Play();
 
@@ -170,8 +187,6 @@ public class Bat : Enemy
         _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();
 
-        // StartCoroutine(RotateIndicator());
-
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
@@ -179,14 +194,17 @@ public class Bat : Enemy
         StartCoroutine(AttackColliderSwitch(0, 1f));
         // ------
 
-        // _attackIndicator.SetActive(false);
-
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
 
     IEnumerator Charging(float seconds)
     {
         Debug.Log("Bat->Charging");
+
+        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
+        _chargeDirection.Normalize();
+
+        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         // Random attack move: (between 3 attacks)
         int _randomNumber = Random.Range(0, 7); // min included, max excluded
@@ -197,33 +215,27 @@ public class Bat : Enemy
             case 0:
             case 1:
             case 2:
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
                 _charge.Play(); // Charge1 SFX
                 _chargingParticlesBasic.Play();
                 break;
             case 3:
             case 4:
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
                 _charge.Play(); // Charge1 SFX
                 _chargingParticlesForthAndBack.Play();
                 break;
             case 5:
             case 6:
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
                 _charge.Play(); // Charge1 SFX
                 _chargingParticlesChain.Play();
-                // StartCoroutine(RotateIndicator());
+                _rotate = true;
                 break;
         }
 
         // Logic:
         _canAttack = false;
-
-        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
-        _chargeDirection.Normalize();
-
-        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
-        _attackIndicator.SetActive(true);
-
-        if (_randomNumber == 5 || _randomNumber == 6)
-            _attackIndicator.SetActive(false);
 
         _spriteRenderer.color = new Color(255, 0, 0);
 
@@ -277,28 +289,6 @@ public class Bat : Enemy
         yield return new WaitForSeconds(secondsActive);
 
         _attackPivot.GetComponent<AttackPivot_Manager>()._attacks[attack].gameObject.SetActive(false);
-    }
-
-    IEnumerator RotateIndicator()
-    {
-        Vector2 _newDirection;
-
-        do
-        {
-            _newDirection = _player.transform.position - this.gameObject.transform.position;
-            _newDirection.Normalize();
-
-            _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _newDirection));
-        } while (true);
-
-        yield return new WaitForSeconds(0f);
-    }
-
-    IEnumerator DeactivateAttackIndicator(float seconds)
-    {
-        yield return new WaitForSeconds(seconds);
-
-        _attackIndicator.SetActive(false);
     }
 }
 

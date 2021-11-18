@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-
     public int damage;
     public Rigidbody2D rb;
     public float OutVelocity;
@@ -19,8 +18,7 @@ public class Bullet : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D other)
     {
-        
-        if(other.gameObject.CompareTag("Enemy"))
+        if (other.gameObject.CompareTag("Enemy"))
         {
             particles.Play();
             //Restar vida al enemy
@@ -31,10 +29,30 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        else if(other.gameObject.CompareTag("Wall"))
+        else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
         {
             //Destruir bala
             Destroy(this.gameObject);
         }
     }
+
+    //void OnCollisionStay2D(Collision2D other)
+    //{
+    //    if (other.gameObject.CompareTag("Enemy"))
+    //    {
+    //        particles.Play();
+    //        //Restar vida al player
+    //        other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
+    //        //Knockback al player
+    //        //other.rigidbody.AddForce(force * 0.1f);
+    //        //Destriur bala
+
+    //        Destroy(this.gameObject);
+    //    }
+    //    else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
+    //    {
+    //        //Destruir bala
+    //        Destroy(this.gameObject);
+    //    }
+    //}
 }

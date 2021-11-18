@@ -20461,6 +20461,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1226302043328788134}
     m_Modifications:
+    - target: {fileID: 770322559353465177, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 894423844914959334, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_LocalScale.x
       value: 4
@@ -20476,6 +20480,10 @@ PrefabInstance:
     - target: {fileID: 968535437674380894, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_Name
       value: Attack Indicator Pivot
+      objectReference: {fileID: 0}
+    - target: {fileID: 1602522061734180639, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3645588592922303307, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_RootOrder
@@ -20519,6 +20527,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3645588592922303307, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8358326676167357148, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

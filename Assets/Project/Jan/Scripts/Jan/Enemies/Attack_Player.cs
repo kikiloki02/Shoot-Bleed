@@ -7,7 +7,7 @@ public class Attack_Player : MonoBehaviour
     public GameObject _enemy;
     public GameObject _player;
 
-    private bool _canDealDamage = true;
+    // private bool _canDealDamage = true;
 
     // ------ START / UPDATE / FIXEDUPDATE: ------
 
