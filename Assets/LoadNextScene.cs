@@ -30,12 +30,6 @@ public class LoadNextScene : MonoBehaviour
             Scene followingScene = SceneManager.GetSceneByName(NextScene);
             SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Additive);
             Destroy(allNextScenes.gameObject);
-
-            /*
-            if(SceneManager.GetSceneByBuildIndex(actualScene.buildIndex) != SceneManager.GetSceneByName("Init Scene"))
-            {
-                SceneManager.UnloadSceneAsync(actualScene);
-            }*/
         }
     }
 

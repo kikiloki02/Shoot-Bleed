@@ -412,12 +412,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff9d57f0afbd0cb468584b322a20b4f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackValue: 5
+  _attackValue: 3
   _movementSpeed: 100
   _chargeDistance: 25
   _healPlayer: 5
   _chargeTime: 2
-  _cooldownTime: 5
+  _cooldownTime: 2
   _rigidBody: {fileID: 1226302043328788128}
   _attackDetectionZone: {fileID: 1226302043328788130}
   _spriteRenderer: {fileID: 1226302043328788135}
@@ -447,7 +447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c6e73ee32b009498185870cbc28091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 6
+  maxHealth: 8
   currentHealth: 0
   enemy: {fileID: 1226302043328788157}
 --- !u!114 &6619949856514583086
@@ -462,7 +462,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 50
+  velocity: 40
   avoidVelocity: 1
   vector2: {x: 0, y: 0}
 --- !u!1 &1226302043463136795

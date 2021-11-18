@@ -21,27 +21,50 @@ public class Blade_Knight : Enemy
     public AudioSource _hit;
     public AudioSource _death;
 
+    private bool doRandom;
+    private int _randomNumber;
+
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
-// ------ START / UPDATE / FIXEDUPDATE: ------
+    // ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Start()
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        _spriteRedColor = new Color32(255, 50, 50, 255);
+        _spriteBlueColor = new Color32(0, 0, 255, 255);
+        _spriteWhiteColor = new Color32(255, 255, 255, 255);
     }
 
     private void Update()
     {
-        if (!_gotHit)
-        {
-            _sprite1Color = _spriteRenderer.color;
-            _sprite2Color = _spriteRenderer2.color;
-            _sprite3Color = _spriteRenderer3.color;
-        }
-
         // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
         if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
+
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            doRandom = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.J))
+        {
+            doRandom = false;
+            _randomNumber = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.K))
+        {
+            doRandom = false;
+            _randomNumber = 3;
+        }
+
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            doRandom = false;
+            _randomNumber = 5;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -134,15 +157,30 @@ public class Blade_Knight : Enemy
     {
         _hit.Play(); // Hit SFX
 
-        _spriteRenderer.color = new Color(0, 255, 0);
-        _spriteRenderer2.color = new Color(0, 255, 0);
-        _spriteRenderer3.color = new Color(0, 255, 0);
+        _spriteRenderer.color = _spriteRedColor;
+        _spriteRenderer2.color = _spriteRedColor;
+        _spriteRenderer3.color = _spriteRedColor;
 
         yield return new WaitForSeconds(_hitEffectDuration); // Wait
 
-        _spriteRenderer.color = _sprite1Color;
-        _spriteRenderer2.color = _sprite2Color;
-        _spriteRenderer3.color = _sprite3Color;
+        if (_isCharging)
+        {
+            _spriteRenderer.color = new Color32(255, 0, 0, 255);
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
+        else if (_cooldown)
+        {
+            _spriteRenderer.color = _spriteBlueColor;
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
+        else
+        {
+            _spriteRenderer.color = _spriteWhiteColor;
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
 
         _gotHit = false;
     }
@@ -150,6 +188,8 @@ public class Blade_Knight : Enemy
     IEnumerator Charging(float seconds)
     {
         Debug.Log("Blade Knight->Charging");
+
+        _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;
 
@@ -159,7 +199,8 @@ public class Blade_Knight : Enemy
         _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         // Random attack move: (between 3 attacks)
-        int _randomNumber = Random.Range(0, 7); // min included, max excluded
+        if(doRandom)
+            _randomNumber = Random.Range(0, 7); // min included, max excluded
 
         // Show the according particles and play the according sound to telegraph the attack:
         switch (_randomNumber)
@@ -216,11 +257,16 @@ public class Blade_Knight : Enemy
                 Attack3(0.5f);
                 break;
         }
+
+        _isCharging = false;
+
     }
 
     IEnumerator AttackCooldown(float seconds)
     {
         Debug.Log("Blade Knight->Cooldown started");
+
+        _cooldown = true;
 
         _spriteRenderer.color = new Color(0, 0, 255);
 
@@ -231,6 +277,8 @@ public class Blade_Knight : Enemy
         _spriteRenderer.color = new Color(255, 255, 255);
 
         _canAttack = true;
+
+        _cooldown = false;
     }
 
     IEnumerator AttackColliderSwitch(int attack, float secondsActive)

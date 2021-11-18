@@ -16,11 +16,14 @@ public class ShootBullet : MonoBehaviour
 
     public AudioSource _shoot1;
     public AudioSource _shoot2;
+    private bool canShoot = true;
+
+    public float secondsPerBullet;
 
     // Start is called before the first frame update
     void Start()
     {
- 
+    
     }
 
     // Update is called once per frame
@@ -28,8 +31,10 @@ public class ShootBullet : MonoBehaviour
     {
         directionToMouse = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f)) - this.transform.position).normalized;
         this.transform.right = new Vector2(directionToMouse.x, directionToMouse.y);
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+
+        if (Input.GetKey(KeyCode.Mouse0) && canShoot)
         {
+            StartCoroutine(AvailableShoot(secondsPerBullet));
             Shoot();
         }
 
@@ -41,6 +46,7 @@ public class ShootBullet : MonoBehaviour
 
     void Shoot()
     {
+
         GameObject newBullet;
 
         if (player.GetComponent<PlayerLifeManagement>().criticalState)
@@ -63,5 +69,12 @@ public class ShootBullet : MonoBehaviour
         //CameraShake
         CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
         shootParticles.Play();
+    }
+
+    IEnumerator AvailableShoot(float seconds)
+    {
+        canShoot = false;
+        yield return new WaitForSeconds(seconds);
+        canShoot = true;
     }
 }

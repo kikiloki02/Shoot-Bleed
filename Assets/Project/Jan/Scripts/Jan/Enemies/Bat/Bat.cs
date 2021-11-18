@@ -23,6 +23,10 @@ public class Bat : Enemy
     public AudioSource _hit;
     public AudioSource _death;
 
+    private int _randomNumber;
+    private bool doRandom = false;
+
+
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
     // ------ START / UPDATE / FIXEDUPDATE: ------
@@ -30,21 +34,41 @@ public class Bat : Enemy
     private void Start()
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        _spriteRedColor = new Color32(255, 50, 50, 255);
+        _spriteBlueColor = new Color32(0, 0, 255, 255);
+        _spriteWhiteColor = new Color32(255, 255, 255, 255);
     }
 
     private void Update()
     {
-        if (!_gotHit)
-        {
-            _sprite1Color = _spriteRenderer.color;
-            _sprite2Color = _spriteRenderer2.color;
-            _sprite3Color = _spriteRenderer3.color;
-        }
 
         // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
         if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
 
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            doRandom = true;
+        }
+
+        if (Input.GetKeyDown(KeyCode.X)) 
+        {
+            doRandom = false;
+            _randomNumber = 0;
+        }
+
+        if (Input.GetKeyDown(KeyCode.C))
+        {
+            doRandom = false;
+            _randomNumber = 3;
+        }
+
+        if (Input.GetKeyDown(KeyCode.V))
+        {
+            doRandom = false;
+            _randomNumber = 5;
+        }
         RotateIndicator();
     }
 
@@ -108,15 +132,31 @@ public class Bat : Enemy
     {
         _hit.Play(); // Hit SFX
 
-        _spriteRenderer.color = new Color(0, 255, 0);
-        _spriteRenderer2.color = new Color(0, 255, 0);
-        _spriteRenderer3.color = new Color(0, 255, 0);
+        _spriteRenderer.color = _spriteRedColor;
+        _spriteRenderer2.color = _spriteRedColor;
+        _spriteRenderer3.color = _spriteRedColor;
 
         yield return new WaitForSeconds(_hitEffectDuration); // Wait
 
-        _spriteRenderer.color = _sprite1Color;
-        _spriteRenderer2.color = _sprite2Color;
-        _spriteRenderer3.color = _sprite3Color;
+        if (_isCharging)
+        {
+            _spriteRenderer.color = new Color32(255, 0, 0, 255);
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
+        else if (_cooldown)
+        {
+            _spriteRenderer.color = _spriteBlueColor;
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
+        else
+        {
+            _spriteRenderer.color = _spriteWhiteColor;
+            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
+            _spriteRenderer3.color = _spriteWhiteColor;
+        }
+
 
         _gotHit = false;
     }
@@ -207,6 +247,8 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Charging");
 
+        _isCharging = true;
+
         this.GetComponent<Seek>().enabled = false;
 
         _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
@@ -215,7 +257,8 @@ public class Bat : Enemy
         _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         // Random attack move: (between 3 attacks)
-        int _randomNumber = Random.Range(0, 7); // min included, max excluded
+        if(doRandom)
+            _randomNumber = Random.Range(0, 7); // min included, max excluded
 
         // Show the according particles and play the according sound to telegraph the attack:
         switch (_randomNumber)
@@ -245,13 +288,13 @@ public class Bat : Enemy
         // Logic:
         _canAttack = false;
 
-        _spriteRenderer.color = new Color(255, 0, 0);
+        _spriteRenderer.color = new Color32(255, 0, 0, 255);
 
         yield return new WaitForSeconds(seconds); // Wait
 
         Debug.Log("Bat->Finished charging");
 
-        _spriteRenderer.color = new Color(255, 255, 255);
+        _spriteRenderer.color = _spriteWhiteColor;
 
         // Execute the corresponding attack move:
         switch (_randomNumber)
@@ -273,21 +316,27 @@ public class Bat : Enemy
                 StartCoroutine(Attack3(0.5f));
                 break;
         }
+
+        _isCharging = false;
     }
 
     IEnumerator AttackCooldown(float seconds)
     {
         Debug.Log("Bat->Cooldown started");
 
-        _spriteRenderer.color = new Color(0, 0, 255);
+        _cooldown = true;
+
+        _spriteRenderer.color = _spriteBlueColor;
 
         yield return new WaitForSeconds(seconds); // Wait
 
         Debug.Log("Bat->Cooldown finished");
 
-        _spriteRenderer.color = new Color(255, 255, 255);
+        _spriteRenderer.color = _spriteWhiteColor;
 
         _canAttack = true;
+
+        _cooldown = false;
     }
 
     IEnumerator AttackColliderSwitch(int attack, float secondsActive)

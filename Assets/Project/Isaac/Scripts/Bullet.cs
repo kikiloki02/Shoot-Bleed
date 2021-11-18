@@ -23,9 +23,6 @@ public class Bullet : MonoBehaviour
             particles.Play();
             //Restar vida al enemy
             other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
-            //Knockback al enemy
-            //other.rigidbody.AddForce(force * 0.1f);
-            //Destriur bala
 
             Destroy(this.gameObject);
         }
@@ -36,23 +33,4 @@ public class Bullet : MonoBehaviour
         }
     }
 
-    //void OnCollisionStay2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Enemy"))
-    //    {
-    //        particles.Play();
-    //        //Restar vida al player
-    //        other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
-    //        //Knockback al player
-    //        //other.rigidbody.AddForce(force * 0.1f);
-    //        //Destriur bala
-
-    //        Destroy(this.gameObject);
-    //    }
-    //    else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        //Destruir bala
-    //        Destroy(this.gameObject);
-    //    }
-    //}
 }

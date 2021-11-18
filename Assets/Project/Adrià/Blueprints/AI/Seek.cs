@@ -7,60 +7,28 @@ public class Seek : MonoBehaviour
     
     private Transform target;
     private Rigidbody2D rb;
-    //public Collider2D col;
     public float velocity;
     public float avoidVelocity;
     public Vector2 vector2 = Vector2.zero;
 
-    float maxSeeAhead = 2;
+    float maxSeeAhead = 1.0f;
     float xSize, ySize;
 
     Vector3 topLeft, topRight,bottomLeft, bottomRight, center;
 
 
-    
-
     void Start()
     {
         target = FindObjectOfType<Player_Controller>().gameObject.transform;
         rb = GetComponent<Rigidbody2D>();
-        //col = GetComponent<Collider2D>();
 
         SetInitialBoundingBoxInfo();
     }
 
-    //private void OnTriggerEnter2D(Collider2D collision)
-    //{
-    //    if (collision.CompareTag("Object"))
-    //    {
-    //        vector2.Set(0, 1);
-    //        Debug.Log("changing dir");
-    //        Movement();           
-    //    }
-    //    else if (collision.CompareTag("Player")){
-    //        vector2 = target.transform.position - this.transform.position;
-    //        Debug.Log("following player");
-    //        Movement();
-    //    }
-    //    else
-    //    {
-    //        vector2= Vector2.zero;
-    //    }
-    //}
-
     void FixedUpdate()
     {
-        //OnTriggerEnter2D(col);
-        // Movement();
         CreateVirtualBoundingBox();
         CheckForCollisionDetected();
-        //RotateTowardTarget();
-
-    }    
-
-    private void Movement()
-    {
-        rb.AddForce(vector2.normalized * velocity);
     }
 
     private void SetInitialBoundingBoxInfo()
@@ -87,19 +55,6 @@ public class Seek : MonoBehaviour
 
             topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
             topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
-
-            // GIRA DEFORMANT-SE
-            //topRight = transform.position + ((transform.right * (xSize)) + (target.position.normalized * maxSeeAhead));
-            //topLeft = transform.position + (-transform.right * (xSize)) + (target.position.normalized * maxSeeAhead);
-
-            // GIRA EL SPRITE
-            //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomRight, target.position));
-            //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomLeft, target.position));
-            
-            // AIXO ERA LO BUENO
-            // Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
-            // Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
-            
 
         }
         //LEFT
@@ -163,7 +118,6 @@ public class Seek : MonoBehaviour
 
         if (hit2D[0])
         {
-            //hit2D[0].transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, target.position-this.transform.position));
             /* if a collision was detected on the left side of the bounding box, the direction of movement (to
             steer away from the obstacle) will be to the right. */
             dirOfMovementToAvoidObstacle = topRight - hit2D[0].collider.transform.position;
@@ -172,25 +126,20 @@ public class Seek : MonoBehaviour
              This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[0].collider.transform.position);
             rb.AddForce(dirOfMovementToAvoidObstacle * avoidVelocity);
-            //Steer(dirOfMovementToAvoidObstacle);
 
             Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
         }
         else if (hit2D[1])
         {
-            //hit2D[1].transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, target.position - this.transform.position));
-
+         
             dirOfMovementToAvoidObstacle = topLeft - hit2D[1].collider.transform.position;
-
-
-
 
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[1].collider.transform.position);
             rb.AddForce(dirOfMovementToAvoidObstacle * avoidVelocity);
-            //Steer(dirOfMovementToAvoidObstacle);
 
             Debug.DrawRay(hit2D[1].collider.transform.position, topLeft - hit2D[1].collider.transform.position, Color.white);
         }
+
         /* If no obstacle was detected, then just steer it towards it's current velocity */
         else
         {

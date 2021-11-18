@@ -31,8 +31,7 @@ public class EnemyBullet : MonoBehaviour
             particles.Play();
             //Restar vida al player
             other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
-            //Knockback al player
-            //other.rigidbody.AddForce(force * 0.1f);
+
             //Destriur bala
 
             Destroy(this.gameObject);
@@ -53,8 +52,7 @@ public class EnemyBullet : MonoBehaviour
                 particles.Play();
                 //Restar vida al player
                 other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
-                //Knockback al player
-                //other.rigidbody.AddForce(force * 0.1f);
+
                 //Destriur bala
 
                 Destroy(this.gameObject);

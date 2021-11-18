@@ -119,12 +119,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e514585542c0494485b2c41b3537acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 3
+  damage: 2
   rb: {fileID: -7612474735780538361}
   OutVelocity: 250
   particles: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
   _collider2D: {fileID: 1423333203876115984}
   _smallBullet: {fileID: 0}
+  explodeTime: 0
 --- !u!58 &1423333203876115984
 CircleCollider2D:
   m_ObjectHideFlags: 0

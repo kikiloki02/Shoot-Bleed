@@ -207,7 +207,7 @@ GameObject:
   - component: {fileID: 250956345}
   - component: {fileID: 250956347}
   - component: {fileID: 250956346}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: East Top Door
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -550,7 +550,7 @@ GameObject:
   - component: {fileID: 686646821}
   - component: {fileID: 686646823}
   - component: {fileID: 686646822}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: West Top Door
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1522,7 +1522,7 @@ GameObject:
   - component: {fileID: 1645824625}
   - component: {fileID: 1645824627}
   - component: {fileID: 1645824626}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: East Down Door
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -1762,7 +1762,7 @@ GameObject:
   - component: {fileID: 1953243585}
   - component: {fileID: 1953243587}
   - component: {fileID: 1953243586}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: West Down Door
   m_TagString: Wall
   m_Icon: {fileID: 0}

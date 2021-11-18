@@ -417,7 +417,7 @@ MonoBehaviour:
   _chargeDistance: 25
   _healPlayer: 8
   _chargeTime: 1.25
-  _cooldownTime: 5
+  _cooldownTime: 3
   _rigidBody: {fileID: 63675566395749056}
   _attackDetectionZone: {fileID: 63675566395749058}
   _spriteRenderer: {fileID: 63675566395749063}
@@ -463,8 +463,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 10
-  avoidVelocity: 1
+  velocity: 12
+  avoidVelocity: 2.5
   vector2: {x: 0, y: 0}
 --- !u!1 &63675566420931335
 GameObject:

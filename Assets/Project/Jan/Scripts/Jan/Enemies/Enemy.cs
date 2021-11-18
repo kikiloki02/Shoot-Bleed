@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Enemy : MonoBehaviour
@@ -25,10 +24,13 @@ public class Enemy : MonoBehaviour
     protected float _hitEffectDuration = 0.15f;
     protected bool _gotHit;
     protected Vector2 _chargeDirection;
-    protected Color _sprite1Color;
-    protected Color _sprite2Color;
-    protected Color _sprite3Color;
+    protected Color32 _spriteRedColor;
+    protected Color32 _spriteBlueColor;
+    protected Color32 _spriteWhiteColor;
     protected bool _canAttack = true;
+
+    protected bool _isCharging = false;
+    protected bool _cooldown = false;
 
     // ------ METHODS: ------
 

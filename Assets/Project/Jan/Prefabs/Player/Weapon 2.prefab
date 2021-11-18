@@ -55,6 +55,7 @@ MonoBehaviour:
   spawnPoint: {fileID: 4641800618514797329}
   _shoot1: {fileID: 7020839718060939593}
   _shoot2: {fileID: 7020839718060939593}
+  secondsPerBullet: 0.4
 --- !u!1 &4641800618514797330
 GameObject:
   m_ObjectHideFlags: 0

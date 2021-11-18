@@ -15217,17 +15217,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1124894c17e890a4a846d20dfe1ba41a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackValue: 5
+  _attackValue: 8
   _movementSpeed: 1000
   _chargeDistance: 25
-  _healPlayer: 14
+  _healPlayer: 15
   _chargeTime: 2
-  _cooldownTime: 5
+  _cooldownTime: 1.5
   _rigidBody: {fileID: 3065939049626629976}
   _attackDetectionZone: {fileID: 3065939049626629978}
   _spriteRenderer: {fileID: 3065939049626629983}
   _spriteRenderer2: {fileID: 3065939049283153416}
-  _spriteRenderer3: {fileID: 3065939049283153416}
+  _spriteRenderer3: {fileID: 3065939049720442210}
   _player: {fileID: 0}
   _chargingParticlesBasic: {fileID: 3065939048401261316}
   _chargingParticlesForthAndBack: {fileID: 3065939049926417704}
@@ -15268,7 +15268,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 175
-  avoidVelocity: 1
+  avoidVelocity: 35
   vector2: {x: 0, y: 0}
 --- !u!1 &3065939049651484319
 GameObject:
