@@ -7,9 +7,16 @@ public class Attack_Player : MonoBehaviour
     public GameObject _enemy;
     public GameObject _player;
 
-    private bool _canDealDamage = true;
+    // private bool _canDealDamage = true;
 
     // ------ START / UPDATE / FIXEDUPDATE: ------
+
+    private void Start()
+    {
+        _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        // _enemy = FindObjectOfType<Enemy>().gameObject;
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

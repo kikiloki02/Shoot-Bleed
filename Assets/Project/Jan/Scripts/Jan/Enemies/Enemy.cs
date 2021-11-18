@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
     public int _attackValue;
     public int _movementSpeed;
     public int _chargeDistance;
+    public int _healPlayer;
     public float _chargeTime;
     public float _cooldownTime;
 
@@ -36,8 +37,6 @@ public class Enemy : MonoBehaviour
     public virtual void HealPlayer() {}
 
     public virtual void GetHit() {}
-
-    public virtual bool AmIDead() { return true; }
 
     public virtual IEnumerator GetHitEffect() { yield return new WaitForSeconds(0f); }
 }

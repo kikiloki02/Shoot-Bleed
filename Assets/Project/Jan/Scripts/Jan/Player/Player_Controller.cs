@@ -2,8 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-enum MovementDirection { NORTH, SOUTH, WEST, EAST, NW, NE, SW, SE, NOPARTICLES };
-
 public class Player_Controller : MonoBehaviour
 {
 // ------ PUBLIC: ------
@@ -17,6 +15,7 @@ public class Player_Controller : MonoBehaviour
     public Animator _animator;
     public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
+    public AudioSource _dashSound;
 
 // ------ PRIVATE: ------
 
@@ -25,9 +24,7 @@ public class Player_Controller : MonoBehaviour
     private bool _canPlayerDash = true;
     // private bool _isPlayerInvincible = false;
 
-    private MovementDirection movementDirection;
-
-    private Vector2 movement; // X, and Y;
+    private Vector2 _movement; // X, and Y;
 
 // ------ START / UPDATE / FIXEDUPDATE: ------
 
@@ -54,10 +51,10 @@ public class Player_Controller : MonoBehaviour
 
     void ProcessInputs()
     {
-        movement.x = Input.GetAxisRaw("Horizontal"); // Value between -1 and 1 (by default this works with the arrow keys and WASD);
-        movement.y = Input.GetAxisRaw("Vertical"); // Value between -1 and 1 (by default this works with the arrow keys and WASD);
+        _movement.x = Input.GetAxisRaw("Horizontal"); // Value between -1 and 1 (by default this works with the arrow keys and WASD);
+        _movement.y = Input.GetAxisRaw("Vertical"); // Value between -1 and 1 (by default this works with the arrow keys and WASD);
 
-        movement = movement.normalized; // We normalize the vector2 to avoid moving faster Diagonally than Horiontally or Vertically;
+        _movement = _movement.normalized; // We normalize the vector2 to avoid moving faster Diagonally than Horiontally or Vertically;
         // If we don't normalize it, when we move diagonally we will get a magnitude of the square root of 2, which is 1.4, which is
         // 40% greater than the maximum horizontal or vertical speeds;
 
@@ -73,9 +70,9 @@ public class Player_Controller : MonoBehaviour
 
     void ProcessAnimations()
     {
-        _animator.SetFloat("Horizontal", movement.x);
-        _animator.SetFloat("Vertical", movement.y);
-        _animator.SetFloat("Speed", movement.sqrMagnitude);
+        _animator.SetFloat("Horizontal", _movement.x);
+        _animator.SetFloat("Vertical", _movement.y);
+        _animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 
     void ProcessParticles()
@@ -93,10 +90,10 @@ public class Player_Controller : MonoBehaviour
     void Move()
     {
         if (!_isPlayerWalking)
-            _rigidBody.AddForce(movement * _movementSpeed);
+            _rigidBody.AddForce(_movement * _movementSpeed);
         else
         {
-            _rigidBody.AddForce((movement * _movementSpeed) / 2);
+            _rigidBody.AddForce((_movement * _movementSpeed) / 2);
             _isPlayerWalking = false;
         }
 
@@ -115,32 +112,25 @@ public class Player_Controller : MonoBehaviour
         }
     }
 
-    public void Heal(int value)
-    {
-        _healthValue += value;
-    }
-
-    public void GetHit(int value)
-    {
-        _healthValue -= value;
-    }
-
 // ------ COROUTINES: ------
 
     IEnumerator Dash()
     {
         if (_isPlayerDashing)
         {
-            if (movement.magnitude != 0) // Moving.
+            if (_movement.magnitude != 0) // Moving.
             {
                 Debug.Log("Dashed");
 
                 _canPlayerDash = false;
+
                 // _isPlayerInvincible = true;
+
+                _dashSound.Play();
 
                 _dashParticles.Play();
 
-                _rigidBody.AddForce(movement * _movementSpeed * _dashDistance);
+                _rigidBody.AddForce(_movement * _movementSpeed * _dashDistance);
 
                 _isPlayerDashing = false;
 

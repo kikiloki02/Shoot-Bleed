@@ -4,19 +4,33 @@ using UnityEngine;
 
 public class Bat : Enemy
 {
+    private bool _rotate;
+
     public ParticleSystem _chargingParticlesBasic;
     public ParticleSystem _chargingParticlesForthAndBack;
     public ParticleSystem _chargingParticlesChain;
     public ParticleSystem _attackParticles;
 
-    public AudioManager _audioManager;
+    //public AudioManager _audioManager;
 
-    public GameObject _attackCollider;
+    public GameObject _attackPivot;
     // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.
+    public GameObject _attackIndicator;
+
+    public AudioSource _attack1;
+    public AudioSource _attack2;
+    public AudioSource _charge;
+    public AudioSource _hit;
+    public AudioSource _death;
 
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
-// ------ START / UPDATE / FIXEDUPDATE: ------
+    // ------ START / UPDATE / FIXEDUPDATE: ------
+
+    private void Start()
+    {
+        _player = FindObjectOfType<Player_Controller>().gameObject;
+    }
 
     private void Update()
     {
@@ -27,16 +41,11 @@ public class Bat : Enemy
             _sprite3Color = _spriteRenderer3.color;
         }
 
-        if (AmIDead())
-        {
-            Die();
-
-            HealPlayer();
-        }
-
         // Tests:
         if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        if (Input.GetKeyDown(KeyCode.T)) { _audioManager.PlaySFX(0); } // Should be: AudioManager.instance.PlaySFX(value);
+        if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
+
+        RotateIndicator();
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -50,14 +59,7 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Dead");
 
-        _audioManager.PlaySFX(3); // Die SFX
-
-        Destroy(this.gameObject);
-    }
-
-    public override void HealPlayer()
-    {
-        _player.GetComponent<Player_Controller>().Heal(5);
+        _death.Play(); // Die SFX
     }
 
     public override void GetHit()
@@ -67,32 +69,42 @@ public class Bat : Enemy
         StartCoroutine(GetHitEffect());
     }
 
-    public override bool AmIDead()
-    {
-        return  GetComponent<HealthSystem>().currentHealth <= 0;
-    }
-
     void Attack1()
     {
         Debug.Log("Bat->Attack1");
 
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
+
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance); // The attack move
-        StartCoroutine(AttackColliderSwitch(1f));
-
-        _attackCollider.transform.right = _rigidBody.velocity;
+        StartCoroutine(AttackColliderSwitch(0, 1f));
 
         StartCoroutine(AttackCooldown(_cooldownTime));
     }
 
-// ------ COROUTINES: ------
+    void RotateIndicator()
+    {
+        if (_rotate)
+        {
+            Vector2 _newDirection;
+
+            _newDirection = _player.transform.position - this.gameObject.transform.position;
+            _newDirection.Normalize();
+
+            _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _newDirection));
+        }
+    }
+
+    // ------ COROUTINES: ------
 
     public override IEnumerator GetHitEffect()
     {
-        _audioManager.PlaySFX(3); // Hit SFX
+        _hit.Play(); // Hit SFX
 
         _spriteRenderer.color = new Color(0, 255, 0);
         _spriteRenderer2.color = new Color(0, 255, 0);
@@ -111,28 +123,34 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Attack2");
 
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
+
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
 
         // The Attack move:
-        Vector3 _storedPosition = this.transform.position;
+        Vector3 _storedPosition = this.gameObject.transform.position;
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(0, 0.5f));
 
         yield return new WaitForSeconds(seconds); // Wait
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack1.Play(); // Attack1 SFX
 
         // The Attack move 2:
-        _chargeDirection = _storedPosition - this.transform.position;
+        _chargeDirection = _storedPosition - this.gameObject.transform.position;
         _chargeDirection.Normalize();
 
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
+
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+        StartCoroutine(AttackColliderSwitch(0, 0.5f));
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
@@ -142,29 +160,38 @@ public class Bat : Enemy
     {
         Debug.Log("Bat->Attack3");
 
+        _rotate = false;
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
+
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack2.Play(); // Attack2 SFX
 
         // The Attack move:
-        _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
+        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();
 
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+
+        StartCoroutine(AttackColliderSwitch(0, 1f));
+
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         yield return new WaitForSeconds(seconds); // Wait
 
         _attackParticles.Play();
 
-        _audioManager.PlaySFX(1); // Attack1 SFX
+        _attack2.Play(); // Attack2 SFX
 
         // The Attack move 2:
-        _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
+        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();
 
+        _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
+
         _rigidBody.AddForce(_movementSpeed * _chargeDirection * _chargeDistance);
-        StartCoroutine(AttackColliderSwitch(1f));
+
+        StartCoroutine(AttackColliderSwitch(0, 1f));
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
@@ -173,6 +200,11 @@ public class Bat : Enemy
     IEnumerator Charging(float seconds)
     {
         Debug.Log("Bat->Charging");
+
+        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
+        _chargeDirection.Normalize();
+
+        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         // Random attack move: (between 3 attacks)
         int _randomNumber = Random.Range(0, 7); // min included, max excluded
@@ -183,26 +215,27 @@ public class Bat : Enemy
             case 0:
             case 1:
             case 2:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesBasic.Play();
                 break;
             case 3:
             case 4:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesForthAndBack.Play();
                 break;
             case 5:
             case 6:
-                _audioManager.PlaySFX(2); // Charge1 SFX
+                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
+                _charge.Play(); // Charge1 SFX
                 _chargingParticlesChain.Play();
+                _rotate = true;
                 break;
         }
 
         // Logic:
         _canAttack = false;
-
-        _chargeDirection = _player.GetComponent<Transform>().position - this.transform.position;
-        _chargeDirection.Normalize();
 
         _spriteRenderer.color = new Color(255, 0, 0);
 
@@ -249,13 +282,13 @@ public class Bat : Enemy
         _canAttack = true;
     }
 
-    IEnumerator AttackColliderSwitch(float secondsActive)
+    IEnumerator AttackColliderSwitch(int attack, float secondsActive)
     {
-        _attackCollider.SetActive(true);
+        _attackPivot.GetComponent<AttackPivot_Manager>()._attacks[attack].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(secondsActive);
 
-        _attackCollider.SetActive(false);
+        _attackPivot.GetComponent<AttackPivot_Manager>()._attacks[attack].gameObject.SetActive(false);
     }
 }
 

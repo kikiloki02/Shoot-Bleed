@@ -13,7 +13,6 @@ public class PlayerLifeManagement : HealthSystem
     {
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
-
     }
 
     // Update is called once per frame
@@ -39,9 +38,19 @@ public class PlayerLifeManagement : HealthSystem
         else 
         { 
             currentHealth -= damage;
+            if (currentHealth < 0)
+                currentHealth = 0;
             healthBar.SetHealth(currentHealth);
             CinemachineShake.Instance.ShakeCamera(10f, 0.15f);
         }
+    }
+
+    public void RecoverHealth(int addHp)
+    {
+        currentHealth += addHp;
+        if (currentHealth > maxHealth)
+            currentHealth = maxHealth;
+        healthBar.SetHealth(currentHealth);
     }
 
 }
