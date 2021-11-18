@@ -739,6 +739,10 @@ PrefabInstance:
       propertyPath: _healPlayer
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 2.5
+      objectReference: {fileID: 0}
     - target: {fileID: 2244401067969593386, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: enemy
       value: 

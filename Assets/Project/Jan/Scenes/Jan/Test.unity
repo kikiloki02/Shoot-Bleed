@@ -141,7 +141,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3065939049626629957, guid: afb771001787034419df739a5fa0da75, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3065939049626629982, guid: afb771001787034419df739a5fa0da75, type: 3}
       propertyPath: m_RootOrder
@@ -672,13 +672,25 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6417199337863355768, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
-      propertyPath: m_IsActive
-      value: 0
+    - target: {fileID: 6619949856514583086, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: velocity
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 6831443160963041919, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070391467619588640, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070391467619588640, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 7070391467619588640, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
@@ -715,7 +727,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 63675567394262908, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: _player

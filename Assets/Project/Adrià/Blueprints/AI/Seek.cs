@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Seek : MonoBehaviour
 {
-    [SerializeField]
-    Transform target;
-    Rigidbody2D rb;
+    
+    private Transform target;
+    private Rigidbody2D rb;
     //public Collider2D col;
     public float velocity;
     public float avoidVelocity;
@@ -22,6 +22,7 @@ public class Seek : MonoBehaviour
 
     void Start()
     {
+        target = FindObjectOfType<Player_Controller>().gameObject.transform;
         rb = GetComponent<Rigidbody2D>();
         //col = GetComponent<Collider2D>();
 

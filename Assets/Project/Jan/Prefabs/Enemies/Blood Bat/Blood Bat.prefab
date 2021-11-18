@@ -258,6 +258,7 @@ GameObject:
   - component: {fileID: 63675566395749058}
   - component: {fileID: 1314935124251881722}
   - component: {fileID: 63675566395749084}
+  - component: {fileID: 4624287772282763370}
   m_Layer: 8
   m_Name: Blood Bat
   m_TagString: Enemy
@@ -398,7 +399,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 3
+  m_Radius: 7
 --- !u!114 &1314935124251881722
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,8 +415,8 @@ MonoBehaviour:
   _attackValue: 5
   _movementSpeed: 100
   _chargeDistance: 25
-  _healPlayer: 10
-  _chargeTime: 2
+  _healPlayer: 8
+  _chargeTime: 1.25
   _cooldownTime: 5
   _rigidBody: {fileID: 63675566395749056}
   _attackDetectionZone: {fileID: 63675566395749058}
@@ -447,9 +448,24 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c6e73ee32b009498185870cbc28091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 12
   currentHealth: 0
   enemy: {fileID: 63675566395749085}
+--- !u!114 &4624287772282763370
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63675566395749085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  velocity: 10
+  avoidVelocity: 1
+  vector2: {x: 0, y: 0}
 --- !u!1 &63675566420931335
 GameObject:
   m_ObjectHideFlags: 0
@@ -22163,7 +22179,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4862723033769132501, guid: 3d1beda3cced0ac4fbc90064ec175e76, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4862723033769132503, guid: 3d1beda3cced0ac4fbc90064ec175e76, type: 3}
       propertyPath: _enemy
@@ -22285,6 +22301,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e4762bd419e798448821eca74c05900c, type: 3}
+--- !u!1 &6570809702509447039 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 968535437674380894, guid: e4762bd419e798448821eca74c05900c, type: 3}
+  m_PrefabInstance: {fileID: 6215206376251160865}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &7485279811063404320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3576376048480628225, guid: e4762bd419e798448821eca74c05900c, type: 3}
@@ -22298,10 +22319,5 @@ Transform:
 --- !u!4 &7266385133046391402 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3645588592922303307, guid: e4762bd419e798448821eca74c05900c, type: 3}
-  m_PrefabInstance: {fileID: 6215206376251160865}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &6570809702509447039 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 968535437674380894, guid: e4762bd419e798448821eca74c05900c, type: 3}
   m_PrefabInstance: {fileID: 6215206376251160865}
   m_PrefabAsset: {fileID: 0}

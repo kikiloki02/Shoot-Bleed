@@ -10,6 +10,8 @@ public class EnemyBullet : MonoBehaviour
     public ParticleSystem particles;
     public Collider2D _collider2D;
     public GameObject _smallBullet;
+    public float explodeTime;
+    private bool collision = false; 
 
     // Start is called before the first frame update
     void Start()
@@ -17,7 +19,7 @@ public class EnemyBullet : MonoBehaviour
         particles.Pause();
 
         StartCoroutine(DeactivateForSeconds(0.2f));
-        if (_smallBullet != null) { StartCoroutine(Timer(1.5f)); }
+        if (_smallBullet != null) { StartCoroutine(Timer(explodeTime)); }
 
         rb.AddForce(this.transform.right * OutVelocity, ForceMode2D.Force);
     }
@@ -42,25 +44,28 @@ public class EnemyBullet : MonoBehaviour
         }
     }
 
-    //void OnCollisionStay2D(Collision2D other)
-    //{
-    //    if (other.gameObject.CompareTag("Player"))
-    //    {
-    //        particles.Play();
-    //        //Restar vida al player
-    //        other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
-    //        //Knockback al player
-    //        //other.rigidbody.AddForce(force * 0.1f);
-    //        //Destriur bala
+    void OnCollisionStay2D(Collision2D other)
+    {
+        if (collision)
+        {
+            if (other.gameObject.CompareTag("Player"))
+            {
+                particles.Play();
+                //Restar vida al player
+                other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
+                //Knockback al player
+                //other.rigidbody.AddForce(force * 0.1f);
+                //Destriur bala
 
-    //        Destroy(this.gameObject);
-    //    }
-    //    else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Bullet"))
-    //    {
-    //        //Destruir bala
-    //        Destroy(this.gameObject);
-    //    }
-    //}
+                Destroy(this.gameObject);
+            }
+            else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Bullet"))
+            {
+                //Destruir bala
+                Destroy(this.gameObject);
+            }
+        }
+    }
 
     IEnumerator DeactivateForSeconds(float seconds)
     {
@@ -69,6 +74,8 @@ public class EnemyBullet : MonoBehaviour
         yield return new WaitForSeconds(seconds);
 
         _collider2D.isTrigger = false;
+
+        collision = true;
     }
 
     IEnumerator Timer(float seconds)

@@ -14,7 +14,7 @@ public class ManageRoom : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<Player_Controller>().gameObject;
-        player.transform.position = new Vector3(0f, 0f, 0f);
+        player.transform.position = new Vector3(0f, -2.5f, 0f);
     }
 
     // Update is called once per frame

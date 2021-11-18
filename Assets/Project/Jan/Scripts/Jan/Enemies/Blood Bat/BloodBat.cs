@@ -83,6 +83,8 @@ public class BloodBat : Enemy
         _rigidBody.AddForce((_movementSpeed / 3) * -_chargeDirection * _chargeDistance);
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     void Attack2(float seconds)
@@ -111,6 +113,8 @@ public class BloodBat : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     void Attack3(float seconds)
@@ -144,6 +148,8 @@ public class BloodBat : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     // ------ COROUTINES: ------
@@ -168,6 +174,8 @@ public class BloodBat : Enemy
     IEnumerator Charging(float seconds)
     {
         Debug.Log("BloodBat->Charging");
+
+        this.GetComponent<Seek>().enabled = false;
 
         _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();

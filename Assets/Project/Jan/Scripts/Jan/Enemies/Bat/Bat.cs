@@ -85,6 +85,8 @@ public class Bat : Enemy
         StartCoroutine(AttackColliderSwitch(0, 1f));
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     void RotateIndicator()
@@ -154,6 +156,8 @@ public class Bat : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     IEnumerator Attack3(float seconds)
@@ -195,11 +199,15 @@ public class Bat : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     IEnumerator Charging(float seconds)
     {
         Debug.Log("Bat->Charging");
+
+        this.GetComponent<Seek>().enabled = false;
 
         _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();

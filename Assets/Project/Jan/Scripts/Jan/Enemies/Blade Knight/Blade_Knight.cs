@@ -82,6 +82,8 @@ public class Blade_Knight : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     void Attack2(float seconds)
@@ -101,6 +103,8 @@ public class Blade_Knight : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
     void Attack3(float seconds)
@@ -120,6 +124,8 @@ public class Blade_Knight : Enemy
         // ------
 
         StartCoroutine(AttackCooldown(_cooldownTime));
+
+        this.GetComponent<Seek>().enabled = true;
     }
 
 // ------ COROUTINES: ------
@@ -144,6 +150,8 @@ public class Blade_Knight : Enemy
     IEnumerator Charging(float seconds)
     {
         Debug.Log("Blade Knight->Charging");
+
+        this.GetComponent<Seek>().enabled = false;
 
         _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
         _chargeDirection.Normalize();
