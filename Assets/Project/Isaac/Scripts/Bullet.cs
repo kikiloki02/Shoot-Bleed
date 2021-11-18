@@ -29,7 +29,7 @@ public class Bullet : MonoBehaviour
 
             Destroy(this.gameObject);
         }
-        else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
+        else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet") || other.gameObject.CompareTag("Shield"))
         {
             //Destruir bala
             Destroy(this.gameObject);

@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Bullet
   - Object
+  - Shield
   layers:
   - Default
   - TransparentFX
@@ -19,9 +20,6 @@ TagManager:
   - Player
   - Enemy
   - object
-  - 
-  - 
-  - 
   - 
   - 
   - 
