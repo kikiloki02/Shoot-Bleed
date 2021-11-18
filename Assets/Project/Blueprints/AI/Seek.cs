@@ -12,10 +12,13 @@ public class Seek : MonoBehaviour
     public float avoidVelocity;
     public Vector2 vector2 = Vector2.zero;
 
-    float maxSeeAhead = 3;
+    float maxSeeAhead = 2;
     float xSize, ySize;
 
-    Vector3 topLeft, topRight, bottomLeft, bottomRight, center;
+    Vector3 topLeft, topRight,bottomLeft, bottomRight, center;
+
+
+    
 
     void Start()
     {
@@ -50,6 +53,7 @@ public class Seek : MonoBehaviour
         // Movement();
         CreateVirtualBoundingBox();
         CheckForCollisionDetected();
+        //RotateTowardTarget();
 
     }    
 
@@ -72,8 +76,10 @@ public class Seek : MonoBehaviour
     {
         center = transform.position + (-transform.right * 0) + (-transform.up * 0);
 
-        if (vector2.y > 0)
+        if (vector2.y > 0 && vector2.y > vector2.x)
         {
+
+            //UP
             /* Create the bounding box around the sprite for collision detection */
             bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
             bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
@@ -88,14 +94,15 @@ public class Seek : MonoBehaviour
             // GIRA EL SPRITE
             //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomRight, target.position));
             //this.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(bottomLeft, target.position));
-
+            
             // AIXO ERA LO BUENO
             // Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
             // Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+            
 
         }
-
-        else if (vector2.x < 0)
+        //LEFT
+        else if (vector2.x < 0 && (-(vector2.x) > vector2.y))
         {
             bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
             bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
@@ -104,8 +111,9 @@ public class Seek : MonoBehaviour
             topLeft = transform.position + (transform.up * (xSize)) + (-transform.right * maxSeeAhead);
         }
         //ESTA A MEDIAS----------------------------------------------------------------------------------------------------------------
-        else if (vector2.y < 0 && vector2.x >vector2.y)
+        else if (vector2.y < 0 && (-(vector2.x) > vector2.y))
         {
+            //DOWN
             bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
             bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
 
@@ -114,7 +122,8 @@ public class Seek : MonoBehaviour
 
         }
         //------------------------------------------------------------------------------------------------------------------------------
-        else if (vector2.x > 0)
+        //RIGHT
+        else if (vector2.x > 0 && vector2.x > vector2.y)
         {
             bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
             bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
@@ -138,11 +147,13 @@ public class Seek : MonoBehaviour
     private void CheckForCollisionDetected()
     {
         RaycastHit2D[] hit2D = new RaycastHit2D[2];
+        LayerMask mask = LayerMask.GetMask("object");
+
 
         /* 2 raycasts are used for this, one points from the bottom left corner to the top left corner of the agent and
         the other from the bottom right to the top right */
-        hit2D[0] = Physics2D.Raycast(bottomLeft, topLeft - bottomLeft, maxSeeAhead);
-        hit2D[1] = Physics2D.Raycast(bottomRight, topRight - bottomRight, maxSeeAhead);
+        hit2D[0] = Physics2D.Raycast(bottomLeft, topLeft - bottomLeft, maxSeeAhead,mask);
+        hit2D[1] = Physics2D.Raycast(bottomRight, topRight - bottomRight, maxSeeAhead,mask);
       
 
 
@@ -185,6 +196,25 @@ public class Seek : MonoBehaviour
             vector2 = target.transform.position - this.transform.position;
             rb.AddForce(vector2.normalized * velocity);//Steer(location + (velocity.normalized * velocity.magnitude));
         }
+    }
+
+    void RotateTowardTarget()
+    {
+        //instead of rotating the agent to the target's position directly,
+        //we want it to smoothly rotate towards it. For that,
+        //instead of using the target as the 'to' vector, we use the calculated location
+        //as that gradually changes and adjusts itself to eventually point towards the target's location
+        Vector3 directionToDesiredLocation = target.position - transform.position;
+
+        //normalize as we want a unit lenght vector to get the direction only
+        directionToDesiredLocation.Normalize();
+
+        //calculate the angle of rotation
+        float rotZ = Mathf.Atan2(directionToDesiredLocation.y, directionToDesiredLocation.x) * Mathf.Rad2Deg;
+        rotZ -= 90;
+
+        //set the angle of rotation to the agent to make it rotate towards the target.
+        transform.rotation = Quaternion.Euler(0, 0, rotZ);
     }
 
 
