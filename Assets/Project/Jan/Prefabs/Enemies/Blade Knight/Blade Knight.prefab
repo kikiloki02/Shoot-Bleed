@@ -15221,8 +15221,8 @@ MonoBehaviour:
   _movementSpeed: 1000
   _chargeDistance: 25
   _healPlayer: 15
-  _chargeTime: 2
-  _cooldownTime: 1.5
+  _chargeTime: 0.4
+  _cooldownTime: 0.5
   _rigidBody: {fileID: 3065939049626629976}
   _attackDetectionZone: {fileID: 3065939049626629978}
   _spriteRenderer: {fileID: 3065939049626629983}

@@ -413,11 +413,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackValue: 3
-  _movementSpeed: 100
-  _chargeDistance: 25
+  _movementSpeed: 150
+  _chargeDistance: 20
   _healPlayer: 5
-  _chargeTime: 2
-  _cooldownTime: 2
+  _chargeTime: 0.75
+  _cooldownTime: 0.75
   _rigidBody: {fileID: 1226302043328788128}
   _attackDetectionZone: {fileID: 1226302043328788130}
   _spriteRenderer: {fileID: 1226302043328788135}

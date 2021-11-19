@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 1
   rb: {fileID: -7612474735780538361}
-  OutVelocity: 700
+  OutVelocity: 750
   particles: {fileID: 3245311076229480509}
 --- !u!58 &8718899124245713801
 CircleCollider2D:

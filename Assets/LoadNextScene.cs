@@ -26,9 +26,10 @@ public class LoadNextScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Scene actualScene = SceneManager.GetActiveScene();
+            Scene actualScene = SceneManager.GetSceneAt(1);
             Scene followingScene = SceneManager.GetSceneByName(NextScene);
-            SceneManager.LoadSceneAsync(NextScene, LoadSceneMode.Additive);
+            SceneManager.UnloadSceneAsync(actualScene);
+            SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
             Destroy(allNextScenes.gameObject);
         }
     }
