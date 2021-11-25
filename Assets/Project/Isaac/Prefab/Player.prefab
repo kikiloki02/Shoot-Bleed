@@ -663,6 +663,14 @@ PrefabInstance:
       propertyPath: blueBullet
       value: 
       objectReference: {fileID: 3859608993916419907, guid: f66f6006656a12246b8dd154c2d7a7a3, type: 3}
+    - target: {fileID: 43055123833823587, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: cameraShake
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 43055123833823587, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: timeToShake
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 286471441296995528, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

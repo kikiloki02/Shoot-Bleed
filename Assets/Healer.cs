@@ -29,7 +29,10 @@ public class Healer : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             player.GetComponent<PlayerLifeManagement>().RecoverHealth(pointsToHeal);
-            Destroy(this.gameObject);
+            Debug.Log("Destroy");
+            Destroy(gameObject);
+            Debug.Log("Destroied");
+
         }
     }
 
