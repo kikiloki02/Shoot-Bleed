@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 3060272417040684061}
   - component: {fileID: 3060272417040684062}
   - component: {fileID: 3060272417040684063}
+  - component: {fileID: 433892503545322820}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -272,6 +273,23 @@ MonoBehaviour:
   _runningParticles: {fileID: 3060272416640136235}
   _dashParticles: {fileID: 1857866211376916093}
   _dashSound: {fileID: 7065121161485805946}
+--- !u!114 &433892503545322820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060272417040684033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b742831f390b44b493e907d9c576b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 20
+  enemy: {fileID: 0}
+  criticalState: 0
+  healthBar: {fileID: 0}
 --- !u!1 &3060272417344281274
 GameObject:
   m_ObjectHideFlags: 0
