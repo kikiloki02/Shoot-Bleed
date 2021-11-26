@@ -416,25 +416,38 @@ MonoBehaviour:
   _movementSpeed: 150
   _chargeDistance: 20
   _healPlayer: 5
-  _chargeTime: 0.75
-  _cooldownTime: 0.75
+  _attack1ChargeTime: 0.75
+  _attack2ChargeTime: 0.75
+  _attack3ChargeTime: 0.75
+  _activeTimeAttack1: 1
+  _activeTimeAttack2: 0.5
+  _activeTimeAttack2Forth: 0.75
+  _activeTimeAttack2Back: 0.75
+  _activeTimeAttack3: 1
+  _activeTimeAttack3First: 0.75
+  _activeTimeAttack3Second: 0.75
+  _attack1Cooldown: 0.75
+  _attack2Cooldown: 0.75
+  _attack2point5Cooldown: 0.5
+  _attack3Cooldown: 0.75
+  _attack3point5Cooldown: 0.5
+  _chargingParticlesBasic: {fileID: 1226302044520321788}
+  _chargingParticlesForthAndBack: {fileID: 1226302044031163600}
+  _chargingParticlesChain: {fileID: 1226302044753651174}
+  _attackParticles: {fileID: 1226302044711939049}
   _rigidBody: {fileID: 1226302043328788128}
   _attackDetectionZone: {fileID: 1226302043328788130}
   _spriteRenderer: {fileID: 1226302043328788135}
   _spriteRenderer2: {fileID: 1226302044731191280}
   _spriteRenderer3: {fileID: 1226302043155147930}
   _player: {fileID: 0}
-  _chargingParticlesBasic: {fileID: 1226302044520321788}
-  _chargingParticlesForthAndBack: {fileID: 1226302044031163600}
-  _chargingParticlesChain: {fileID: 1226302044753651174}
-  _attackParticles: {fileID: 1226302044711939049}
-  _attackPivot: {fileID: 1325115012255504708}
-  _attackIndicator: {fileID: 6831443160963041919}
   _attack1: {fileID: 1226302043463136793}
   _attack2: {fileID: 1226302045001308296}
   _charge: {fileID: 1226302043661228006}
   _hit: {fileID: 1226302044937159482}
   _death: {fileID: 1226302043219916646}
+  _attackPivot: {fileID: 1325115012255504708}
+  _attackIndicator: {fileID: 6831443160963041919}
 --- !u!114 &1226302043328788156
 MonoBehaviour:
   m_ObjectHideFlags: 0

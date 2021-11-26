@@ -4,29 +4,12 @@ using UnityEngine;
 
 public class BloodBat : Enemy
 {
-    public ParticleSystem _chargingParticlesBasic;
-    public ParticleSystem _chargingParticlesForthAndBack;
-    public ParticleSystem _chargingParticlesChain;
-    public ParticleSystem _attackParticles;
-
-    //public AudioManager _audioManager;
-
-    public GameObject _attackIndicator;
     public GameObject _bullet;
     public GameObject _smallBullet;
 
-    public AudioSource _attack1;
-    public AudioSource _attack2;
-    public AudioSource _charge;
-    public AudioSource _hit;
-    public AudioSource _death;
-
-    private bool doRandom;
-    private int _randomNumber;
-
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
+// ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Start()
     {
@@ -40,39 +23,64 @@ public class BloodBat : Enemy
     private void Update()
     {
         // Tests:
-        if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
+        //if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
+        //if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            doRandom = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    doRandom = true;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.B))
-        {
-            doRandom = false;
-            _randomNumber = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.B))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 0;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.N))
-        {
-            doRandom = false;
-            _randomNumber = 3;
-        }
+        //if (Input.GetKeyDown(KeyCode.N))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 3;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.M))
-        {
-            doRandom = false;
-            _randomNumber = 5;
-        }
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 5;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && _canAttack) { StartCoroutine(Charging(_chargeTime)); }
+        // Random attack move: (between 3 attacks)
+        if (doRandom)
+        {
+            doRandom = false;
+            _randomNumber = Random.Range(0, 7); // min included, max excluded
+        }
+
+        if (collision.gameObject.tag == "Player" && _canAttack)
+        {
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    StartCoroutine(Charging(_attack1ChargeTime));
+                    break;
+                case 3:
+                case 4:
+                    StartCoroutine(Charging(_attack2ChargeTime));
+                    break;
+                case 5:
+                case 6:
+                    StartCoroutine(Charging(_attack3ChargeTime));
+                    break;
+            }
+        }
     }
 
-    // ------ METHODS: ------
+// ------ METHODS: ------
 
     public override void Die()
     {
@@ -105,9 +113,11 @@ public class BloodBat : Enemy
 
         _rigidBody.AddForce((_movementSpeed / 3) * -_chargeDirection * _chargeDistance);
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack1Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
+
+        doRandom = true;
     }
 
     void Attack2(float seconds)
@@ -135,9 +145,11 @@ public class BloodBat : Enemy
         _rigidBody.AddForce((_movementSpeed / 3) * -_chargeDirection * _chargeDistance);
         // ------
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack2Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
+
+        doRandom = true;
     }
 
     void Attack3(float seconds)
@@ -170,12 +182,14 @@ public class BloodBat : Enemy
         newBullet8 = Instantiate(_smallBullet, this.transform.position, Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.one, Vector2.right)));
         // ------
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack3Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
+
+        doRandom = true;
     }
 
-    // ------ COROUTINES: ------
+// ------ COROUTINES: ------
 
     public override IEnumerator GetHitEffect()
     {

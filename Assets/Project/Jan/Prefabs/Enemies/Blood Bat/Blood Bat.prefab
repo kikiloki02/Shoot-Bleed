@@ -416,26 +416,38 @@ MonoBehaviour:
   _movementSpeed: 100
   _chargeDistance: 5
   _healPlayer: 8
-  _chargeTime: 0.5
-  _cooldownTime: 1
+  _attack1ChargeTime: 0.5
+  _attack2ChargeTime: 0.5
+  _attack3ChargeTime: 0.5
+  _activeTimeAttack1: 0
+  _activeTimeAttack2: 0
+  _activeTimeAttack2Forth: 0
+  _activeTimeAttack2Back: 0
+  _activeTimeAttack3: 0
+  _activeTimeAttack3First: 0
+  _activeTimeAttack3Second: 0
+  _attack1Cooldown: 1
+  _attack2Cooldown: 1
+  _attack3Cooldown: 1
+  _chargingParticlesBasic: {fileID: 63675567050413724}
+  _chargingParticlesForthAndBack: {fileID: 63675566695471280}
+  _chargingParticlesChain: {fileID: 63675567822676358}
+  _attackParticles: {fileID: 63675567915052937}
   _rigidBody: {fileID: 63675566395749056}
   _attackDetectionZone: {fileID: 63675566395749058}
   _spriteRenderer: {fileID: 63675566395749063}
   _spriteRenderer2: {fileID: 63675567934335888}
   _spriteRenderer3: {fileID: 63675566221977850}
   _player: {fileID: 0}
-  _chargingParticlesBasic: {fileID: 63675567050413724}
-  _chargingParticlesForthAndBack: {fileID: 63675566695471280}
-  _chargingParticlesChain: {fileID: 63675567822676358}
-  _attackParticles: {fileID: 63675567915052937}
-  _attackIndicator: {fileID: 6570809702509447039}
-  _bullet: {fileID: 3859608993916419907, guid: 66d67e1aaf21eca43981ca89375c3e0e, type: 3}
-  _smallBullet: {fileID: 3859608993916419907, guid: 6a34bb393fb9594459476aebb0f8052b, type: 3}
   _attack1: {fileID: 63675565993226873}
   _attack2: {fileID: 63675567667551464}
   _charge: {fileID: 63675566864339846}
   _hit: {fileID: 63675568004122458}
   _death: {fileID: 63675566420931334}
+  _attackPivot: {fileID: 0}
+  _attackIndicator: {fileID: 6570809702509447039}
+  _bullet: {fileID: 3859608993916419907, guid: 66d67e1aaf21eca43981ca89375c3e0e, type: 3}
+  _smallBullet: {fileID: 3859608993916419907, guid: 6a34bb393fb9594459476aebb0f8052b, type: 3}
 --- !u!114 &63675566395749084
 MonoBehaviour:
   m_ObjectHideFlags: 0

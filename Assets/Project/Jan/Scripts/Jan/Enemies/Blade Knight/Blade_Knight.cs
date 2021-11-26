@@ -4,29 +4,9 @@ using UnityEngine;
 
 public class Blade_Knight : Enemy
 {
-    public ParticleSystem _chargingParticlesBasic;
-    public ParticleSystem _chargingParticlesForthAndBack;
-    public ParticleSystem _chargingParticlesChain;
-    public ParticleSystem _attackParticles;
-
-    //public AudioManager _audioManager;
-
-    public GameObject _attackPivot;
-    // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.
-    public GameObject _attackIndicator;
-
-    public AudioSource _attack1;
-    public AudioSource _attack2;
-    public AudioSource _charge;
-    public AudioSource _hit;
-    public AudioSource _death;
-
-    private bool doRandom;
-    private int _randomNumber;
-
     // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
+// ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Start()
     {
@@ -40,36 +20,61 @@ public class Blade_Knight : Enemy
     private void Update()
     {
         // Tests:
-        if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
+        //if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
+        //if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
 
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            doRandom = true;
-        }
+        //if (Input.GetKeyDown(KeyCode.Z))
+        //{
+        //    doRandom = true;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.J))
-        {
-            doRandom = false;
-            _randomNumber = 0;
-        }
+        //if (Input.GetKeyDown(KeyCode.J))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 0;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.K))
-        {
-            doRandom = false;
-            _randomNumber = 3;
-        }
+        //if (Input.GetKeyDown(KeyCode.K))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 3;
+        //}
 
-        if (Input.GetKeyDown(KeyCode.L))
-        {
-            doRandom = false;
-            _randomNumber = 5;
-        }
+        //if (Input.GetKeyDown(KeyCode.L))
+        //{
+        //    doRandom = false;
+        //    _randomNumber = 5;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Player" && _canAttack) { StartCoroutine(Charging(_chargeTime)); }
+        // Random attack move: (between 3 attacks)
+        if (doRandom)
+        {
+            doRandom = false;
+            _randomNumber = Random.Range(0, 7); // min included, max excluded
+        }
+
+        if (collision.gameObject.tag == "Player" && _canAttack)
+        {
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    StartCoroutine(Charging(_attack1ChargeTime));
+                    break;
+                case 3:
+                case 4:
+                    StartCoroutine(Charging(_attack2ChargeTime));
+                    break;
+                case 5:
+                case 6:
+                    StartCoroutine(Charging(_attack3ChargeTime));
+                    break;
+            }
+        }
     }
 
 // ------ METHODS: ------
@@ -101,10 +106,10 @@ public class Blade_Knight : Enemy
         // The Attack move:
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
-        StartCoroutine(AttackColliderSwitch(0, 0.5f));
+        StartCoroutine(AttackColliderSwitch(0, _activeTimeAttack1));
         // ------
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack1Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
     }
@@ -122,10 +127,10 @@ public class Blade_Knight : Enemy
         // The Attack move:
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
-        StartCoroutine(AttackColliderSwitch(1, 0.5f));
+        StartCoroutine(AttackColliderSwitch(1, _activeTimeAttack1));
         // ------
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack2Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
     }
@@ -143,10 +148,10 @@ public class Blade_Knight : Enemy
         // The Attack move:
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
-        StartCoroutine(AttackColliderSwitch(2, 0.5f));
+        StartCoroutine(AttackColliderSwitch(2, _activeTimeAttack1));
         // ------
 
-        StartCoroutine(AttackCooldown(_cooldownTime));
+        StartCoroutine(AttackCooldown(_attack3Cooldown));
 
         this.GetComponent<Seek>().enabled = true;
     }
@@ -259,7 +264,6 @@ public class Blade_Knight : Enemy
         }
 
         _isCharging = false;
-
     }
 
     IEnumerator AttackCooldown(float seconds)

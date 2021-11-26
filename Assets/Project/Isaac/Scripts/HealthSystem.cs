@@ -6,6 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
+
     public GameObject enemy;
 
     // Start is called before the first frame update
@@ -36,7 +37,8 @@ public class HealthSystem : MonoBehaviour
             {
                 FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
             }
-            Destroy(this.gameObject); 
+
+            Destroy(this.gameObject); // <-- AQUÍ
         }
     }
 }
