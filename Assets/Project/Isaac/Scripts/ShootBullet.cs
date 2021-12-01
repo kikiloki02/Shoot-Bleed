@@ -56,7 +56,6 @@ public class ShootBullet : MonoBehaviour
 
     void Shoot()
     {
-
         GameObject newBullet;
 
         if (player.GetComponent<PlayerLifeManagement>().criticalState)

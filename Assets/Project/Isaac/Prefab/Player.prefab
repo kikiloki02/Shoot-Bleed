@@ -123,8 +123,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.05}
-  m_Size: {x: 0.375, y: 0.65}
+  m_Offset: {x: 0, y: 0}
+  m_Size: {x: 0.325, y: 0.55}
   m_Direction: 0
 --- !u!95 &3060272417040684062
 Animator:
@@ -503,7 +503,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4641800618514797329, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.25
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_RootOrder
@@ -527,15 +527,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
