@@ -15,7 +15,7 @@ public class BloodBat : Enemy
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
 
-        _spriteRedColor = new Color32(255, 50, 50, 255);
+        _spriteRedColor = new Color32(255, 100, 100, 255);
         _spriteBlueColor = new Color32(0, 0, 255, 255);
         _spriteWhiteColor = new Color32(255, 255, 255, 255);
     }
@@ -196,28 +196,20 @@ public class BloodBat : Enemy
         _hit.Play(); // Hit SFX
 
         _spriteRenderer.color = _spriteRedColor;
-        _spriteRenderer2.color = _spriteRedColor;
-        _spriteRenderer3.color = _spriteRedColor;
 
         yield return new WaitForSeconds(_hitEffectDuration); // Wait
 
         if (_isCharging)
         {
             _spriteRenderer.color = new Color32(255, 0, 0, 255);
-            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
-            _spriteRenderer3.color = _spriteWhiteColor;
         }
         else if (_cooldown)
         {
             _spriteRenderer.color = _spriteBlueColor;
-            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
-            _spriteRenderer3.color = _spriteWhiteColor;
         }
         else
         {
             _spriteRenderer.color = _spriteWhiteColor;
-            _spriteRenderer2.color = new Color32(0, 0, 0, 255);
-            _spriteRenderer3.color = _spriteWhiteColor;
         }
 
         _gotHit = false;

@@ -35,8 +35,6 @@ public class Enemy : MonoBehaviour
     public Rigidbody2D _rigidBody;
     public Collider2D _attackDetectionZone;
     public SpriteRenderer _spriteRenderer;
-    public SpriteRenderer _spriteRenderer2;
-    public SpriteRenderer _spriteRenderer3;
     public GameObject _player;
 
     public AudioSource _attack1;
@@ -51,7 +49,7 @@ public class Enemy : MonoBehaviour
 
 // ------ PROTECTED: ------
 
-    protected float _hitEffectDuration = 0.15f;
+    protected float _hitEffectDuration = 0.075f;
     protected bool _gotHit;
     protected Vector2 _chargeDirection;
     protected Color32 _spriteRedColor;
