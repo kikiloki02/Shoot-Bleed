@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7518795903817620079}
   - component: {fileID: 3060272417040684062}
   - component: {fileID: 3060272417040684063}
+  - component: {fileID: 4262791607163136345}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -166,6 +167,25 @@ MonoBehaviour:
   _runningParticles: {fileID: 3060272416640136235}
   _dashParticles: {fileID: 1857866211376916093}
   _dashSound: {fileID: 7065121161485805946}
+--- !u!114 &4262791607163136345
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060272417040684033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b742831f390b44b493e907d9c576b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 20
+  enemy: {fileID: 0}
+  _player: {fileID: 3060272417040684033}
+  criticalState: 0
+  healthBar: {fileID: 0}
+  _hit: {fileID: 5895956239958297745, guid: ae6794596eae1f04f9f6a8468ecc6bdf, type: 3}
 --- !u!1 &3060272417344281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,7 +274,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3724532919925622977, guid: a65a90ea46a75d94aaec84788cd956e5, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 3724532919925622977, guid: a65a90ea46a75d94aaec84788cd956e5, type: 3}
       propertyPath: m_LocalPosition.z
@@ -312,12 +332,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7688130505122458963, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688130505122458963, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7688130505122458963, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -0.4
       objectReference: {fileID: 0}
     - target: {fileID: 7688130505122458963, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
       propertyPath: m_LocalPosition.z
