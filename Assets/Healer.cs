@@ -19,14 +19,12 @@ public class Healer : MonoBehaviour
     {
         particles = this.gameObject.GetComponent<ParticleSystem>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerLifeManagement>().RecoverHealth(pointsToHeal);
-            Debug.Log("Destroy");
             Destroy(gameObject);
-            Debug.Log("Destroied");
 
         }
     }

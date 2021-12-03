@@ -376,6 +376,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 8
   currentHealth: 0
+  healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 1226302043328788157}
 --- !u!114 &6619949856514583086
 MonoBehaviour:
