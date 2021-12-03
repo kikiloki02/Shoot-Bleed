@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2481984433752380635}
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 8320401411769651436}
-  - component: {fileID: 8718899124245713801}
+  - component: {fileID: 5455107012126903505}
   m_Layer: 7
   m_Name: BlueBullet 1
   m_TagString: Bullet
@@ -123,8 +123,8 @@ MonoBehaviour:
   rb: {fileID: -7612474735780538361}
   OutVelocity: 750
   particles: {fileID: 3245311076229480509}
---- !u!58 &8718899124245713801
-CircleCollider2D:
+--- !u!70 &5455107012126903505
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,8 +137,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
+  m_Size: {x: 0.54, y: 0.35}
+  m_Direction: 1
 --- !u!1001 &1731762580769621908
 PrefabInstance:
   m_ObjectHideFlags: 0

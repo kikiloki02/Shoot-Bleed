@@ -2293,6 +2293,14 @@ PrefabInstance:
       propertyPath: m_SortingOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3060272417116640797, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 3867917954499972598, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: m_Radius
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 4262791607163136345, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: healthBar
       value: 

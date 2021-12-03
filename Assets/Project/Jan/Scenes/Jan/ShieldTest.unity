@@ -394,7 +394,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: bb79678692ce4244f8bc3e563e06b091, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9b35bb51d59d0f848b6e0648df7f96f2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -414,7 +414,7 @@ Transform:
   m_GameObject: {fileID: 1046219048}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.47824478, y: -0.072798654, z: 1.4437628}
-  m_LocalScale: {x: 0.25, y: 2, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4819096}
   m_RootOrder: 6
@@ -1142,9 +1142,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 20
+  healer: {fileID: 0}
   enemy: {fileID: 0}
+  _player: {fileID: 0}
   criticalState: 0
   healthBar: {fileID: 1428545386}
+  _hit: {fileID: 0}
+  _heal: {fileID: 0}
 --- !u!4 &2016112933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3060272417040684032, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
