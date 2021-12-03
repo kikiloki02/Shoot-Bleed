@@ -9,6 +9,10 @@ public class ShootBullet : MonoBehaviour
     public GameObject player;
     public ParticleSystem shootParticles;
 
+    public SpriteRenderer _renderer;
+    public Sprite _normalSprite;
+    public Sprite _criticalSprite;
+
     public float knockback;
 
     public Transform spawnPoint;
@@ -32,6 +36,12 @@ public class ShootBullet : MonoBehaviour
         directionToMouse = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f)) - this.transform.position).normalized;
         this.transform.right = new Vector2(directionToMouse.x, directionToMouse.y);
 
+        if (this.transform.right.x < 0) { _renderer.flipY = true; }
+        else { _renderer.flipY = false; }
+
+        if (player.GetComponent<PlayerLifeManagement>().criticalState == false) { _renderer.sprite = _normalSprite; }
+        else { _renderer.sprite = _criticalSprite; }
+
         if (Input.GetKey(KeyCode.Mouse0) && canShoot)
         {
             StartCoroutine(AvailableShoot(secondsPerBullet));
@@ -46,7 +56,6 @@ public class ShootBullet : MonoBehaviour
 
     void Shoot()
     {
-
         GameObject newBullet;
 
         if (player.GetComponent<PlayerLifeManagement>().criticalState)

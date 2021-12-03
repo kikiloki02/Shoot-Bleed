@@ -9,19 +9,47 @@ public class Enemy : MonoBehaviour
     public int _movementSpeed;
     public int _chargeDistance;
     public int _healPlayer;
-    public float _chargeTime;
-    public float _cooldownTime;
+
+    // Cooldown related variables:
+    public float _attack1ChargeTime;
+    public float _attack2ChargeTime;
+    public float _attack3ChargeTime;
+    public float _activeTimeAttack1;
+    public float _activeTimeAttack2;
+    public float _activeTimeAttack2Forth;
+    public float _activeTimeAttack2Back;
+    public float _activeTimeAttack3;
+    public float _activeTimeAttack3First;
+    public float _activeTimeAttack3Second;
+    public float _attack1Cooldown;
+    public float _attack2Cooldown;
+    public float _attack2point5Cooldown;
+    public float _attack3Cooldown;
+    public float _attack3point5Cooldown;
+
+    public ParticleSystem _chargingParticlesBasic;
+    public ParticleSystem _chargingParticlesForthAndBack;
+    public ParticleSystem _chargingParticlesChain;
+    public ParticleSystem _attackParticles;
 
     public Rigidbody2D _rigidBody;
     public Collider2D _attackDetectionZone;
     public SpriteRenderer _spriteRenderer;
-    public SpriteRenderer _spriteRenderer2;
-    public SpriteRenderer _spriteRenderer3;
     public GameObject _player;
+
+    public AudioSource _attack1;
+    public AudioSource _attack2;
+    public AudioSource _charge;
+    public AudioSource _hit;
+    public AudioSource _death;
+
+    public GameObject _attackPivot;
+    // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.
+    public GameObject _attackIndicator;
 
 // ------ PROTECTED: ------
 
-    protected float _hitEffectDuration = 0.15f;
+    protected float _hitEffectDuration = 0.075f;
     protected bool _gotHit;
     protected Vector2 _chargeDirection;
     protected Color32 _spriteRedColor;
@@ -32,7 +60,12 @@ public class Enemy : MonoBehaviour
     protected bool _isCharging = false;
     protected bool _cooldown = false;
 
-    // ------ METHODS: ------
+    protected int _randomNumber;
+    protected bool doRandom = true;
+
+    protected bool _rotate;
+
+// ------ METHODS: ------
 
     public virtual void Die() {}
 
