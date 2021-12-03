@@ -9,7 +9,7 @@ public class Seek : MonoBehaviour
     private Rigidbody2D rb;
     public float velocity;
     public float avoidVelocity;
-    public Vector2 vector2 = Vector2.zero;
+    public Vector2 targetDirection = Vector2.zero;
 
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
@@ -46,9 +46,9 @@ public class Seek : MonoBehaviour
 
     private void CreateVirtualBoundingBox()
     {
-        center = transform.position + (-transform.right * 0) + (-transform.up * 0);
+        center = transform.position;
 
-        if (vector2.y > 0 && vector2.y > vector2.x)
+        if (targetDirection.y > 0 && targetDirection.y > targetDirection.x)
         {
 
         //UP
@@ -65,7 +65,7 @@ public class Seek : MonoBehaviour
 
         }
         //LEFT
-        else if (vector2.x < 0 && (-(vector2.x) > vector2.y))
+        else if (targetDirection.x < 0 && (-(targetDirection.x) > targetDirection.y))
         {
             //bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
             //bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
@@ -78,7 +78,7 @@ public class Seek : MonoBehaviour
 
         }
         //DOWN
-        else if (vector2.y < 0 && (-(vector2.x) > vector2.y))
+        else if (targetDirection.y < 0 && (-(targetDirection.x) > targetDirection.y))
         {  
             //bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
             //bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
@@ -91,7 +91,7 @@ public class Seek : MonoBehaviour
 
         }
         //RIGHT
-        else if (vector2.x > 0 && vector2.x > vector2.y)
+        else if (targetDirection.x > 0 && targetDirection.x > targetDirection.y)
         {
             //bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
             //bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
@@ -102,7 +102,9 @@ public class Seek : MonoBehaviour
             bottomMid = transform.position + (transform.right * 0) + (transform.right * (ySize / 2));
             topMid = transform.position + ((transform.right * 0) + (transform.right * (maxSeeAhead)));
         }
-
+        topRight = Quaternion.Euler(0, 0, -45f) * (this.transform.position + this.transform.up);
+        topLeft = Quaternion.Euler(0, 0, 45f) * (this.transform.position + this.transform.up);
+        topMid = Quaternion.Euler(0, 0, 0f) * (this.transform.position + this.transform.up);
         //Draw Raycast Lines
         //Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
         Debug.DrawRay(topRight, (topLeft - topRight), Color.green);
@@ -145,7 +147,7 @@ public class Seek : MonoBehaviour
              This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[0].collider.transform.position);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-            rb.AddForce(vector2.normalized * (velocity * followingPercentage));
+            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
             Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
             
@@ -158,7 +160,7 @@ public class Seek : MonoBehaviour
 
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[1].collider.transform.position);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-            rb.AddForce(vector2.normalized * (velocity * followingPercentage));
+            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
 
             Debug.DrawRay(hit2D[1].collider.transform.position, topLeft - hit2D[1].collider.transform.position, Color.white);
@@ -176,8 +178,8 @@ public class Seek : MonoBehaviour
         /* If no obstacle was detected, then just steer it towards it's current velocity */
         else
         {
-            vector2 = target.transform.position - this.transform.position;
-            rb.AddForce(vector2.normalized * velocity);
+            targetDirection = target.transform.position - this.transform.position;
+            rb.AddForce(targetDirection.normalized * velocity);
         }
     }
 }
