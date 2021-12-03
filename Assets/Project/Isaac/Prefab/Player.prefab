@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3060272417040684062}
   - component: {fileID: 3060272417040684063}
   - component: {fileID: 4262791607163136345}
+  - component: {fileID: 433892503545322820}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -186,6 +187,23 @@ MonoBehaviour:
   criticalState: 0
   healthBar: {fileID: 0}
   _hit: {fileID: 5895956239958297745, guid: ae6794596eae1f04f9f6a8468ecc6bdf, type: 3}
+--- !u!114 &433892503545322820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060272417040684033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 883b742831f390b44b493e907d9c576b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 20
+  currentHealth: 20
+  enemy: {fileID: 0}
+  criticalState: 0
+  healthBar: {fileID: 0}
 --- !u!1 &3060272417344281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -493,6 +511,14 @@ PrefabInstance:
       propertyPath: _criticalSprite
       value: 
       objectReference: {fileID: 21300000, guid: c90dae411d8231244b6958912819e5c6, type: 3}
+    - target: {fileID: 43055123833823587, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: cameraShake
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 43055123833823587, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: timeToShake
+      value: 0.075
+      objectReference: {fileID: 0}
     - target: {fileID: 286471441296995528, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

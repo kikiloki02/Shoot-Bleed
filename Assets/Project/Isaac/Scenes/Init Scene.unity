@@ -283,11 +283,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a3c6912ecd5fa44bb1aa2e0e8cc0b79, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!4 &1010374865 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4784493173565500893, guid: 31eb480c12c1db14caaba8315ba038a0, type: 3}
-  m_PrefabInstance: {fileID: 1425830186}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1018617585
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -295,6 +290,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1390067197}
     m_Modifications:
+    - target: {fileID: 433892503545322820, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 747886442}
     - target: {fileID: 3060272417040684032, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -365,6 +364,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Virtual Camera
       objectReference: {fileID: 0}
+    - target: {fileID: 5307997392362137494, guid: dcd9836c7cc39eb4dbeca51541c94ae7, type: 3}
+      propertyPath: m_Follow
+      value: 
+      objectReference: {fileID: 1092160254}
     - target: {fileID: 5307997392362137495, guid: dcd9836c7cc39eb4dbeca51541c94ae7, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -503,13 +506,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8510324544655405704, guid: 31eb480c12c1db14caaba8315ba038a0, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+      propertyPath: volumeLayer.m_Bits
+      value: 96
       objectReference: {fileID: 0}
-    - target: {fileID: 8510324544655405704, guid: 31eb480c12c1db14caaba8315ba038a0, type: 3}
-      propertyPath: volumeTrigger
-      value: 
-      objectReference: {fileID: 1010374865}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 31eb480c12c1db14caaba8315ba038a0, type: 3}
 --- !u!1001 &1770299640
