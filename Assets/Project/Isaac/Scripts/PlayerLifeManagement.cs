@@ -13,6 +13,7 @@ public class PlayerLifeManagement : HealthSystem
     private float _hitEffectDuration = 0.075f;
 
     public AudioSource _hit;
+    public AudioSource _heal;
 
     private SpriteRenderer _renderer;
 
@@ -37,7 +38,7 @@ public class PlayerLifeManagement : HealthSystem
         // Slow effect:
         currentTime = Mathf.Min(0.85f, currentTime + Time.unscaledDeltaTime);
         // Time.timeScale = Mathf.Sin((currentTime / 0.5f) * Mathf.PI * 0.5f);
-        Time.timeScale = Mathf.Pow((currentTime / 0.85f), 1f);
+        Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
 
         criticalState = isCritical();
     }
@@ -72,6 +73,8 @@ public class PlayerLifeManagement : HealthSystem
 
     public void RecoverHealth(int addHp)
     {
+        _heal.Play();
+
         currentHealth += addHp;
         if (currentHealth > maxHealth)
             currentHealth = maxHealth;
