@@ -53,11 +53,11 @@ public class Seek : MonoBehaviour
 
         //UP
             /* Create the bounding box around the sprite for collision detection */
-            bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
-            bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+            //bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+            //bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
 
-            topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
-            topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
+            topRight = transform.position + ((transform.right * (xSize/2)) + (transform.up * maxSeeAhead));
+            topLeft = transform.position + (-transform.right * (xSize/2)) + (transform.up * maxSeeAhead);
 
             bottomMid = transform.position + (transform.right * 0) + (-transform.up * (ySize/2));
             topMid = transform.position + ((transform.right * 0) + (transform.up * (maxSeeAhead )));
@@ -67,11 +67,11 @@ public class Seek : MonoBehaviour
         //LEFT
         else if (vector2.x < 0 && (-(vector2.x) > vector2.y))
         {
-            bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
-            bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+            //bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+            //bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
 
-            topRight = transform.position + ((-transform.up * (xSize)) + (-transform.right * maxSeeAhead));
-            topLeft = transform.position + (transform.up * (xSize)) + (-transform.right * maxSeeAhead);
+            topRight = transform.position + ((-transform.up * (xSize / 2)) + (-transform.right * maxSeeAhead));
+            topLeft = transform.position + (transform.up * (xSize / 2)) + (-transform.right * maxSeeAhead);
 
             bottomMid = transform.position + (-transform.right * 0) + (-transform.right * (ySize / 2));
             topMid = transform.position + ((transform.right * 0) + (-transform.right * (maxSeeAhead)));
@@ -80,11 +80,11 @@ public class Seek : MonoBehaviour
         //DOWN
         else if (vector2.y < 0 && (-(vector2.x) > vector2.y))
         {  
-            bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
-            bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+            //bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+            //bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
 
-            topRight = transform.position + ((-transform.right * (xSize)) + (-transform.up * maxSeeAhead));
-            topLeft = transform.position + (transform.right * (xSize)) + (-transform.up * maxSeeAhead);
+            topRight = transform.position + ((-transform.right * (xSize / 2)) + (-transform.up * maxSeeAhead));
+            topLeft = transform.position + (transform.right * (xSize / 2)) + (-transform.up * maxSeeAhead);
 
             bottomMid = transform.position + (transform.right * 0) + (transform.up * (ySize / 2));
             topMid = transform.position + ((transform.right * 0) + (-transform.up * (maxSeeAhead)));
@@ -93,27 +93,28 @@ public class Seek : MonoBehaviour
         //RIGHT
         else if (vector2.x > 0 && vector2.x > vector2.y)
         {
-            bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
-            bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+            //bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+            //bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
 
-            topRight = transform.position + ((transform.up * (xSize)) + (transform.right * maxSeeAhead));
-            topLeft = transform.position + (-transform.up * (xSize)) + (transform.right * maxSeeAhead);
+            topRight = transform.position + ((transform.up * (xSize / 2)) + (transform.right * maxSeeAhead));
+            topLeft = transform.position + (-transform.up * (xSize / 2)) + (transform.right * maxSeeAhead);
 
             bottomMid = transform.position + (transform.right * 0) + (transform.right * (ySize / 2));
             topMid = transform.position + ((transform.right * 0) + (transform.right * (maxSeeAhead)));
         }
 
         //Draw Raycast Lines
-        Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
+        //Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
         Debug.DrawRay(topRight, (topLeft - topRight), Color.green);
 
-        Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
-        Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+        //Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
+        //Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
 
         Debug.DrawRay(center, (topRight - center), Color.red);
         Debug.DrawRay(center, (topLeft - center), Color.red);
 
-        Debug.DrawRay(bottomMid, (topMid - bottomMid), Color.green);
+        Debug.DrawRay(center, (topMid - center), Color.green);
+        
 
     }
 
@@ -149,6 +150,7 @@ public class Seek : MonoBehaviour
             Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
             
         }
+
         else if (hit2D[1])
         {
          
