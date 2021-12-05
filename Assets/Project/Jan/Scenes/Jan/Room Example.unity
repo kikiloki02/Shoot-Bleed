@@ -136,7 +136,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -197,7 +197,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63675566395749062, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 63675566395749062, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -238,6 +238,10 @@ PrefabInstance:
     - target: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_Name
       value: Blood Bat
+      objectReference: {fileID: 0}
+    - target: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
@@ -383,7 +387,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 455139383}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.46042, y: 0.46726844, z: -1.5996227}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1753360889}
@@ -1902,110 +1906,14 @@ CompositeCollider2D:
         Y: -100000000
       - X: 100000000
         Y: -100000000
-    - - X: -88750025
-        Y: -90000100
-      - X: -88750069
-        Y: -90000076
-      - X: -88750120
+    - - X: -90000000
         Y: -90000000
       - X: -90000000
-        Y: -90000000
-      - X: -90000000
-        Y: -88125180
-      - X: -90000091
-        Y: -88125043
-      - X: -90000100
-        Y: -88125015
-      - X: -90000100
-        Y: -80624980
-      - X: -90000085
-        Y: -80624943
-      - X: -90000000
-        Y: -80624858
-      - X: -90000000
-        Y: 81874821
-      - X: -90000091
-        Y: 81874957
-      - X: -90000100
-        Y: 81874985
-      - X: -90000100
-        Y: 89375020
-      - X: -90000085
-        Y: 89375057
-      - X: -90000000
-        Y: 89375142
-      - X: -90000000
-        Y: 90000000
-      - X: -89375142
-        Y: 90000000
-      - X: -89375057
-        Y: 90000085
-      - X: -89375020
-        Y: 90000100
-      - X: -84999991
-        Y: 90000100
-      - X: -84999973
-        Y: 90000097
-      - X: -84999714
-        Y: 90000000
-      - X: 80624858
-        Y: 90000000
-      - X: 80624943
-        Y: 90000085
-      - X: 80624980
-        Y: 90000100
-      - X: 85000009
-        Y: 90000100
-      - X: 85000027
-        Y: 90000097
-      - X: 85000286
         Y: 90000000
       - X: 90000000
         Y: 90000000
       - X: 90000000
-        Y: 88125107
-      - X: 90000064
-        Y: 88125083
-      - X: 90000100
-        Y: 88125031
-      - X: 90000100
-        Y: 81249969
-      - X: 90000066
-        Y: 81249919
-      - X: 90000000
-        Y: 81249893
-      - X: 90000000
-        Y: -81874893
-      - X: 90000064
-        Y: -81874917
-      - X: 90000100
-        Y: -81874969
-      - X: 90000100
-        Y: -88750031
-      - X: 90000066
-        Y: -88750081
-      - X: 90000000
-        Y: -88750107
-      - X: 90000000
         Y: -90000000
-      - X: 86875268
-        Y: -90000000
-      - X: 86875028
-        Y: -90000096
-      - X: 86875010
-        Y: -90000100
-      - X: 81249975
-        Y: -90000100
-      - X: 81249931
-        Y: -90000076
-      - X: 81249880
-        Y: -90000000
-      - X: -83124732
-        Y: -90000000
-      - X: -83124972
-        Y: -90000096
-      - X: -83124990
-        Y: -90000100
     - - X: 40000000
         Y: 50000000
       - X: -40000000
@@ -2159,7 +2067,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 63675566395749062, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 63675566395749062, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2200,6 +2108,10 @@ PrefabInstance:
     - target: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
       propertyPath: m_Name
       value: Blood Bat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
@@ -2478,7 +2390,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -10
+      value: -6
       objectReference: {fileID: 0}
     - target: {fileID: 1226302043328788134, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -2519,6 +2431,10 @@ PrefabInstance:
     - target: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
       propertyPath: m_Name
       value: Bat (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
