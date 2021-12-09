@@ -9,11 +9,17 @@ public class LoadNextScene : MonoBehaviour
     public string NextScene;
     public GameObject player;
     public GameObject allNextScenes;
+    private ManageRoom manageRoom;
+    private RoomSystem roomSys;
+    private SceneType actualSceneType;
 
     // Start is called before the first frame update
     void Start()
     {
         player = FindObjectOfType<PlayerLifeManagement>().gameObject;
+        manageRoom = FindObjectOfType<ManageRoom>();
+        actualSceneType = manageRoom.sceneType;
+        roomSys = FindObjectOfType<RoomSystem>();
     }
 
     // Update is called once per frame
@@ -26,9 +32,10 @@ public class LoadNextScene : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Scene actualScene = SceneManager.GetSceneAt(1);
+            //Scene actualScene = SceneManager.GetSceneAt(1);
             Scene followingScene = SceneManager.GetSceneByName(NextScene);
-            SceneManager.UnloadSceneAsync(actualScene);
+            //SceneManager.UnloadSceneAsync(actualScene);
+            roomSys.RemoveRoom(actualSceneType);
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
             Destroy(allNextScenes.gameObject);
         }
