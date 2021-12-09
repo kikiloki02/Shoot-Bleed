@@ -11,7 +11,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Project/Isaac/Scenes/Combat Scene.unity
     guid: 9b38fa69c4796dc4db6d884a89248526
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Isaac/Scenes/Init Scene.unity
     guid: 10641ad725f316b409025c9b85d55436
   - enabled: 0
@@ -20,16 +20,19 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Isaac/Scenes/Combat Test 1.unity
     guid: dfb22a32131ca494c9d560999a606030
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Isaac/Scenes/Combat Test 1.1.unity
     guid: fefbac50c5f803d4b9d1e8999a327a3f
-  - enabled: 1
+  - enabled: 0
     path: Assets/Project/Isaac/Scenes/End Scene.unity
     guid: 537d9e819e475dc438455fa92a4c3deb
+  - enabled: 1
+    path: Assets/Project/Jan/Scenes/Jan/Room Example.unity
+    guid: 5d2dead2d2d1f87419c35f019639e1a7
   m_configObjects: {}

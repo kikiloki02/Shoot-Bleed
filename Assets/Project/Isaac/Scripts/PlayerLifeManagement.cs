@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class PlayerLifeManagement : HealthSystem
 {
     public GameObject _player;
 
     public bool criticalState = false;
+
     public HealthBar healthBar;
 
     private float currentTime = 0.0f;
@@ -14,6 +17,11 @@ public class PlayerLifeManagement : HealthSystem
 
     public AudioSource _hit;
     public AudioSource _heal;
+    public AudioSource _criticalStateSound;
+
+    public GameObject _criticalStateScreenEffect;
+
+    private bool _available = true;
 
     private SpriteRenderer _renderer;
 
@@ -41,6 +49,20 @@ public class PlayerLifeManagement : HealthSystem
         Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
 
         criticalState = isCritical();
+
+        if (criticalState && !_criticalStateSound.isPlaying)
+        {
+            _criticalStateSound.Play();
+        }
+        else if (!criticalState || !_criticalStateSound.isPlaying)
+        {
+            _criticalStateSound.Stop();
+        }
+
+        if (criticalState && _available)
+        {
+            StartCoroutine(UICriticalStateEffect(1f));
+        }
     }
 
     public void LoseLife()
@@ -90,5 +112,20 @@ public class PlayerLifeManagement : HealthSystem
         yield return new WaitForSeconds(_hitEffectDuration); // Wait
 
         _renderer.color = _spriteWhiteColor;
+    }
+
+    public IEnumerator UICriticalStateEffect(float seconds)
+    {
+        _available = false;
+
+        _criticalStateScreenEffect.GetComponent<Image>().DOColor(new Color32(255, 50, 50, 125), seconds);
+
+        yield return new WaitForSeconds(seconds);
+
+        _criticalStateScreenEffect.GetComponent<Image>().DOColor(new Color32(255, 50, 50, 0), seconds);
+
+        yield return new WaitForSeconds(seconds);
+
+        _available = true;
     }
 }
