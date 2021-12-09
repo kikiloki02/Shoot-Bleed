@@ -2127,7 +2127,7 @@ GameObject:
   - component: {fileID: 1284509784}
   - component: {fileID: 1284509783}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: CriticalScreenEffect
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2172,8 +2172,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 21300000, guid: b42c982bd406e6145a67ff2b4eb5d455, type: 3}
+  m_Type: 2
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -2181,7 +2181,7 @@ MonoBehaviour:
   m_FillClockwise: 1
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
-  m_PixelsPerUnitMultiplier: 1
+  m_PixelsPerUnitMultiplier: 0.4
 --- !u!222 &1284509784
 CanvasRenderer:
   m_ObjectHideFlags: 0
