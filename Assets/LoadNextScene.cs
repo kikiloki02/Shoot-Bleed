@@ -9,9 +9,13 @@ public class LoadNextScene : MonoBehaviour
     public string NextScene;
     public GameObject player;
     public GameObject allNextScenes;
+
     private ManageRoom manageRoom;
     private RoomSystem roomSys;
     private SceneType actualSceneType;
+    private SceneType nextSceneType;
+
+    private int randomRoomType;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +24,7 @@ public class LoadNextScene : MonoBehaviour
         manageRoom = FindObjectOfType<ManageRoom>();
         actualSceneType = manageRoom.sceneType;
         roomSys = FindObjectOfType<RoomSystem>();
+        SetNextRoomType();
     }
 
     // Update is called once per frame
@@ -44,5 +49,21 @@ public class LoadNextScene : MonoBehaviour
     IEnumerator LoadNxtScene()
     {
         yield return new WaitForSeconds(0.5f);
+    }
+
+    private void SetNextRoomType()
+    {
+        bool roomRemains;
+        do //Puede reventar si no quedan salas en ningún pool
+        {
+            roomRemains = true;
+            randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count);
+            if (roomSys.RoomsRemaining((SceneType)randomRoomType))
+                nextSceneType = (SceneType)randomRoomType;
+            else
+                roomRemains = false;
+
+        } while (!roomRemains);
+        
     }
 }

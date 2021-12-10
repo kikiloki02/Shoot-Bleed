@@ -312,9 +312,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e0f631baf1abe045becdee97b5466da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EasyScenes: []
-  MediumScenes: []
-  HardScenes: []
+  EasyScenes:
+  - EasyScene1
+  - EasyScene2
+  - EasyScene3
+  MediumScenes:
+  - MediumScene1
+  - MediumScene2
+  - MediumScene3
+  HardScenes:
+  - HardScene1
+  - HardScene2
+  - HardScene3
 --- !u!4 &830258789
 Transform:
   m_ObjectHideFlags: 0
