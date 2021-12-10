@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 5854400442614961068}
   - component: {fileID: 1423333203876115984}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306112581364318550, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: playOnAwake

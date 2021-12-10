@@ -191,6 +191,7 @@ MonoBehaviour:
   _hit: {fileID: 1625568093539529802}
   _heal: {fileID: 8013086966345620342}
   _criticalStateSound: {fileID: 8359017836858262364}
+  _criticalStateScreenEffect: {fileID: 0}
 --- !u!250 &4708823770354791425
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -268,7 +269,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3496045600039977539}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Player Sounds
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,6 +304,10 @@ PrefabInstance:
     - target: {fileID: 864346581445445335, guid: cf01aed88a921e64380352832feac264, type: 3}
       propertyPath: m_Name
       value: Hit3
+      objectReference: {fileID: 0}
+    - target: {fileID: 864346581445445335, guid: cf01aed88a921e64380352832feac264, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8433575300097340831, guid: cf01aed88a921e64380352832feac264, type: 3}
       propertyPath: m_RootOrder
@@ -490,6 +495,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Walk
       objectReference: {fileID: 0}
+    - target: {fileID: 7688130505769750370, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
 --- !u!4 &3060272416640136236 stripped
@@ -557,6 +566,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: DashSound
       objectReference: {fileID: 0}
+    - target: {fileID: 3059099639952037025, guid: e7bc4439c2a7aff43832a9a8948191f7, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e7bc4439c2a7aff43832a9a8948191f7, type: 3}
 --- !u!4 &5318779589560935922 stripped
@@ -579,6 +592,10 @@ PrefabInstance:
     - target: {fileID: 1922133234221423875, guid: 79df1ee098457904ab1cb667fa9efa34, type: 3}
       propertyPath: m_Name
       value: Heartbeat
+      objectReference: {fileID: 0}
+    - target: {fileID: 1922133234221423875, guid: 79df1ee098457904ab1cb667fa9efa34, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7204191323555634401, guid: 79df1ee098457904ab1cb667fa9efa34, type: 3}
       propertyPath: m_RootOrder
@@ -691,6 +708,14 @@ PrefabInstance:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2501777854640864957, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 2525255719517800889, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 3327711187561752896, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_Name
       value: Weapon 2
@@ -714,6 +739,10 @@ PrefabInstance:
     - target: {fileID: 4641800618514797329, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_LocalPosition.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5207268476140907935, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
       propertyPath: m_RootOrder
@@ -798,6 +827,10 @@ PrefabInstance:
     - target: {fileID: 864346581445445335, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
       propertyPath: m_Name
       value: Heal
+      objectReference: {fileID: 0}
+    - target: {fileID: 864346581445445335, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
+      propertyPath: m_Layer
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 8433575300097340831, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
       propertyPath: m_RootOrder

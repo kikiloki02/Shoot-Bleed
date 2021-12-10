@@ -18,7 +18,6 @@ public class EnemyBullet : MonoBehaviour
     {
         particles.Pause();
 
-        StartCoroutine(DeactivateForSeconds(0.2f));
         if (_smallBullet != null) { StartCoroutine(Timer(explodeTime)); }
 
         rb.AddForce(this.transform.right * OutVelocity, ForceMode2D.Force);
@@ -63,17 +62,6 @@ public class EnemyBullet : MonoBehaviour
                 Destroy(this.gameObject);
             }
         }
-    }
-
-    IEnumerator DeactivateForSeconds(float seconds)
-    {
-        _collider2D.isTrigger = true;
-
-        yield return new WaitForSeconds(seconds);
-
-        _collider2D.isTrigger = false;
-
-        collision = true;
     }
 
     IEnumerator Timer(float seconds)

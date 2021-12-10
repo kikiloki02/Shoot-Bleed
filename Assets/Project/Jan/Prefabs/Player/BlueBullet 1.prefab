@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 8320401411769651436}
   - component: {fileID: 5455107012126903505}
-  m_Layer: 7
+  m_Layer: 14
   m_Name: BlueBullet 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306112581364318550, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: InitialModule.startColor.maxColor.b
