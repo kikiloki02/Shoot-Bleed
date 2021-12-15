@@ -8,11 +8,11 @@ public class LoadNextScene : MonoBehaviour
 {
     public string NextScene;
     public GameObject player;
-    public GameObject allNextScenes;
+    //public GameObject allNextScenes;
 
     private ManageRoom manageRoom;
     private RoomSystem roomSys;
-    private SceneType actualSceneType;
+    public SceneType actualSceneType;
     private SceneType nextSceneType;
 
     private int randomRoomType;
@@ -25,24 +25,16 @@ public class LoadNextScene : MonoBehaviour
         actualSceneType = manageRoom.sceneType;
         roomSys = FindObjectOfType<RoomSystem>();
         SetNextRoomType();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        SetNextRoom();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Scene actualScene = SceneManager.GetSceneAt(1);
-            Scene followingScene = SceneManager.GetSceneByName(NextScene);
-            //SceneManager.UnloadSceneAsync(actualScene);
+            //Scene followingScene = SceneManager.GetSceneByName(NextScene);
             roomSys.RemoveRoom(actualSceneType);
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
-            Destroy(allNextScenes.gameObject);
         }
     }
 
@@ -65,5 +57,26 @@ public class LoadNextScene : MonoBehaviour
 
         } while (!roomRemains);
         
+    }
+
+    private void SetNextRoom()
+    {
+        
+        if(nextSceneType == SceneType.Easy)
+        {
+            int roomNum = UnityEngine.Random.Range(0, roomSys.EasyScenes.Count);
+            NextScene = roomSys.EasyScenes[roomNum];
+        }
+        else if (nextSceneType == SceneType.Medium)
+        {
+            int roomNum = UnityEngine.Random.Range(0, roomSys.MediumScenes.Count);
+            NextScene = roomSys.MediumScenes[roomNum];
+        }
+        else if (nextSceneType == SceneType.Hard)
+        {
+            int roomNum = UnityEngine.Random.Range(0, roomSys.HardScenes.Count);
+            NextScene = roomSys.HardScenes[roomNum];
+        }
+
     }
 }
