@@ -9,6 +9,7 @@ public class RoomSystem : MonoBehaviour
     public List<string> EasyScenes;
     public List<string> MediumScenes;
     public List<string> HardScenes;
+    int totalScenesCompleted = 0;
 
 
     public void Start()
@@ -18,10 +19,11 @@ public class RoomSystem : MonoBehaviour
 
     public void RemoveRoom(SceneType sceneType)
     {
+        totalScenesCompleted++;
         string actualScene = SceneManager.GetSceneAt(1).name;
 
         if (sceneType == SceneType.Easy)
-            EasyScenes.Remove(actualScene);
+            EasyScenes.Remove(actualScene); 
 
         if (sceneType == SceneType.Medium)
             MediumScenes.Remove(actualScene);

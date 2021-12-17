@@ -9,6 +9,9 @@ EditorBuildSettings:
     path: Assets/Project/Isaac/Scenes/GameScenes/Init Scene.unity
     guid: 10641ad725f316b409025c9b85d55436
   - enabled: 1
+    path: Assets/Project/Isaac/Scenes/Test Scenes/Init Game.unity
+    guid: 655167b845738f2478b8ffb491b0b362
+  - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene1.unity
     guid: dfb22a32131ca494c9d560999a606030
   - enabled: 1
