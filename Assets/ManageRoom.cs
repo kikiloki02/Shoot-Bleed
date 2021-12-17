@@ -2,6 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+public enum SceneType
+{
+    Easy, Medium, Hard, Count
+};
 public class ManageRoom : MonoBehaviour
 {
 
@@ -9,6 +14,7 @@ public class ManageRoom : MonoBehaviour
     public GameObject[] door;
     public Transform[] doorEndPos;
     public GameObject player;
+    public SceneType sceneType;
 
     // Start is called before the first frame update
     void Start()

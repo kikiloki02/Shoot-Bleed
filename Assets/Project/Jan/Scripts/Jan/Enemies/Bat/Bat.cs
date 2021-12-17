@@ -10,6 +10,9 @@ public class Bat : Enemy
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
 
+        _spawnedSound.Play();
+        _spawnedParticles.Play();
+
         _spriteRedColor = new Color32(255, 100, 100, 255);
         _spriteBlueColor = new Color32(0, 0, 255, 255);
         _spriteWhiteColor = new Color32(255, 255, 255, 255);

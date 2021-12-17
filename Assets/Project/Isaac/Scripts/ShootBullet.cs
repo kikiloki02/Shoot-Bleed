@@ -53,7 +53,7 @@ public class ShootBullet : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-           player.GetComponent<PlayerLifeManagement>().GetDamage(1);
+           player.GetComponent<PlayerLifeManagement>().RecoverHealth(5);
         }
     }
 

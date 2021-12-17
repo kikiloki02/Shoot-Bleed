@@ -8,7 +8,7 @@ public class LoadFirstScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        SceneManager.LoadScene("Combat Test 1", LoadSceneMode.Additive);
+        SceneManager.LoadScene("Init Game", LoadSceneMode.Additive);
     }
 
     // Update is called once per frame
