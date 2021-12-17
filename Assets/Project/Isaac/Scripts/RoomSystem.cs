@@ -20,15 +20,15 @@ public class RoomSystem : MonoBehaviour
     public void RemoveRoom(SceneType sceneType)
     {
         totalScenesCompleted++;
-        string actualScene = SceneManager.GetSceneAt(1).name;
+        string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount-1).name;
 
         if (sceneType == SceneType.Easy)
             EasyScenes.Remove(actualScene); 
 
-        if (sceneType == SceneType.Medium)
+        else if (sceneType == SceneType.Medium)
             MediumScenes.Remove(actualScene);
 
-        if (sceneType == SceneType.Hard)
+        else if (sceneType == SceneType.Hard)
             HardScenes.Remove(actualScene);
 
         SceneManager.UnloadSceneAsync(actualScene);

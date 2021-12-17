@@ -723,7 +723,7 @@ MonoBehaviour:
   - {fileID: 514624855}
   - {fileID: 1931345076}
   player: {fileID: 0}
-  sceneType: 0
+  sceneType: 2
 --- !u!4 &877501058 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4329700523412526829, guid: 6e27dce3f62d9004daf8d3119116ccc5, type: 3}
@@ -884,7 +884,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextScene: Combat Test 1.1
   player: {fileID: 0}
-  allNextScenes: {fileID: 1483031231}
+  actualSceneType: 0
 --- !u!61 &927136343
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -957,7 +957,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   NextScene: Combat Test 1.1
   player: {fileID: 0}
-  allNextScenes: {fileID: 1483031231}
+  actualSceneType: 0
 --- !u!61 &1029690021
 BoxCollider2D:
   m_ObjectHideFlags: 0
