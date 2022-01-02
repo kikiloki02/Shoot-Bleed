@@ -7,13 +7,14 @@ public class BloodBat : Enemy
     public GameObject _bullet;
     public GameObject _smallBullet;
 
-    // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
-
 // ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Start()
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        _spawnedSound.Play();
+        _spawnedParticles.Play();
 
         _spriteRedColor = new Color32(255, 100, 100, 255);
         _spriteBlueColor = new Color32(0, 0, 255, 255);
