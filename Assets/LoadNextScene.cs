@@ -19,7 +19,7 @@ public class LoadNextScene : MonoBehaviour
     private RoomSystem roomSys;
     public SceneType actualSceneType;
     public RoomPos roomPosition;
-    private SceneType nextSceneType;
+    public SceneType nextSceneType;
 
     private int randomRoomType;
 
