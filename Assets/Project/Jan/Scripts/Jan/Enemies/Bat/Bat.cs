@@ -20,33 +20,6 @@ public class Bat : Enemy
 
     private void Update()
     {
-        // Tests:
-        //if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        //if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    doRandom = true;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.X)) 
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 0;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.C))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 3;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.V))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 5;
-        //}
-
         RotateIndicator();
     }
 
@@ -80,12 +53,18 @@ public class Bat : Enemy
         }
     }
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<HealthSystem>().GetDamage(_collisionDamageValue);
+        }
+    }
+
 // ------ METHODS: ------
 
     public override void Die()
     {
-        Debug.Log("Bat->Dead");
-
         _death.Play(); // Die SFX
     }
 
@@ -98,8 +77,6 @@ public class Bat : Enemy
 
     void Attack1()
     {
-        Debug.Log("Bat->Attack1");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -159,8 +136,6 @@ public class Bat : Enemy
 
     IEnumerator Attack2(float seconds)
     {
-        Debug.Log("Bat->Attack2");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -200,8 +175,6 @@ public class Bat : Enemy
 
     IEnumerator Attack3(float seconds)
     {
-        Debug.Log("Bat->Attack3");
-
         _rotate = false;
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
@@ -245,8 +218,6 @@ public class Bat : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        Debug.Log("Bat->Charging");
-
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;
@@ -288,8 +259,6 @@ public class Bat : Enemy
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        Debug.Log("Bat->Finished charging");
-
         _spriteRenderer.color = _spriteWhiteColor;
 
         // Execute the corresponding attack move:
@@ -318,15 +287,11 @@ public class Bat : Enemy
 
     IEnumerator AttackCooldown(float seconds)
     {
-        Debug.Log("Bat->Cooldown started");
-
         _cooldown = true;
 
         _spriteRenderer.color = _spriteBlueColor;
 
         yield return new WaitForSeconds(seconds); // Wait
-
-        Debug.Log("Bat->Cooldown finished");
 
         _spriteRenderer.color = _spriteWhiteColor;
 

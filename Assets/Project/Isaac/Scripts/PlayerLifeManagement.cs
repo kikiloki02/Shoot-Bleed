@@ -10,6 +10,8 @@ public class PlayerLifeManagement : HealthSystem
 
     public bool criticalState = false;
 
+    private bool _canGetHit = true;
+
     public HealthBar healthBar;
 
     private float currentTime = 0.0f;
@@ -28,6 +30,8 @@ public class PlayerLifeManagement : HealthSystem
     private Color32 _spriteRedColor;
     private Color32 _spriteWhiteColor;
 
+    private float _invencibilityTimeInSeconds;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +42,8 @@ public class PlayerLifeManagement : HealthSystem
 
         _spriteRedColor = new Color32(255, 100, 100, 255);
         _spriteWhiteColor = new Color32(255, 255, 255, 255);
+
+        _invencibilityTimeInSeconds = _player.GetComponent<Player_Controller>()._invincibilityTimeBetweenHitsInSeconds;
     }
 
     // Update is called once per frame
@@ -78,6 +84,14 @@ public class PlayerLifeManagement : HealthSystem
 
     public override void GetDamage(int damage)
     {
+        if (!_canGetHit)
+        {
+            return;
+        }
+
+        // Start invencibility coroutine:
+        StartCoroutine(InvencibilityTime(_invencibilityTimeInSeconds));
+
         currentTime = 0f;
 
         if (criticalState) { Destroy(this.gameObject); }
@@ -127,5 +141,14 @@ public class PlayerLifeManagement : HealthSystem
         yield return new WaitForSeconds(seconds);
 
         _available = true;
+    }
+
+    private IEnumerator InvencibilityTime(float seconds)
+    {
+        _canGetHit = false;
+
+        yield return new WaitForSeconds(seconds);
+
+        _canGetHit = true;
     }
 }

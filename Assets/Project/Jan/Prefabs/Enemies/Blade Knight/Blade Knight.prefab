@@ -15125,6 +15125,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackValue: 8
+  _collisionDamageValue: 2
   _movementSpeed: 1000
   _chargeDistance: 25
   _healPlayer: 15
@@ -15190,7 +15191,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 175
   avoidVelocity: 35
-  vector2: {x: 0, y: 0}
+  targetDirection: {x: 0, y: 0, z: 0}
+  RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
+  LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
+  followingPercentage: 0.100000024
 --- !u!1 &3065939049651484319
 GameObject:
   m_ObjectHideFlags: 0

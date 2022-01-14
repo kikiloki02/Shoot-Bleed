@@ -23,32 +23,7 @@ public class BloodBat : Enemy
 
     private void Update()
     {
-        // Tests:
-        //if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        //if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    doRandom = true;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.B))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 0;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.N))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 3;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.M))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 5;
-        //}
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -81,12 +56,18 @@ public class BloodBat : Enemy
         }
     }
 
-// ------ METHODS: ------
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<HealthSystem>().GetDamage(_collisionDamageValue);
+        }
+    }
+
+    // ------ METHODS: ------
 
     public override void Die()
     {
-        Debug.Log("BloodBat->Dead");
-
         _death.Play(); // Die SFX
     }
 
@@ -99,8 +80,6 @@ public class BloodBat : Enemy
 
     void Attack1()
     {
-        Debug.Log("BloodBat->Attack1");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -123,8 +102,6 @@ public class BloodBat : Enemy
 
     void Attack2(float seconds)
     {
-        Debug.Log("BloodBat->Attack2");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -155,8 +132,6 @@ public class BloodBat : Enemy
 
     void Attack3(float seconds)
     {
-        Debug.Log("BloodBat->Attack3");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -218,8 +193,6 @@ public class BloodBat : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        Debug.Log("BloodBat->Charging");
-
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;
@@ -264,8 +237,6 @@ public class BloodBat : Enemy
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        Debug.Log("BloodBat->Finished charging");
-
         _spriteRenderer.color = new Color(255, 255, 255);
 
         // Execute the corresponding attack move:
@@ -294,15 +265,11 @@ public class BloodBat : Enemy
 
     IEnumerator AttackCooldown(float seconds)
     {
-        Debug.Log("BloodBat->Cooldown started");
-
         _cooldown = true;
 
         _spriteRenderer.color = new Color(0, 0, 255);
 
         yield return new WaitForSeconds(seconds); // Wait
-
-        Debug.Log("BloodBat->Cooldown finished");
 
         _spriteRenderer.color = new Color(255, 255, 255);
 

@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 // ------ PUBLIC: ------
 
     public int _attackValue;
+    public int _collisionDamageValue;
     public int _movementSpeed;
     public int _chargeDistance;
     public int _healPlayer;
