@@ -14,7 +14,10 @@ public class Seek : MonoBehaviour
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
 
-    Vector3 topLeft, topRight,bottomLeft, bottomRight, center;
+    Vector3 topLeft, topRight,bottomLeft, bottomRight, center, bottomMid, topMid;
+
+    public const float avoidingPercentage = 0.8f;
+    public float followingPercentage = 1 - avoidingPercentage;
 
 
     void Start()
@@ -48,59 +51,76 @@ public class Seek : MonoBehaviour
         if (vector2.y > 0 && vector2.y > vector2.x)
         {
 
-            //UP
+        //UP
             /* Create the bounding box around the sprite for collision detection */
-            bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
-            bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+            //bottomRight = transform.position + (transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
+            //bottomLeft = transform.position + (-transform.right * (xSize / 2)) + (-transform.up * (ySize / 2));
 
-            topRight = transform.position + ((transform.right * (xSize)) + (transform.up * maxSeeAhead));
-            topLeft = transform.position + (-transform.right * (xSize)) + (transform.up * maxSeeAhead);
+            topRight = transform.position + ((transform.right * (xSize/2)) + (transform.up * maxSeeAhead));
+            topLeft = transform.position + (-transform.right * (xSize/2)) + (transform.up * maxSeeAhead);
+
+            bottomMid = transform.position + (transform.right * 0) + (-transform.up * (ySize/2));
+            topMid = transform.position + ((transform.right * 0) + (transform.up * (maxSeeAhead )));
+
 
         }
         //LEFT
         else if (vector2.x < 0 && (-(vector2.x) > vector2.y))
         {
-            bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
-            bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+            //bottomRight = transform.position + (-transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
+            //bottomLeft = transform.position + (transform.up * (xSize / 2)) + (transform.right * (ySize / 2));
 
-            topRight = transform.position + ((-transform.up * (xSize)) + (-transform.right * maxSeeAhead));
-            topLeft = transform.position + (transform.up * (xSize)) + (-transform.right * maxSeeAhead);
+            topRight = transform.position + ((-transform.up * (xSize / 2)) + (-transform.right * maxSeeAhead));
+            topLeft = transform.position + (transform.up * (xSize / 2)) + (-transform.right * maxSeeAhead);
+
+            bottomMid = transform.position + (-transform.right * 0) + (-transform.right * (ySize / 2));
+            topMid = transform.position + ((transform.right * 0) + (-transform.right * (maxSeeAhead)));
+
         }
         //DOWN
         else if (vector2.y < 0 && (-(vector2.x) > vector2.y))
         {  
-            bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
-            bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+            //bottomRight = transform.position + (-transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
+            //bottomLeft = transform.position + (transform.right * (xSize / 2)) + (transform.up * (ySize / 2));
 
-            topRight = transform.position + ((-transform.right * (xSize)) + (-transform.up * maxSeeAhead));
-            topLeft = transform.position + (transform.right * (xSize)) + (-transform.up * maxSeeAhead);
+            topRight = transform.position + ((-transform.right * (xSize / 2)) + (-transform.up * maxSeeAhead));
+            topLeft = transform.position + (transform.right * (xSize / 2)) + (-transform.up * maxSeeAhead);
+
+            bottomMid = transform.position + (transform.right * 0) + (transform.up * (ySize / 2));
+            topMid = transform.position + ((transform.right * 0) + (-transform.up * (maxSeeAhead)));
 
         }
         //RIGHT
         else if (vector2.x > 0 && vector2.x > vector2.y)
         {
-            bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
-            bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+            //bottomRight = transform.position + (transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
+            //bottomLeft = transform.position + (-transform.up * (xSize / 2)) + (-transform.right * (ySize / 2));
 
-            topRight = transform.position + ((transform.up * (xSize)) + (transform.right * maxSeeAhead));
-            topLeft = transform.position + (-transform.up * (xSize)) + (transform.right * maxSeeAhead);
+            topRight = transform.position + ((transform.up * (xSize / 2)) + (transform.right * maxSeeAhead));
+            topLeft = transform.position + (-transform.up * (xSize / 2)) + (transform.right * maxSeeAhead);
+
+            bottomMid = transform.position + (transform.right * 0) + (transform.right * (ySize / 2));
+            topMid = transform.position + ((transform.right * 0) + (transform.right * (maxSeeAhead)));
         }
 
         //Draw Raycast Lines
-        Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
+        //Debug.DrawRay(bottomRight, (bottomLeft - bottomRight), Color.green);
         Debug.DrawRay(topRight, (topLeft - topRight), Color.green);
 
-        Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
-        Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
+        //Debug.DrawRay(bottomRight, (topRight - bottomRight), Color.green);
+        //Debug.DrawRay(bottomLeft, (topLeft - bottomLeft), Color.green);
 
         Debug.DrawRay(center, (topRight - center), Color.red);
         Debug.DrawRay(center, (topLeft - center), Color.red);
+
+        Debug.DrawRay(center, (topMid - center), Color.green);
+        
 
     }
 
     private void CheckForCollisionDetected()
     {
-        RaycastHit2D[] hit2D = new RaycastHit2D[2];
+        RaycastHit2D[] hit2D = new RaycastHit2D[3];
         LayerMask mask = LayerMask.GetMask("object");
 
 
@@ -108,6 +128,7 @@ public class Seek : MonoBehaviour
         the other from the bottom right to the top right */
         hit2D[0] = Physics2D.Raycast(bottomLeft, topLeft - bottomLeft, maxSeeAhead,mask);
         hit2D[1] = Physics2D.Raycast(bottomRight, topRight - bottomRight, maxSeeAhead,mask);
+        hit2D[2] = Physics2D.Raycast(bottomMid, topMid - bottomMid, maxSeeAhead,mask);
       
 
 
@@ -123,48 +144,40 @@ public class Seek : MonoBehaviour
             /* Make the direction of vector to avoid obtacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
              This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[0].collider.transform.position);
-            rb.AddForce(dirOfMovementToAvoidObstacle * avoidVelocity);
+            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
+            rb.AddForce(vector2.normalized * (velocity * followingPercentage));
 
             Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
+            
         }
+
         else if (hit2D[1])
         {
          
             dirOfMovementToAvoidObstacle = topLeft - hit2D[1].collider.transform.position;
 
             dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[1].collider.transform.position);
-            rb.AddForce(dirOfMovementToAvoidObstacle * avoidVelocity);
+            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
+            rb.AddForce(vector2.normalized * (velocity * followingPercentage));
+
 
             Debug.DrawRay(hit2D[1].collider.transform.position, topLeft - hit2D[1].collider.transform.position, Color.white);
+            
+        }
+        else if (hit2D[2])
+        {
+            dirOfMovementToAvoidObstacle = bottomMid - hit2D[2].collider.transform.position;
+            dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[2].collider.transform.position);
+            rb.AddForce(dirOfMovementToAvoidObstacle * (velocity-33) );
+
+            Debug.DrawRay(hit2D[2].collider.transform.position, bottomMid - hit2D[2].collider.transform.position, Color.white);
         }
 
         /* If no obstacle was detected, then just steer it towards it's current velocity */
         else
         {
             vector2 = target.transform.position - this.transform.position;
-            rb.AddForce(vector2.normalized * velocity);//Steer(location + (velocity.normalized * velocity.magnitude));
+            rb.AddForce(vector2.normalized * velocity);
         }
     }
-
-    void RotateTowardTarget()
-    {
-        //instead of rotating the agent to the target's position directly,
-        //we want it to smoothly rotate towards it. For that,
-        //instead of using the target as the 'to' vector, we use the calculated location
-        //as that gradually changes and adjusts itself to eventually point towards the target's location
-        Vector3 directionToDesiredLocation = target.position - transform.position;
-
-        //normalize as we want a unit lenght vector to get the direction only
-        directionToDesiredLocation.Normalize();
-
-        //calculate the angle of rotation
-        float rotZ = Mathf.Atan2(directionToDesiredLocation.y, directionToDesiredLocation.x) * Mathf.Rad2Deg;
-        rotZ -= 90;
-
-        //set the angle of rotation to the agent to make it rotate towards the target.
-        transform.rotation = Quaternion.Euler(0, 0, rotZ);
-    }
-
-
-
 }

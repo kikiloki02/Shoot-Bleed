@@ -16,6 +16,7 @@ public class Player_Controller : MonoBehaviour
     public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
     public AudioSource _dashSound;
+    public RoomPos lastRoomExit;
 
 // ------ PRIVATE: ------
 
