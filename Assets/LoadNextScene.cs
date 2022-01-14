@@ -4,16 +4,22 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+public enum  RoomPos { TOP, RIGHT};
 public class LoadNextScene : MonoBehaviour
 {
     public string NextScene;
     public GameObject player;
+    public Player_Controller playerController;
+    public Animator animator;
+    private float transitionTime = 0.5f;
+
     //public GameObject allNextScenes;
 
     private ManageRoom manageRoom;
     private RoomSystem roomSys;
     public SceneType actualSceneType;
-    private SceneType nextSceneType;
+    public RoomPos roomPosition;
+    public SceneType nextSceneType;
 
     private int randomRoomType;
 
@@ -21,6 +27,7 @@ public class LoadNextScene : MonoBehaviour
     void Start()
     {
         player = FindObjectOfType<PlayerLifeManagement>().gameObject;
+        playerController = FindObjectOfType<Player_Controller>();
         manageRoom = FindObjectOfType<ManageRoom>();
         actualSceneType = manageRoom.sceneType;
         roomSys = FindObjectOfType<RoomSystem>();
@@ -33,14 +40,19 @@ public class LoadNextScene : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //Scene followingScene = SceneManager.GetSceneByName(NextScene);
-            roomSys.RemoveRoom(actualSceneType);
-            SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
+            playerController.lastRoomExit = roomPosition;
+            StartCoroutine(LoadNxtScene(animator, transitionTime));
         }
     }
 
-    IEnumerator LoadNxtScene()
+    IEnumerator LoadNxtScene(Animator transition, float transitionTime)
     {
-        yield return new WaitForSeconds(0.5f);
+        transition.SetTrigger("Start");
+
+        yield return new WaitForSeconds(transitionTime);
+
+        roomSys.RemoveRoom(actualSceneType);
+        SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
     }
 
     private void SetNextRoomType()
