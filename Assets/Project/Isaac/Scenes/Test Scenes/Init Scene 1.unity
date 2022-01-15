@@ -324,6 +324,9 @@ MonoBehaviour:
   - HardScene1
   - HardScene2
   - HardScene3
+  UpgradeScenes:
+  - Upgrade Scene 1
+  totalScenesCompleted: 0
 --- !u!4 &830258789
 Transform:
   m_ObjectHideFlags: 0
