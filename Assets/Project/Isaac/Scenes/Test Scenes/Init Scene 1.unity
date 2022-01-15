@@ -277,6 +277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1dfbfae9744634eb276c722289910f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: Lobby
 --- !u!114 &747886442 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4980406150173667572, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}

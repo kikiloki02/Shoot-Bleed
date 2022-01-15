@@ -6,14 +6,23 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
+    path: Assets/Project/Isaac/Scenes/GameScenes/Init Scene.unity
+    guid: 10641ad725f316b409025c9b85d55436
+  - enabled: 0
     path: Assets/Project/Jan/Scenes/Jan/Move_Scene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
   - enabled: 0
     path: Assets/Project/Jan/Scenes/Jan/New Combat Test.unity
     guid: a6806a38bb8d7ec4e8ebf3937b926657
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Init Scene.unity
-    guid: 10641ad725f316b409025c9b85d55436
+    path: "Assets/Project/Adri\xE0/Scenes/MainMenu.unity"
+    guid: a8ce1fa2751f06f4681cf310ae3ef688
+  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/Test Scenes/Init Scene 1.unity
+    guid: e5adc05527476c14b8b907b98ae2a98b
+  - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/Lobby.unity"
+    guid: a37c2e30ada1f9f4aa2647e57a8dff58
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/Test Scenes/Init Game.unity
     guid: 655167b845738f2478b8ffb491b0b362
@@ -44,6 +53,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene3.unity
     guid: 0fa3b0ca066ee8740820a548dfa5fe72
+  - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/ScoreScene.unity"
+    guid: ccbf5cf105058d242b1ba1228e84c8a1
   - enabled: 1
     path: Assets/Project/Jan/Scenes/Jan/Room Example.unity
     guid: 5d2dead2d2d1f87419c35f019639e1a7

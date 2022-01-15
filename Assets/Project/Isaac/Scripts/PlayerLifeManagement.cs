@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class PlayerLifeManagement : HealthSystem
 {
@@ -27,6 +28,8 @@ public class PlayerLifeManagement : HealthSystem
 
     private Color32 _spriteRedColor;
     private Color32 _spriteWhiteColor;
+
+    public UnityEvent OnDeath;
 
     // Start is called before the first frame update
     void Start()
@@ -80,7 +83,9 @@ public class PlayerLifeManagement : HealthSystem
     {
         currentTime = 0f;
 
-        if (criticalState) { Destroy(this.gameObject); }
+        if (criticalState) {
+            OnDeath.Invoke();
+            Destroy(this.gameObject); }
         else 
         {
             StartCoroutine(GetHitEffect());
