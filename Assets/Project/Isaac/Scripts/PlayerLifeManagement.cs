@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using DG.Tweening;
+using UnityEngine.Events;
 
 public class PlayerLifeManagement : HealthSystem
 {
@@ -11,6 +12,8 @@ public class PlayerLifeManagement : HealthSystem
     public bool criticalState = false;
 
     private bool _canGetHit = true;
+
+    public bool loselife;
 
     public HealthBar healthBar;
 
@@ -31,6 +34,10 @@ public class PlayerLifeManagement : HealthSystem
     private Color32 _spriteWhiteColor;
 
     private float _invencibilityTimeInSeconds;
+
+    public UnityEvent OnDeath;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -73,8 +80,12 @@ public class PlayerLifeManagement : HealthSystem
 
     public void LoseLife()
     {
-        currentHealth -= 1;
-        healthBar.SetHealth(currentHealth);
+        if (loselife)
+        {
+            currentHealth -= 1;
+            healthBar.SetHealth(currentHealth);
+        }
+       
     }
 
     bool isCritical()
@@ -94,7 +105,9 @@ public class PlayerLifeManagement : HealthSystem
 
         currentTime = 0f;
 
-        if (criticalState) { Destroy(this.gameObject); }
+        if (criticalState) {
+            OnDeath.Invoke();
+            Destroy(this.gameObject); }
         else 
         {
             StartCoroutine(GetHitEffect());

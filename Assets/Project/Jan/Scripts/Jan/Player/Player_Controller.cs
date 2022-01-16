@@ -9,6 +9,7 @@ public class Player_Controller : MonoBehaviour
     public int _healthValue;
     public float _movementSpeed;
     public float _dashDistance;
+    public float _dashCooldown;
     public float _invincibilityTimeBetweenHitsInSeconds;
 
     public Rigidbody2D _rigidBody;
@@ -140,7 +141,7 @@ public class Player_Controller : MonoBehaviour
 
                 _isPlayerDashing = false;
 
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(_dashCooldown);
 
                 Debug.Log("You can Dash again");
                 _canPlayerDash = true;

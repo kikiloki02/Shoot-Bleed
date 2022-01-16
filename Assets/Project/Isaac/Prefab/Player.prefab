@@ -1,5 +1,53 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &603048542397706413
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3015282964790493702}
+  - component: {fileID: 437391309863935651}
+  m_Layer: 0
+  m_Name: SceneManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3015282964790493702
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603048542397706413}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.7676352, y: -1.4252716, z: -11.568382}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 3060272417040684032}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &437391309863935651
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 603048542397706413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a1dfbfae9744634eb276c722289910f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _scene: 
+  isAdditive: 0
+  unloadPreviousScene: 0
+  loadOnCollision: 0
+  coll: {fileID: 0}
 --- !u!1 &3060272417040684033
 GameObject:
   m_ObjectHideFlags: 0
@@ -38,6 +86,7 @@ Transform:
   - {fileID: 3060272417344281273}
   - {fileID: 4133212645796985258}
   - {fileID: 3496045600039977539}
+  - {fileID: 3015282964790493702}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -163,6 +212,7 @@ MonoBehaviour:
   _healthValue: 0
   _movementSpeed: 100
   _dashDistance: 25
+  _dashCooldown: 1
   _invincibilityTimeBetweenHitsInSeconds: 1
   _rigidBody: {fileID: 3060272417040684060}
   _animator: {fileID: 3060272417040684062}
@@ -187,11 +237,27 @@ MonoBehaviour:
   enemy: {fileID: 0}
   _player: {fileID: 3060272417040684033}
   criticalState: 0
+  loselife: 1
   healthBar: {fileID: 0}
   _hit: {fileID: 1625568093539529802}
   _heal: {fileID: 8013086966345620342}
   _criticalStateSound: {fileID: 8359017836858262364}
   _criticalStateScreenEffect: {fileID: 0}
+  OnDeath:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 437391309863935651}
+        m_TargetAssemblyTypeName: LoadScene, Assembly-CSharp
+        m_MethodName: LoadWantedScene
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: ScoreScene
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!250 &4708823770354791425
 PointEffector2D:
   m_ObjectHideFlags: 0
@@ -802,6 +868,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+--- !u!82 &7649399471941364932 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3507375644074442913, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+  m_PrefabInstance: {fileID: 6522500725401594981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1940610310151438197 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4641800618514797328, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
@@ -810,11 +881,6 @@ SpriteRenderer:
 --- !u!4 &4133212645796985258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
-  m_PrefabInstance: {fileID: 6522500725401594981}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &7649399471941364932 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3507375644074442913, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
   m_PrefabInstance: {fileID: 6522500725401594981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9101019856007124290

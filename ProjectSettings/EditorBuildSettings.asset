@@ -5,12 +5,12 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 0
-    path: Assets/Project/Jan/Scenes/Jan/Move_Scene.unity
-    guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 0
-    path: Assets/Project/Jan/Scenes/Jan/New Combat Test.unity
-    guid: a6806a38bb8d7ec4e8ebf3937b926657
+  - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/MainMenu.unity"
+    guid: a8ce1fa2751f06f4681cf310ae3ef688
+  - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/Lobby.unity"
+    guid: a37c2e30ada1f9f4aa2647e57a8dff58
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/Test Scenes/Init Scene 1.unity
     guid: e5adc05527476c14b8b907b98ae2a98b
@@ -47,4 +47,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Upgrade Scenes/Upgrade Scene 1.unity
     guid: 8d59b047a13c2844e84d5c29b2cf49c9
+  - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/ScoreScene.unity"
+    guid: ccbf5cf105058d242b1ba1228e84c8a1
   m_configObjects: {}

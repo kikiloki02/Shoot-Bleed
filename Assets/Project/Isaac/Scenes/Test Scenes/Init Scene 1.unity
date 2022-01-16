@@ -277,6 +277,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a1dfbfae9744634eb276c722289910f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _scene: Lobby
+  isAdditive: 1
+  unloadPreviousScene: 0
+  loadOnCollision: 0
+  coll: {fileID: 0}
 --- !u!114 &747886442 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4980406150173667572, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
@@ -585,6 +590,34 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 369736254}
     m_Modifications:
+    - target: {fileID: 1020539943200937252, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_Color.a
+      value: 0.9372549
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020539943200937305, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 48.9832
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020539943200937305, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 48.9832
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020539943200937305, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: 89.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1020539943200937305, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: 76.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039157463263756706, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_fontSize
+      value: 15
+      objectReference: {fileID: 0}
+    - target: {fileID: 4039157463263756706, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_fontSizeBase
+      value: 15
+      objectReference: {fileID: 0}
     - target: {fileID: 4980406150264450367, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
