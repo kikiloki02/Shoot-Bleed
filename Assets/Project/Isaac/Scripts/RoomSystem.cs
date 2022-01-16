@@ -9,7 +9,8 @@ public class RoomSystem : MonoBehaviour
     public List<string> EasyScenes;
     public List<string> MediumScenes;
     public List<string> HardScenes;
-    int totalScenesCompleted = 0;
+    public List<string> UpgradeScenes;
+    public int totalScenesCompleted = 0;
 
 
     public void Start()
@@ -43,6 +44,8 @@ public class RoomSystem : MonoBehaviour
 
         else if (sceneType == SceneType.Hard)
             return HardScenes.Count >= 1;
+        else if (sceneType == SceneType.Upgrade)
+            return UpgradeScenes.Count >= 1;
 
         return false;
     }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public enum SceneType
 {
-    Easy, Medium, Hard, Count
+    Easy, Medium, Hard, Upgrade, Count
 };
 public class ManageRoom : MonoBehaviour
 {

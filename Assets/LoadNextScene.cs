@@ -50,8 +50,10 @@ public class LoadNextScene : MonoBehaviour
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
-
-        roomSys.RemoveRoom(actualSceneType);
+        if(actualSceneType != SceneType.Upgrade)
+        {
+            roomSys.RemoveRoom(actualSceneType);
+        }
         SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
     }
 
@@ -61,7 +63,14 @@ public class LoadNextScene : MonoBehaviour
         do //Puede reventar si no quedan salas en ningún pool
         {
             roomRemains = true;
-            randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count);
+            if(roomSys.totalScenesCompleted % 2 == 0)
+            {
+                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count);
+            }
+            else
+            {
+                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 1);
+            }
             if (roomSys.RoomsRemaining((SceneType)randomRoomType))
                 nextSceneType = (SceneType)randomRoomType;
             else
@@ -88,6 +97,11 @@ public class LoadNextScene : MonoBehaviour
         {
             int roomNum = UnityEngine.Random.Range(0, roomSys.HardScenes.Count);
             NextScene = roomSys.HardScenes[roomNum];
+        }
+        else if(nextSceneType == SceneType.Upgrade)
+        {
+            int roomNum = UnityEngine.Random.Range(0, roomSys.UpgradeScenes.Count);
+            NextScene = roomSys.UpgradeScenes[roomNum];
         }
 
     }

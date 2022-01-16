@@ -13,21 +13,11 @@ public class DisplayIconRoom : MonoBehaviour
         StartCoroutine(SetDoorSprite());
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        //SceneType actualdoorType = doorType;
-        //if(doorType != actualdoorType)
-        //{
-           
-        //}
-        
 
-    }
 
     IEnumerator SetDoorSprite()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.25f);
         doorType = doorTrigger.nextSceneType;
 
         switch (doorType)
@@ -41,6 +31,10 @@ public class DisplayIconRoom : MonoBehaviour
             case SceneType.Hard:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = doorSprites[2];
                 break;
+            case SceneType.Upgrade:
+                this.gameObject.GetComponent<SpriteRenderer>().sprite = doorSprites[3];
+                break;
+
         }
     }
 }
