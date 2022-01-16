@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Healer : MonoBehaviour
 {
-
     public int pointsToHeal;
     public float velocity;
     public float maxVelocity;
@@ -12,7 +11,6 @@ public class Healer : MonoBehaviour
     public bool followPlayer;
 
     private ParticleSystem particles;
-
 
     // Start is called before the first frame update
     void Start()
@@ -24,8 +22,8 @@ public class Healer : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerLifeManagement>().RecoverHealth(pointsToHeal);
-            Destroy(gameObject);
 
+            Destroy(gameObject);
         }
     }
 }

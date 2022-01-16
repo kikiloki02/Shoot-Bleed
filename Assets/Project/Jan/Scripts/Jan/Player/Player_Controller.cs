@@ -16,6 +16,7 @@ public class Player_Controller : MonoBehaviour
     public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
     public AudioSource _dashSound;
+    public RoomPos lastRoomExit;
 
 // ------ PRIVATE: ------
 
@@ -26,7 +27,7 @@ public class Player_Controller : MonoBehaviour
 
     private Vector2 _movement; // X, and Y;
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
+// ------ START / UPDATE / FIXEDUPDATE: ------
 
     void Start()
     {

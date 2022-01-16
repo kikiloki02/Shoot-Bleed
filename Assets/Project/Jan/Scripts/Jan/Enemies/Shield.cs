@@ -24,4 +24,12 @@ public class Shield : MonoBehaviour
         transform.position = _gameObjectToRotateAround.transform.position + new Vector3(Mathf.Sin(currentAngle * Mathf.Deg2Rad), Mathf.Cos(currentAngle * Mathf.Deg2Rad)) * distance;
         transform.right = (transform.position - _gameObjectToRotateAround.transform.position).normalized;
     }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.CompareTag("Bullet"))
+        {
+            Destroy(other.gameObject);
+        }
+    }
 }

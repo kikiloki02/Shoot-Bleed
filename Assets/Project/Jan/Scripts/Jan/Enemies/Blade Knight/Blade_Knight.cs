@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class Blade_Knight : Enemy
 {
-    // TODO Modify the Methods so that they are more compatible with AttackColliderSwitch coroutine.
-
 // ------ START / UPDATE / FIXEDUPDATE: ------
 
     private void Start()
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
+
+        _spawnedSound.Play();
+        _spawnedParticles.Play();
 
         _spriteRedColor = new Color32(255, 100, 100, 255);
         _spriteBlueColor = new Color32(0, 0, 255, 255);
@@ -19,32 +20,7 @@ public class Blade_Knight : Enemy
 
     private void Update()
     {
-        // Tests:
-        //if (Input.GetKeyDown(KeyCode.Y)) { GetHit(); }
-        //if (Input.GetKeyDown(KeyCode.R)) { _attack1.Play(); ; } // Should be: AudioManager.instance.PlaySFX(value);
-
-        //if (Input.GetKeyDown(KeyCode.Z))
-        //{
-        //    doRandom = true;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.J))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 0;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.K))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 3;
-        //}
-
-        //if (Input.GetKeyDown(KeyCode.L))
-        //{
-        //    doRandom = false;
-        //    _randomNumber = 5;
-        //}
+        
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -77,12 +53,18 @@ public class Blade_Knight : Enemy
         }
     }
 
-// ------ METHODS: ------
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            collision.gameObject.GetComponent<HealthSystem>().GetDamage(_collisionDamageValue);
+        }
+    }
+
+    // ------ METHODS: ------
 
     public override void Die()
     {
-        Debug.Log("Blade Knight->Dead");
-
         _death.Play(); // Die SFX
     }
 
@@ -95,8 +77,6 @@ public class Blade_Knight : Enemy
 
     void Attack1()
     {
-        Debug.Log("Blade Knight->Attack1");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -118,8 +98,6 @@ public class Blade_Knight : Enemy
 
     void Attack2(float seconds)
     {
-        Debug.Log("Blade Knight->Attack2");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -141,8 +119,6 @@ public class Blade_Knight : Enemy
 
     void Attack3(float seconds)
     {
-        Debug.Log("Blade Knight->Attack3");
-
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -190,8 +166,6 @@ public class Blade_Knight : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        Debug.Log("Blade Knight->Charging");
-
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;
@@ -236,8 +210,6 @@ public class Blade_Knight : Enemy
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        Debug.Log("Blade Knight->Finished charging");
-
         _spriteRenderer.color = new Color(255, 255, 255);
 
         // Execute the corresponding attack move:
@@ -266,15 +238,11 @@ public class Blade_Knight : Enemy
 
     IEnumerator AttackCooldown(float seconds)
     {
-        Debug.Log("Blade Knight->Cooldown started");
-
         _cooldown = true;
 
         _spriteRenderer.color = new Color(0, 0, 255);
 
         yield return new WaitForSeconds(seconds); // Wait
-
-        Debug.Log("Blade Knight->Cooldown finished");
 
         _spriteRenderer.color = new Color(255, 255, 255);
 

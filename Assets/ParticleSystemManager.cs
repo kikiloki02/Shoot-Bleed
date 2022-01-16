@@ -13,7 +13,6 @@ public class ParticleSystemManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         this.gameObject.GetComponent<ParticleSystem>().transform.right = -this.gameObject.GetComponent<Rigidbody2D>().velocity;
     }
 }
