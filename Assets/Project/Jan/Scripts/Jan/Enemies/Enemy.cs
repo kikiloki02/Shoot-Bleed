@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
 // ------ PUBLIC: ------
 
     public int _attackValue;
+    public int _collisionDamageValue;
     public int _movementSpeed;
     public int _chargeDistance;
     public int _healPlayer;
@@ -31,6 +32,7 @@ public class Enemy : MonoBehaviour
     public ParticleSystem _chargingParticlesForthAndBack;
     public ParticleSystem _chargingParticlesChain;
     public ParticleSystem _attackParticles;
+    public ParticleSystem _spawnedParticles;
 
     public Rigidbody2D _rigidBody;
     public Collider2D _attackDetectionZone;
@@ -42,6 +44,7 @@ public class Enemy : MonoBehaviour
     public AudioSource _charge;
     public AudioSource _hit;
     public AudioSource _death;
+    public AudioSource _spawnedSound;
 
     public GameObject _attackPivot;
     // TODO Change this for a Collider2D and find how to execute OnTriggerStay2D() with this specific collider.

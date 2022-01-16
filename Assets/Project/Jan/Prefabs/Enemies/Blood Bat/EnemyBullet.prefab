@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 5854400442614961068}
   - component: {fileID: 1423333203876115984}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: EnemyBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -139,9 +139,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.09, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.13
 --- !u!1001 &3555753788562098429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306112581364318550, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: playOnAwake

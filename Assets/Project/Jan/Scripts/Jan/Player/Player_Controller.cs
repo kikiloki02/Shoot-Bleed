@@ -27,7 +27,7 @@ public class Player_Controller : MonoBehaviour
 
     private Vector2 _movement; // X, and Y;
 
-    // ------ START / UPDATE / FIXEDUPDATE: ------
+// ------ START / UPDATE / FIXEDUPDATE: ------
 
     void Start()
     {

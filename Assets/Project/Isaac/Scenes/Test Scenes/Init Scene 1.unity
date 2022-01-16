@@ -198,6 +198,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5579465513328653356, guid: 40bbc0fa1eafc5840a1be3b4cd5ed523, type: 3}
   m_PrefabInstance: {fileID: 222011916}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &269422428 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7480497156972623913, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+  m_PrefabInstance: {fileID: 1770299640}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &369736253
 GameObject:
   m_ObjectHideFlags: 0
@@ -404,6 +409,10 @@ PrefabInstance:
       propertyPath: healthBar
       value: 
       objectReference: {fileID: 747886442}
+    - target: {fileID: 4262791607163136345, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: _criticalStateScreenEffect
+      value: 
+      objectReference: {fileID: 269422428}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
 --- !u!4 &1092160254 stripped
