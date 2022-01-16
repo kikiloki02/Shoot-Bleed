@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 5854400442614961068}
   - component: {fileID: 1423333203876115984}
-  m_Layer: 8
+  m_Layer: 15
   m_Name: SmallBullet
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 3859608993916419907}
   m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8155028339852963167}
   m_Father: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eda499576ca4b74488c01e4b03b3fb9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 9228eea0499b4ab43ad9aa03c8cdabf1, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,7 +121,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   rb: {fileID: -7612474735780538361}
-  OutVelocity: 250
+  OutVelocity: 400
   particles: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
   _collider2D: {fileID: 1423333203876115984}
   _smallBullet: {fileID: 0}
@@ -141,7 +141,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.25
+  m_Radius: 0.09
 --- !u!1001 &3555753788562098429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -155,7 +155,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306112581364318550, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 3819577908471187369, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: playOnAwake

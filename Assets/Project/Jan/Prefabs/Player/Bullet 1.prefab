@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2481984433752380635}
   - component: {fileID: -7612474735780538361}
   - component: {fileID: 8198235393765284749}
-  - component: {fileID: 1423333203876115984}
-  m_Layer: 7
+  - component: {fileID: 1682942331048965388}
+  m_Layer: 13
   m_Name: Bullet 1
   m_TagString: Bullet
   m_Icon: {fileID: 0}
@@ -75,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eda499576ca4b74488c01e4b03b3fb9b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 83699addc803d7a4b81b5ebd7e91c1de, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -121,10 +121,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   rb: {fileID: -7612474735780538361}
-  OutVelocity: 700
+  OutVelocity: 750
   particles: {fileID: 313368397379571540}
---- !u!58 &1423333203876115984
-CircleCollider2D:
+--- !u!70 &1682942331048965388
+CapsuleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -137,8 +137,8 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  serializedVersion: 2
-  m_Radius: 0.25
+  m_Size: {x: 0.54, y: 0.35}
+  m_Direction: 1
 --- !u!1001 &3555753788562098429
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1306112581364318550, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_Layer
-      value: 7
+      value: 13
       objectReference: {fileID: 0}
     - target: {fileID: 4644592383379613090, guid: 4b06337398443004d8b5e04839ac9898, type: 3}
       propertyPath: m_RootOrder

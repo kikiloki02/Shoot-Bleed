@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,13 +10,19 @@ public class Player_Controller : MonoBehaviour
     public int _healthValue;
     public float _movementSpeed;
     public float _dashDistance;
+    public float _dashCooldown;
     public float _invincibilityTimeBetweenHitsInSeconds;
+    public float _secondsPerBullet;
+    public int _bloodBulletDamage;
+    public int _normalBulletDamage;
 
     public Rigidbody2D _rigidBody;
     public Animator _animator;
     public ParticleSystem _runningParticles;
     public ParticleSystem _dashParticles;
     public AudioSource _dashSound;
+    public RoomPos lastRoomExit;
+    public GameObject _weapon;
 
 // ------ PRIVATE: ------
 
@@ -26,7 +33,26 @@ public class Player_Controller : MonoBehaviour
 
     private Vector2 _movement; // X, and Y;
 
+    public class Upgrade
+    {
+        public int _id;
+        public bool _active;
+
+        public Upgrade(int id, bool active)
+        {
+            _id = id;
+            _active = active;
+        }
+    };
+
+    private List<Upgrade> _playerUpgrades = new List<Upgrade>();
+
 // ------ START / UPDATE / FIXEDUPDATE: ------
+
+    void Start()
+    {
+        Cursor.visible = false;
+    }
 
     // Update is called once per frame;
     void Update()
@@ -40,6 +66,8 @@ public class Player_Controller : MonoBehaviour
         ProcessParticles();
 
         ProcessAudio();
+
+        ProcessUpgrades();
     }
 
     private void FixedUpdate()
@@ -68,6 +96,13 @@ public class Player_Controller : MonoBehaviour
             _isPlayerDashing = true;
     }
 
+    public void ActivateUpgrade(int id)
+    {
+        Upgrade newUpgrade = new Upgrade(id, true);
+
+        _playerUpgrades.Add(newUpgrade);
+    }
+
     void ProcessAnimations()
     {
         _animator.SetFloat("Horizontal", _movement.x);
@@ -85,6 +120,64 @@ public class Player_Controller : MonoBehaviour
     void ProcessAudio()
     {
         
+    }
+
+    void ProcessUpgrades()
+    {
+        for (int i = 0; i < _playerUpgrades.Count; i++)
+        {
+            if (!_playerUpgrades[i]._active) { continue; }
+
+            switch (_playerUpgrades[i]._id)
+            {
+                case 1: // Wider Heart
+                {
+                    _playerUpgrades[i]._active = false;
+                    this.GetComponent<PlayerLifeManagement>().maxHealth += 8;
+
+                    this.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetMaxHealth(this.GetComponent<PlayerLifeManagement>().maxHealth);
+
+                    break;
+                }
+
+                case 2: // Explosive Corpses
+                {
+                    // Code
+
+                    break;
+                }
+
+                case 3: // Dash Guard
+                {
+                    // Code
+
+                    break;
+                }
+
+                case 4: // Heavy Bullets
+                {
+                    _playerUpgrades[i]._active = false;
+
+                    _secondsPerBullet += 0.2f;
+                    _weapon.GetComponent<ShootBullet>().secondsPerBullet += 0.2f;
+
+                    _bloodBulletDamage += 1;
+                    _weapon.GetComponent<ShootBullet>().bullet.GetComponent<Bullet>().damage += 1;
+
+                    break;
+                }
+
+                case 5: // Fast Shooting
+                {
+                    _playerUpgrades[i]._active = false;
+
+                    _secondsPerBullet -= 0.15f;
+                    _weapon.GetComponent<ShootBullet>().secondsPerBullet -= 0.15f;
+
+                    break;
+                }
+            }
+        }
     }
 
     void Move()
@@ -134,7 +227,7 @@ public class Player_Controller : MonoBehaviour
 
                 _isPlayerDashing = false;
 
-                yield return new WaitForSeconds(5);
+                yield return new WaitForSeconds(_dashCooldown);
 
                 Debug.Log("You can Dash again");
                 _canPlayerDash = true;

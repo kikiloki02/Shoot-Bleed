@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Bullet
   - Object
+  - BlueBullet
   layers:
   - Default
   - TransparentFX
@@ -19,15 +20,12 @@ TagManager:
   - Player
   - Enemy
   - object
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Pickup
+  - Bullets
+  - Pit
+  - PlayerBullets
+  - PlayerCriticalBullets
+  - EnemyBullets
   - 
   - 
   - 

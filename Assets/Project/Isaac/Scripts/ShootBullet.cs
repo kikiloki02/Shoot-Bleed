@@ -9,6 +9,13 @@ public class ShootBullet : MonoBehaviour
     public GameObject player;
     public ParticleSystem shootParticles;
 
+    public SpriteRenderer _renderer;
+    public Sprite _normalSprite;
+    public Sprite _criticalSprite;
+
+    public float cameraShake;
+    public float timeToShake;
+
     public float knockback;
 
     public Transform spawnPoint;
@@ -23,7 +30,9 @@ public class ShootBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        secondsPerBullet = player.GetComponent<Player_Controller>()._secondsPerBullet;
+        bullet.GetComponent<Bullet>().damage = player.GetComponent<Player_Controller>()._bloodBulletDamage;
+        blueBullet.GetComponent<Bullet>().damage = player.GetComponent<Player_Controller>()._normalBulletDamage;
     }
 
     // Update is called once per frame
@@ -31,6 +40,12 @@ public class ShootBullet : MonoBehaviour
     {
         directionToMouse = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f)) - this.transform.position).normalized;
         this.transform.right = new Vector2(directionToMouse.x, directionToMouse.y);
+
+        if (this.transform.right.x < 0) { _renderer.flipY = true; }
+        else { _renderer.flipY = false; }
+
+        if (player.GetComponent<PlayerLifeManagement>().criticalState == false) { _renderer.sprite = _normalSprite; }
+        else { _renderer.sprite = _criticalSprite; }
 
         if (Input.GetKey(KeyCode.Mouse0) && canShoot)
         {
@@ -40,13 +55,12 @@ public class ShootBullet : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.T))
         {
-           player.GetComponent<PlayerLifeManagement>().GetDamage(1);
+           player.GetComponent<PlayerLifeManagement>().RecoverHealth(5);
         }
     }
 
     void Shoot()
     {
-
         GameObject newBullet;
 
         if (player.GetComponent<PlayerLifeManagement>().criticalState)
@@ -67,7 +81,7 @@ public class ShootBullet : MonoBehaviour
         Rigidbody2D playerRb = player.GetComponent<Rigidbody2D>();
         playerRb.AddForce(((directionToMouse.normalized) * knockback) * -0.1f , ForceMode2D.Force);
         //CameraShake
-        CinemachineShake.Instance.ShakeCamera(5f, 0.1f);
+        CinemachineShake.Instance.ShakeCamera(cameraShake, timeToShake);
         shootParticles.Play();
     }
 
