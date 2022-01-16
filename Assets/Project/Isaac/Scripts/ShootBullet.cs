@@ -30,7 +30,9 @@ public class ShootBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-    
+        secondsPerBullet = player.GetComponent<Player_Controller>()._secondsPerBullet;
+        bullet.GetComponent<Bullet>().damage = player.GetComponent<Player_Controller>()._bloodBulletDamage;
+        blueBullet.GetComponent<Bullet>().damage = player.GetComponent<Player_Controller>()._normalBulletDamage;
     }
 
     // Update is called once per frame
