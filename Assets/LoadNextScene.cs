@@ -50,26 +50,37 @@ public class LoadNextScene : MonoBehaviour
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
-        if(actualSceneType != SceneType.Upgrade)
+        if(nextSceneType == SceneType.Victory)
+            SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
+        else
         {
-            roomSys.RemoveRoom(actualSceneType);
+            if (actualSceneType != SceneType.Upgrade)
+            {
+                roomSys.RemoveRoom(actualSceneType);
+            }
+            SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         }
-        SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
+        
     }
 
     private void SetNextRoomType()
     {
+        if (!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard))
+        {
+            nextSceneType = SceneType.Victory;
+            return;
+        }
         bool roomRemains;
         do //Puede reventar si no quedan salas en ningún pool
         {
             roomRemains = true;
             if(roomSys.totalScenesCompleted % 2 == 0)
             {
-                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count);
+                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 1);
             }
             else
             {
-                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 1);
+                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 2);
             }
             if (roomSys.RoomsRemaining((SceneType)randomRoomType))
                 nextSceneType = (SceneType)randomRoomType;
@@ -102,6 +113,11 @@ public class LoadNextScene : MonoBehaviour
         {
             int roomNum = UnityEngine.Random.Range(0, roomSys.UpgradeScenes.Count);
             NextScene = roomSys.UpgradeScenes[roomNum];
+        }
+        else if(nextSceneType == SceneType.Victory)
+        {
+            int roomNum = UnityEngine.Random.Range(0, roomSys.VictoryScenes.Count);
+            NextScene = roomSys.VictoryScenes[roomNum];
         }
 
     }

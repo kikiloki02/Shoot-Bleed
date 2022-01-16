@@ -336,6 +336,8 @@ MonoBehaviour:
   - HardScene3
   UpgradeScenes:
   - Upgrade Scene 1
+  VictoryScenes:
+  - VictoryScene
   totalScenesCompleted: 0
 --- !u!4 &830258789
 Transform:
