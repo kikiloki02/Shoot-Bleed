@@ -214,11 +214,16 @@ MonoBehaviour:
   _dashDistance: 25
   _dashCooldown: 1
   _invincibilityTimeBetweenHitsInSeconds: 1
+  _secondsPerBullet: 0.4
+  _bloodBulletDamage: 2
+  _normalBulletDamage: 1
   _rigidBody: {fileID: 3060272417040684060}
   _animator: {fileID: 3060272417040684062}
   _runningParticles: {fileID: 3060272416640136235}
   _dashParticles: {fileID: 1857866211376916093}
   _dashSound: {fileID: 7065121161485805946}
+  lastRoomExit: 0
+  _weapon: {fileID: 8406800397279954213}
 --- !u!114 &4262791607163136345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -944,13 +949,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
---- !u!4 &812694517455757533 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8433575300097340831, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
-  m_PrefabInstance: {fileID: 9101019856007124290}
-  m_PrefabAsset: {fileID: 0}
 --- !u!82 &8013086966345620342 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 1259149115359694388, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
+  m_PrefabInstance: {fileID: 9101019856007124290}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &812694517455757533 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8433575300097340831, guid: 12224c742ee292a46bd4a6b2cb399bf4, type: 3}
   m_PrefabInstance: {fileID: 9101019856007124290}
   m_PrefabAsset: {fileID: 0}
