@@ -11,6 +11,8 @@ public class PlayerLifeManagement : HealthSystem
 
     public bool criticalState = false;
 
+    public bool loselife;
+
     public HealthBar healthBar;
 
     private float currentTime = 0.0f;
@@ -30,6 +32,8 @@ public class PlayerLifeManagement : HealthSystem
     private Color32 _spriteWhiteColor;
 
     public UnityEvent OnDeath;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -70,8 +74,12 @@ public class PlayerLifeManagement : HealthSystem
 
     public void LoseLife()
     {
-        currentHealth -= 1;
-        healthBar.SetHealth(currentHealth);
+        if (loselife)
+        {
+            currentHealth -= 1;
+            healthBar.SetHealth(currentHealth);
+        }
+       
     }
 
     bool isCritical()

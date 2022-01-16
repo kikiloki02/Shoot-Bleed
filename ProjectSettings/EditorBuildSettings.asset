@@ -21,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Project/Isaac/Scenes/Test Scenes/Init Scene 1.unity
     guid: e5adc05527476c14b8b907b98ae2a98b
   - enabled: 1
+    path: "Assets/Project/Adri\xE0/Scenes/WeaponPlayground.unity"
+    guid: 455c0e000877c3646b4964e642d9a831
+  - enabled: 1
     path: "Assets/Project/Adri\xE0/Scenes/Lobby.unity"
     guid: a37c2e30ada1f9f4aa2647e57a8dff58
   - enabled: 1

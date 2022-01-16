@@ -45,6 +45,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _scene: 
   isAdditive: 0
+  unloadPreviousScene: 0
+  loadOnCollision: 0
+  coll: {fileID: 0}
 --- !u!1 &3060272417040684033
 GameObject:
   m_ObjectHideFlags: 0
@@ -209,7 +212,7 @@ MonoBehaviour:
   _healthValue: 0
   _movementSpeed: 100
   _dashDistance: 25
-  _dashCooldown: 5
+  _dashCooldown: 1
   _invincibilityTimeBetweenHitsInSeconds: 1
   _rigidBody: {fileID: 3060272417040684060}
   _animator: {fileID: 3060272417040684062}
@@ -234,6 +237,7 @@ MonoBehaviour:
   enemy: {fileID: 0}
   _player: {fileID: 3060272417040684033}
   criticalState: 0
+  loselife: 1
   healthBar: {fileID: 0}
   _hit: {fileID: 1625568093539529802}
   _heal: {fileID: 8013086966345620342}
