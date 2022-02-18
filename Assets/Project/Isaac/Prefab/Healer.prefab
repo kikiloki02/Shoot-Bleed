@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4170ac36c4bf208478ad208ac4553e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToHeal: 5
+  pointsToHeal: 0
   velocity: 100
   maxVelocity: 100
   distanceToFollow: 4

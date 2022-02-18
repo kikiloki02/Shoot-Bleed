@@ -26,4 +26,9 @@ public class Healer : MonoBehaviour
             Destroy(gameObject);
         }
     }
+
+    public void SetPointsToHeal(int value)
+    {
+        pointsToHeal = value;
+    }
 }
