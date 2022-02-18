@@ -214,11 +214,16 @@ MonoBehaviour:
   _dashDistance: 25
   _dashCooldown: 1
   _invincibilityTimeBetweenHitsInSeconds: 1
+  _secondsPerBullet: 0.4
+  _bloodBulletDamage: 2
+  _normalBulletDamage: 1
   _rigidBody: {fileID: 3060272417040684060}
   _animator: {fileID: 3060272417040684062}
   _runningParticles: {fileID: 3060272416640136235}
   _dashParticles: {fileID: 1857866211376916093}
   _dashSound: {fileID: 7065121161485805946}
+  lastRoomExit: 0
+  _weapon: {fileID: 8406800397279954213}
 --- !u!114 &4262791607163136345
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -868,6 +873,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+--- !u!1 &8406800397279954213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3327711187561752896, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+  m_PrefabInstance: {fileID: 6522500725401594981}
+  m_PrefabAsset: {fileID: 0}
 --- !u!82 &7649399471941364932 stripped
 AudioSource:
   m_CorrespondingSourceObject: {fileID: 3507375644074442913, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}

@@ -438,6 +438,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4980406151714934711}
     m_Modifications:
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_fontAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_fontColor.b
+      value: 0.043137256
+      objectReference: {fileID: 0}
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_fontColor.g
+      value: 0.019607844
+      objectReference: {fileID: 0}
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_fontColor.r
+      value: 0.8117648
+      objectReference: {fileID: 0}
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_sharedMaterial
+      value: 
+      objectReference: {fileID: 298079102388907842, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
+    - target: {fileID: 63645809603732482, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 3423274447
+      objectReference: {fileID: 0}
     - target: {fileID: 3946923912314351864, guid: 58bbfc0a30a8d424f9fa413335aba806, type: 3}
       propertyPath: m_Name
       value: DashIcon

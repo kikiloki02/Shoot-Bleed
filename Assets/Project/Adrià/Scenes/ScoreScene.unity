@@ -529,8 +529,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: YOU DIED
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
-  m_sharedMaterial: {fileID: -3142077057835911548, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
+  m_sharedMaterial: {fileID: 298079102388907842, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -996,8 +996,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Go To Lobby
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
-  m_sharedMaterial: {fileID: -3142077057835911548, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
+  m_sharedMaterial: {fileID: 298079102388907842, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1205,8 +1205,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
-  m_sharedMaterial: {fileID: -3142077057835911548, guid: 8b35d3f8794bb3f489720f58e174f991, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
+  m_sharedMaterial: {fileID: 298079102388907842, guid: 3ba3639e33b182649809584d3fe9dcc6, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []

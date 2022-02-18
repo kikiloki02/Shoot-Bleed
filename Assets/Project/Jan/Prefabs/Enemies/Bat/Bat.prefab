@@ -323,7 +323,7 @@ MonoBehaviour:
   _collisionDamageValue: 1
   _movementSpeed: 150
   _chargeDistance: 20
-  _healPlayer: 5
+  _healPlayer: 6
   _attack1ChargeTime: 0.75
   _attack2ChargeTime: 0.75
   _attack3ChargeTime: 0.75

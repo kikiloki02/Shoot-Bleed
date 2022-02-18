@@ -688,7 +688,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1171723300
 Transform:
   m_ObjectHideFlags: 0
@@ -788,7 +788,7 @@ MonoBehaviour:
   _spawningSound: {fileID: 1832616843}
   _spawningParticles: {fileID: 95227881}
   _spawningTime: 2
-  _timeOffset: 0
+  _timeOffset: 2
   _isTrigger: 0
 --- !u!1 &1284509781
 GameObject:
@@ -1120,6 +1120,10 @@ PrefabInstance:
     - target: {fileID: 4980406151714934711, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7302711663743184576, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
