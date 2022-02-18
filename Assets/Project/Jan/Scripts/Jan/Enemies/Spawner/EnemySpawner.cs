@@ -73,6 +73,8 @@ public class EnemySpawner : MonoBehaviour
     {
         yield return new WaitForSeconds(seconds);
 
+        StartCoroutine(Spawning(_spawningTime));
+
         _hasOffset = false;
     }
 }

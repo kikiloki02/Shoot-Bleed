@@ -232,6 +232,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 3483602079897317379, guid: 0490db2269de9bb49b2ef419071d6d2b, type: 3}
   m_PrefabInstance: {fileID: 1431314939}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &622413488 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 7480497156972623913, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+  m_PrefabInstance: {fileID: 1428545385}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &689203860 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5307997392362137495, guid: dcd9836c7cc39eb4dbeca51541c94ae7, type: 3}
@@ -435,6 +440,10 @@ PrefabInstance:
     - target: {fileID: 353890923181494291, guid: 29a909e1bf6ae9641a661cc12ef680c5, type: 3}
       propertyPath: m_Name
       value: Small Shield
+      objectReference: {fileID: 0}
+    - target: {fileID: 353890923181494295, guid: 29a909e1bf6ae9641a661cc12ef680c5, type: 3}
+      propertyPath: _rotationRate
+      value: 60
       objectReference: {fileID: 0}
     - target: {fileID: 353890923181494295, guid: 29a909e1bf6ae9641a661cc12ef680c5, type: 3}
       propertyPath: _gameObjectToRotateAround
@@ -1084,6 +1093,14 @@ PrefabInstance:
       propertyPath: m_RootOrder
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4262791607163136345, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: healthBar
+      value: 
+      objectReference: {fileID: 1428545386}
+    - target: {fileID: 4262791607163136345, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: _criticalStateScreenEffect
+      value: 
+      objectReference: {fileID: 622413488}
     - target: {fileID: 5318779589560935922, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -1161,6 +1178,8 @@ MonoBehaviour:
   healthBar: {fileID: 1428545386}
   _hit: {fileID: 0}
   _heal: {fileID: 0}
+  _criticalStateSound: {fileID: 0}
+  _criticalStateScreenEffect: {fileID: 0}
 --- !u!4 &2016112933 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3060272417040684032, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
