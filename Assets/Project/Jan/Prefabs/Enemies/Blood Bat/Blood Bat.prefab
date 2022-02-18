@@ -323,7 +323,6 @@ MonoBehaviour:
   _collisionDamageValue: 1
   _movementSpeed: 100
   _chargeDistance: 5
-  _healPlayer: 9
   _attack1ChargeTime: 0.5
   _attack2ChargeTime: 0.5
   _attack3ChargeTime: 0.5
@@ -372,6 +371,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 12
   currentHealth: 0
+  _healPlayer: 10
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 63675566395749085}
 --- !u!114 &4624287772282763370
