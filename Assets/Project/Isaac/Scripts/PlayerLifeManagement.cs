@@ -59,7 +59,8 @@ public class PlayerLifeManagement : HealthSystem
         // Slow effect:
         currentTime = Mathf.Min(0.85f, currentTime + Time.unscaledDeltaTime);
         // Time.timeScale = Mathf.Sin((currentTime / 0.5f) * Mathf.PI * 0.5f);
-        Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
+        if(Time.timeScale > 0.0f)
+            Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
 
         criticalState = isCritical();
 
