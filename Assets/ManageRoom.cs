@@ -17,10 +17,12 @@ public class ManageRoom : MonoBehaviour
     public GameObject player;
     public Player_Controller playerController;
     public SceneType sceneType;
+    public bool roomRemoved;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        roomRemoved = false;
         player = FindObjectOfType<Player_Controller>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         if(playerController.lastRoomExit == RoomPos.RIGHT) //Spawn on left

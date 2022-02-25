@@ -33,6 +33,10 @@ public class RoomSystem : MonoBehaviour
         else if (sceneType == SceneType.Hard)
             HardScenes.Remove(actualScene);
 
+    }
+    public void UnloadRoom()
+    {
+        string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
         SceneManager.UnloadSceneAsync(actualScene);
     }
     public bool RoomsRemaining(SceneType sceneType)
