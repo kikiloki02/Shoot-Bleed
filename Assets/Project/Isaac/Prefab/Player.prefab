@@ -60,11 +60,11 @@ GameObject:
   - component: {fileID: 3060272417040684059}
   - component: {fileID: 3060272417040684060}
   - component: {fileID: 7518795903817620079}
-  - component: {fileID: 3060272417040684062}
   - component: {fileID: 3060272417040684063}
   - component: {fileID: 4262791607163136345}
   - component: {fileID: 4708823770354791425}
   - component: {fileID: 3867917954499972598}
+  - component: {fileID: 3060272417040684062}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -178,25 +178,6 @@ CapsuleCollider2D:
   m_Offset: {x: 0, y: 0}
   m_Size: {x: 0.325, y: 0.55}
   m_Direction: 0
---- !u!95 &3060272417040684062
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3060272417040684033}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: aeb87afa975daba41a29091fc43b5530, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &3060272417040684063
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -238,6 +219,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 20
+  _healPlayer: 0
   healer: {fileID: 0}
   enemy: {fileID: 0}
   _player: {fileID: 3060272417040684033}
@@ -299,6 +281,25 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 10
+--- !u!95 &3060272417040684062
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060272417040684033}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: aeb87afa975daba41a29091fc43b5530, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3060272417344281274
 GameObject:
   m_ObjectHideFlags: 0

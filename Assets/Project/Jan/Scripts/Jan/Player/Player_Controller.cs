@@ -68,6 +68,8 @@ public class Player_Controller : MonoBehaviour
         ProcessAudio();
 
         ProcessUpgrades();
+
+        UpdateSpriteRenderer();
     }
 
     private void FixedUpdate()
@@ -75,7 +77,21 @@ public class Player_Controller : MonoBehaviour
         Move();
     }
 
-// ------ METHODS: ------
+    // ------ METHODS: ------
+
+    void UpdateSpriteRenderer()
+    {
+        bool _spriteRendererFlipXValue = GetComponent<SpriteRenderer>().flipX;
+
+        if (_movement.x < -0.01f && !_spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (_movement.x > 0.01f && _spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     void ProcessInputs()
     {
