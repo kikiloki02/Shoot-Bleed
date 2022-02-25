@@ -13,6 +13,9 @@ public class LoadScene : MonoBehaviour
     {
         //SceneManager.LoadScene("Init Game", LoadSceneMode.Additive);
         //LoadWantedSceneAdditive(_scene);
+        if (_scene == "")
+            return;
+
         if (!loadOnCollision && _scene != null)
         {
             if (isAdditive)
@@ -59,7 +62,7 @@ public class LoadScene : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if(_scene != null) { return; }
+        if(_scene == null || _scene == "") { return; }
         if (other.gameObject.CompareTag("Player"))
         {
             if (isAdditive)
