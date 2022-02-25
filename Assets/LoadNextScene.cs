@@ -31,6 +31,7 @@ public class LoadNextScene : MonoBehaviour
         manageRoom = FindObjectOfType<ManageRoom>();
         actualSceneType = manageRoom.sceneType;
         roomSys = FindObjectOfType<RoomSystem>();
+        //Remove actual scene from the list
         SetNextRoomType();
         SetNextRoom();
     }

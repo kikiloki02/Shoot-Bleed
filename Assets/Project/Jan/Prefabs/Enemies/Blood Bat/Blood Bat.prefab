@@ -323,9 +323,10 @@ MonoBehaviour:
   _collisionDamageValue: 1
   _movementSpeed: 100
   _chargeDistance: 5
-  _attack1ChargeTime: 0.5
-  _attack2ChargeTime: 0.5
-  _attack3ChargeTime: 0.5
+  _healPlayer: 9
+  _attack1ChargeTime: 0.75
+  _attack2ChargeTime: 0.75
+  _attack3ChargeTime: 0.75
   _activeTimeAttack1: 0
   _activeTimeAttack2: 0
   _activeTimeAttack2Forth: 0
@@ -333,10 +334,10 @@ MonoBehaviour:
   _activeTimeAttack3: 0
   _activeTimeAttack3First: 0
   _activeTimeAttack3Second: 0
-  _attack1Cooldown: 1
-  _attack2Cooldown: 1
+  _attack1Cooldown: 1.5
+  _attack2Cooldown: 1.5
   _attack2point5Cooldown: 0
-  _attack3Cooldown: 1
+  _attack3Cooldown: 1.5
   _attack3point5Cooldown: 0
   _chargingParticlesBasic: {fileID: 63675567050413724}
   _chargingParticlesForthAndBack: {fileID: 63675566695471280}

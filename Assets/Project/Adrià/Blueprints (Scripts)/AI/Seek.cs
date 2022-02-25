@@ -145,7 +145,7 @@ public class Seek : MonoBehaviour
     private void CheckForCollisionDetected()
     {
         RaycastHit2D[] hit2D = new RaycastHit2D[3];
-        LayerMask mask = LayerMask.GetMask("object");
+        LayerMask mask = LayerMask.GetMask("Object"); //Chgange to "object"
 
 
         /* 2 raycasts are used for this, one points from the bottom left corner to the top left corner of the agent and

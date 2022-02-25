@@ -65,6 +65,7 @@ GameObject:
   - component: {fileID: 4708823770354791425}
   - component: {fileID: 3867917954499972598}
   - component: {fileID: 3060272417040684062}
+  - component: {fileID: 9047013988145577968}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -300,6 +301,17 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!210 &9047013988145577968
+SortingGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3060272417040684033}
+  m_Enabled: 1
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 1
 --- !u!1 &3060272417344281274
 GameObject:
   m_ObjectHideFlags: 0
@@ -561,6 +573,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7688130505122458963, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7688130505122458964, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
+      propertyPath: ShapeModule.m_Scale.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7688130505769750370, guid: e78a3e909240f2f4ebf922533ee45a0b, type: 3}
@@ -874,16 +890,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
---- !u!1 &8406800397279954213 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3327711187561752896, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
-  m_PrefabInstance: {fileID: 6522500725401594981}
-  m_PrefabAsset: {fileID: 0}
---- !u!82 &7649399471941364932 stripped
-AudioSource:
-  m_CorrespondingSourceObject: {fileID: 3507375644074442913, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
-  m_PrefabInstance: {fileID: 6522500725401594981}
-  m_PrefabAsset: {fileID: 0}
 --- !u!212 &1940610310151438197 stripped
 SpriteRenderer:
   m_CorrespondingSourceObject: {fileID: 4641800618514797328, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
@@ -892,6 +898,16 @@ SpriteRenderer:
 --- !u!4 &4133212645796985258 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7194655275023570383, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+  m_PrefabInstance: {fileID: 6522500725401594981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &8406800397279954213 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3327711187561752896, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
+  m_PrefabInstance: {fileID: 6522500725401594981}
+  m_PrefabAsset: {fileID: 0}
+--- !u!82 &7649399471941364932 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 3507375644074442913, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
   m_PrefabInstance: {fileID: 6522500725401594981}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &9101019856007124290

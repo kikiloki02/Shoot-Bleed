@@ -322,7 +322,8 @@ MonoBehaviour:
   _attackValue: 3
   _collisionDamageValue: 1
   _movementSpeed: 150
-  _chargeDistance: 20
+  _chargeDistance: 15
+  _healPlayer: 6
   _attack1ChargeTime: 0.75
   _attack2ChargeTime: 0.75
   _attack3ChargeTime: 0.75
@@ -333,11 +334,11 @@ MonoBehaviour:
   _activeTimeAttack3: 1
   _activeTimeAttack3First: 0.75
   _activeTimeAttack3Second: 0.75
-  _attack1Cooldown: 0.75
-  _attack2Cooldown: 0.75
+  _attack1Cooldown: 1.25
+  _attack2Cooldown: 1.25
   _attack2point5Cooldown: 0.5
-  _attack3Cooldown: 0.75
-  _attack3point5Cooldown: 0.5
+  _attack3Cooldown: 1.25
+  _attack3point5Cooldown: 0.75
   _chargingParticlesBasic: {fileID: 1226302044520321788}
   _chargingParticlesForthAndBack: {fileID: 1226302044031163600}
   _chargingParticlesChain: {fileID: 1226302044753651174}
