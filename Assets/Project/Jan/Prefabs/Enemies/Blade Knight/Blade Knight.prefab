@@ -15128,7 +15128,6 @@ MonoBehaviour:
   _collisionDamageValue: 2
   _movementSpeed: 1000
   _chargeDistance: 25
-  _healPlayer: 15
   _attack1ChargeTime: 0.4
   _attack2ChargeTime: 0.4
   _attack3ChargeTime: 0.4
@@ -15175,6 +15174,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
+  _healPlayer: 15
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 3065939049626629957}
 --- !u!114 &8332804646269269796
@@ -15189,7 +15189,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 50
+  velocity: 225
   avoidVelocity: 1
   targetDirection: {x: 0, y: 0, z: 0}
   RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}

@@ -6,6 +6,9 @@ public class HealthSystem : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
+
+    public int _healPlayer;
+
     public GameObject healer;
 
     public GameObject enemy;
@@ -38,9 +41,11 @@ public class HealthSystem : MonoBehaviour
             {
                 GameObject Healer;
                 //FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
+
                 Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0,0,0));
                 FindObjectOfType<ManageRoom>().totalEnemies--;
 
+                Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
             }
 
             Destroy(this.gameObject); // <-- AQUÍ

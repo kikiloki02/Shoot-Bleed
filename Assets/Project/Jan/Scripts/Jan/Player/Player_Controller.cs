@@ -57,7 +57,6 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame;
     void Update()
     {
-        if (_canPlayerDash) { StartCoroutine(Dash()); }
 
         ProcessInputs();
 
@@ -68,14 +67,66 @@ public class Player_Controller : MonoBehaviour
         ProcessAudio();
 
         ProcessUpgrades();
+
+        UpdateSpriteRenderer();
     }
 
     private void FixedUpdate()
     {
         Move();
+
+        ProcessPhysics();
+
+        if (_canPlayerDash && _isPlayerDashing) {
+            if (_movement.magnitude != 0)
+            {
+                Debug.Log("Dashed");
+
+                _canPlayerDash = false;
+
+                // _isPlayerInvincible = true;
+
+                _dashSound.Play();
+
+                _dashParticles.Play();
+
+                _rigidBody.AddForce(_movement * _movementSpeed * _dashDistance);
+                _rigidBody.velocity = Vector3.Max(_movement.normalized * 10.0f, _rigidBody.velocity);
+                Physics2D.IgnoreLayerCollision(7, 12, true); //true = ignore collision
+
+                _isPlayerDashing = false;
+                Invoke("ResetDash", _dashCooldown);
+            }
+            else { _isPlayerDashing = false; }
+        }
+
     }
 
-// ------ METHODS: ------
+    // ------ METHODS: ------
+
+    public void Fall()
+    {
+        // Activate Falling Animation.
+            // In the last frame of the falling animation we should
+            // call a function to subtracts health from the Player
+            // and moves the Player to the Spawining point of the room
+
+        // Consider adding an effector to the pits
+    }
+
+    void UpdateSpriteRenderer()
+    {
+        bool _spriteRendererFlipXValue = GetComponent<SpriteRenderer>().flipX;
+
+        if (_movement.x < -0.01f && !_spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (_movement.x > 0.01f && _spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     void ProcessInputs()
     {
@@ -207,32 +258,12 @@ public class Player_Controller : MonoBehaviour
 
 // ------ COROUTINES: ------
 
-    IEnumerator Dash()
+    void ResetDash()
     {
-        if (_isPlayerDashing)
-        {
-            if (_movement.magnitude != 0) // Moving.
-            {
-                Debug.Log("Dashed");
-
-                _canPlayerDash = false;
-
-                // _isPlayerInvincible = true;
-
-                _dashSound.Play();
-
-                _dashParticles.Play();
-
-                _rigidBody.AddForce(_movement * _movementSpeed * _dashDistance);
-
-                _isPlayerDashing = false;
-
-                yield return new WaitForSeconds(_dashCooldown);
-
-                Debug.Log("You can Dash again");
-                _canPlayerDash = true;
-            }
-            else { _isPlayerDashing = false; }
-        }
+         _canPlayerDash = true;  
+    }
+    void ProcessPhysics()
+    {
+        Physics2D.IgnoreLayerCollision(7, 12, _rigidBody.velocity.magnitude > 6.5f);
     }
 }
