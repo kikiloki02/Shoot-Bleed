@@ -39,6 +39,7 @@ public class HealthSystem : MonoBehaviour
                 GameObject Healer;
                 //FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
                 Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0,0,0));
+                FindObjectOfType<ManageRoom>().totalEnemies--;
 
             }
 

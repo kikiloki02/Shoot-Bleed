@@ -10,7 +10,8 @@ public enum SceneType
 public class ManageRoom : MonoBehaviour
 {
 
-    public HealthSystem[] enemies;
+    //public HealthSystem[] enemies;
+    public int totalEnemies;
     public GameObject[] door;
     public Transform[] doorEndPos;
     public Transform[] playerSpawnPos;
@@ -41,6 +42,8 @@ public class ManageRoom : MonoBehaviour
 
     private bool enemiesDead()
     {
+        return totalEnemies <= 0;
+        /*
         bool allDead = true;
         for(int i = 0; i < enemies.Length; i++)
         {
@@ -50,7 +53,7 @@ public class ManageRoom : MonoBehaviour
             }
         }
 
-        return allDead;
+        return allDead;*/
     }
 
     private void EndRoom()
