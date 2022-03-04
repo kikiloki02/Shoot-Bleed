@@ -8,7 +8,8 @@ public class Bullet : MonoBehaviour
     public Rigidbody2D rb;
     public float OutVelocity;
     public ParticleSystem particles;
-    
+    public TrailParticles trailParticles;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -29,6 +30,7 @@ public class Bullet : MonoBehaviour
         else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
         {
             //Destruir bala
+            trailParticles.DetachAndDestroy();
             Destroy(this.gameObject);
         }
     }

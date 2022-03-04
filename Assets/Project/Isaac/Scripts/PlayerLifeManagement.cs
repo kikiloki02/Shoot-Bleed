@@ -100,6 +100,8 @@ public class PlayerLifeManagement : HealthSystem
             return;
         }
 
+        GetComponent<Animator>().SetTrigger("Hit");
+
         // Start invencibility coroutine:
         StartCoroutine(InvencibilityTime(_invencibilityTimeInSeconds));
 

@@ -106,6 +106,7 @@ public class Player_Controller : MonoBehaviour
 
     public void Fall()
     {
+        Debug.Log("I fell :^(");
         // Activate Falling Animation.
             // In the last frame of the falling animation we should
             // call a function to subtracts health from the Player
@@ -171,6 +172,13 @@ public class Player_Controller : MonoBehaviour
     void ProcessAudio()
     {
         
+    }
+
+    public void PlayUpgradeAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("Upgrade");
+
+        StartCoroutine(BlockMovement(0.5f));
     }
 
     void ProcessUpgrades()
@@ -265,5 +273,12 @@ public class Player_Controller : MonoBehaviour
     void ProcessPhysics()
     {
         Physics2D.IgnoreLayerCollision(7, 12, _rigidBody.velocity.magnitude > 6.5f);
+    }
+
+    IEnumerator BlockMovement(float time)
+    {
+        //_
+
+        yield return new WaitForSeconds(time);
     }
 }
