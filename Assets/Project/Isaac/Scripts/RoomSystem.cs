@@ -22,6 +22,7 @@ public class RoomSystem : MonoBehaviour
     public void RemoveRoom(SceneType sceneType)
     {
         totalScenesCompleted++;
+        FindObjectOfType<RewardSystem>().stageReached = totalScenesCompleted;
         string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount-1).name;
 
         if (sceneType == SceneType.Easy)
