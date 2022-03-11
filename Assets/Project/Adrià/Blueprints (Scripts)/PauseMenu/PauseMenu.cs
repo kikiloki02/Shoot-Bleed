@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -26,9 +27,16 @@ public class PauseMenu : MonoBehaviour
                 Pause();
             }
         }
+        else if (Input.GetKeyDown(KeyCode.R))
+        {
+            if (GamePaused)
+            {
+                Forfait();
+            }
+        }
         
     }
-    void Resume()
+   public void Resume()
     {
         Cursor.visible = false;
         aim.SetActive(true);
@@ -38,7 +46,7 @@ public class PauseMenu : MonoBehaviour
     }
 
 
-    void Pause()
+    public void Pause()
     {
         Cursor.visible = true;
         aim.SetActive(false);
@@ -46,4 +54,24 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0.0f;
         GamePaused = true;
     }
+    public void LoadMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1.0f;
+        GamePaused = false;
+
+    }
+    public void Forfait()
+    {
+        SceneManager.LoadScene("Init Scene 1");
+        pauseMenuUI.SetActive(false);
+        Time.timeScale = 1.0f;
+        GamePaused = false;
+
+    }
+
+
+
+
 }
