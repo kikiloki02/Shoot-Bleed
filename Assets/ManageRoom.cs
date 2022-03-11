@@ -10,17 +10,20 @@ public enum SceneType
 public class ManageRoom : MonoBehaviour
 {
 
-    public HealthSystem[] enemies;
+    //public HealthSystem[] enemies;
+    public int totalEnemies;
     public GameObject[] door;
     public Transform[] doorEndPos;
     public Transform[] playerSpawnPos;
     public GameObject player;
     public Player_Controller playerController;
     public SceneType sceneType;
+    public bool roomRemoved;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        roomRemoved = false;
         player = FindObjectOfType<Player_Controller>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         if(playerController.lastRoomExit == RoomPos.RIGHT) //Spawn on left
@@ -39,6 +42,8 @@ public class ManageRoom : MonoBehaviour
 
     private bool enemiesDead()
     {
+        return totalEnemies <= 0;
+        /*
         bool allDead = true;
         for(int i = 0; i < enemies.Length; i++)
         {
@@ -48,7 +53,7 @@ public class ManageRoom : MonoBehaviour
             }
         }
 
-        return allDead;
+        return allDead;*/
     }
 
     private void EndRoom()

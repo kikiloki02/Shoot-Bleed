@@ -157,8 +157,8 @@ public class Player_Controller : MonoBehaviour
 
     void ProcessAnimations()
     {
-        _animator.SetFloat("Horizontal", _movement.x);
-        _animator.SetFloat("Vertical", _movement.y);
+        //_animator.SetFloat("Horizontal", _movement.x);
+        //_animator.SetFloat("Vertical", _movement.y);
         _animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 

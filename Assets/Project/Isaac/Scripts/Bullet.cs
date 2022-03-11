@@ -23,6 +23,7 @@ public class Bullet : MonoBehaviour
             other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
 
             trailParticles.DetachAndDestroy();
+            FindObjectOfType<RewardSystem>().bulletsHit++;
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))

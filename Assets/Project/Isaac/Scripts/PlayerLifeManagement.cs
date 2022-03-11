@@ -37,11 +37,14 @@ public class PlayerLifeManagement : HealthSystem
 
     public UnityEvent OnDeath;
 
+    private RewardSystem rewdSys;
+
 
 
     // Start is called before the first frame update
     void Start()
     {
+        rewdSys = FindObjectOfType<RewardSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
@@ -51,6 +54,7 @@ public class PlayerLifeManagement : HealthSystem
         _spriteWhiteColor = new Color32(255, 255, 255, 255);
 
         _invencibilityTimeInSeconds = _player.GetComponent<Player_Controller>()._invincibilityTimeBetweenHitsInSeconds;
+
     }
 
     // Update is called once per frame
@@ -95,6 +99,7 @@ public class PlayerLifeManagement : HealthSystem
 
     public override void GetDamage(int damage)
     {
+
         if (!_canGetHit)
         {
             return;
@@ -102,6 +107,7 @@ public class PlayerLifeManagement : HealthSystem
 
         GetComponent<Animator>().SetTrigger("Hit");
 
+        rewdSys.StopCombo();
         // Start invencibility coroutine:
         StartCoroutine(InvencibilityTime(_invencibilityTimeInSeconds));
 

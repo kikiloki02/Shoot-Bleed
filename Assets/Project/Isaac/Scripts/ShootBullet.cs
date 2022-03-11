@@ -83,6 +83,7 @@ public class ShootBullet : MonoBehaviour
         //CameraShake
         CinemachineShake.Instance.ShakeCamera(cameraShake, timeToShake);
         shootParticles.Play();
+        FindObjectOfType<RewardSystem>().bulletsShot++;
     }
 
     IEnumerator AvailableShoot(float seconds)

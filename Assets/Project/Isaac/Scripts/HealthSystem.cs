@@ -43,6 +43,10 @@ public class HealthSystem : MonoBehaviour
                 //FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
 
                 Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0,0,0));
+                FindObjectOfType<ManageRoom>().totalEnemies--;
+                RewardSystem rewdSys = FindObjectOfType<RewardSystem>();
+                rewdSys.enemiesKilled++;
+                rewdSys.AddCombo();
 
                 Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
             }
