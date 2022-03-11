@@ -7,17 +7,15 @@ public class EnemyBullet : MonoBehaviour
     public int damage;
     public Rigidbody2D rb;
     public float OutVelocity;
-    public ParticleSystem particles;
     public Collider2D _collider2D;
     public GameObject _smallBullet;
     public float explodeTime;
-    private bool collision = false; 
+    private bool collision = false;
+    public TrailParticles trailParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        particles.Pause();
-
         if (_smallBullet != null) { StartCoroutine(Timer(explodeTime)); }
 
         rb.AddForce(this.transform.right * OutVelocity, ForceMode2D.Force);
@@ -27,17 +25,17 @@ public class EnemyBullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            particles.Play();
             //Restar vida al player
             other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
 
             //Destriur bala
-
+            trailParticles.DetachAndDestroy();
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Bullet"))
         {
             //Destruir bala
+            trailParticles.DetachAndDestroy();
             Destroy(this.gameObject);
         }
     }
@@ -48,17 +46,17 @@ public class EnemyBullet : MonoBehaviour
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                particles.Play();
                 //Restar vida al player
                 other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
 
                 //Destriur bala
-
+                trailParticles.DetachAndDestroy();
                 Destroy(this.gameObject);
             }
             else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Enemy") || other.gameObject.CompareTag("Bullet"))
             {
                 //Destruir bala
+                trailParticles.DetachAndDestroy();
                 Destroy(this.gameObject);
             }
         }
@@ -67,6 +65,8 @@ public class EnemyBullet : MonoBehaviour
     IEnumerator Timer(float seconds)
     {
         yield return new WaitForSeconds(seconds);
+
+        trailParticles.DetachAndDestroy();
 
         GameObject newBullet1;
         GameObject newBullet2;

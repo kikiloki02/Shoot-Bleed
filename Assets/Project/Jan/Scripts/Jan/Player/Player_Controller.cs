@@ -272,7 +272,7 @@ public class Player_Controller : MonoBehaviour
     }
     void ProcessPhysics()
     {
-        Physics2D.IgnoreLayerCollision(7, 12, _rigidBody.velocity.magnitude > 6.5f);
+        Physics2D.IgnoreLayerCollision(7, 12, _rigidBody.velocity.magnitude > 8f);
     }
 
     IEnumerator BlockMovement(float time)

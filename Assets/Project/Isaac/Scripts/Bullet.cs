@@ -7,13 +7,11 @@ public class Bullet : MonoBehaviour
     public int damage;
     public Rigidbody2D rb;
     public float OutVelocity;
-    public ParticleSystem particles;
     public TrailParticles trailParticles;
 
     // Start is called before the first frame update
     void Start()
     {
-        particles.Pause();
         rb.AddForce(this.transform.right * OutVelocity, ForceMode2D.Force);
     }
 
@@ -21,10 +19,10 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Enemy"))
         {
-            particles.Play();
             //Restar vida al enemy
             other.gameObject.GetComponent<HealthSystem>().GetDamage(damage);
 
+            trailParticles.DetachAndDestroy();
             Destroy(this.gameObject);
         }
         else if (other.gameObject.CompareTag("Wall") || other.gameObject.CompareTag("Player") || other.gameObject.CompareTag("Bullet"))
