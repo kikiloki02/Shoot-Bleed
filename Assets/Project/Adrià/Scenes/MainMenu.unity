@@ -183,7 +183,7 @@ MonoBehaviour:
   m_text: "- Adri\xE0 Campos Blanco"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -292,11 +292,11 @@ RectTransform:
   m_Father: {fileID: 1906361961}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 36.871994}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -173.12799}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &112069004
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -378,7 +378,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1263,8 +1263,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: 'Coming Soon '
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -1327,7 +1327,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &516283466
@@ -1700,7 +1700,7 @@ MonoBehaviour:
   m_text: '- Jan Gonzalez Granados'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2427,7 +2427,7 @@ MonoBehaviour:
   m_text: Credits
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2636,7 +2636,7 @@ MonoBehaviour:
   m_text: '- Developed by:'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -2722,6 +2722,7 @@ GameObject:
   - component: {fileID: 1225033439}
   - component: {fileID: 1225033438}
   - component: {fileID: 1225033437}
+  - component: {fileID: 1225033440}
   m_Layer: 0
   m_Name: Button "Go Back To Main Menu"
   m_TagString: Untagged
@@ -2744,11 +2745,11 @@ RectTransform:
   m_Father: {fileID: 731406328}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0}
-  m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 0, y: 41.4}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: -168.59998}
   m_SizeDelta: {x: 160, y: 30}
-  m_Pivot: {x: 0.5, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1225033437
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2830,7 +2831,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -2855,6 +2856,25 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1225033435}
   m_CullTransparentMesh: 1
+--- !u!95 &1225033440
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1225033435}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dfe14205b948a024dbbbea7f37c00c32, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1288792777
 GameObject:
   m_ObjectHideFlags: 0
@@ -3022,8 +3042,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Settings
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3086,7 +3106,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1291615594
@@ -3290,8 +3310,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: Main Menu
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 0}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -3354,7 +3374,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1340645077
@@ -4086,7 +4106,7 @@ MonoBehaviour:
   m_text: Main Menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -4149,7 +4169,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1772151697
@@ -4727,7 +4747,7 @@ MonoBehaviour:
   m_text: "- Isaac Medina Rodr\xEDguez"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: dd3bf98be38153843aed6288470829c9, type: 2}
-  m_sharedMaterial: {fileID: -1191474755246639308, guid: 3ffff2779a845e34188c37f05a61b7f0, type: 2}
+  m_sharedMaterial: {fileID: -6499137782905751143, guid: dd3bf98be38153843aed6288470829c9, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
