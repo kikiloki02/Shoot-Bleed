@@ -104,6 +104,9 @@ public class PlayerLifeManagement : HealthSystem
         {
             return;
         }
+
+        GetComponent<Animator>().SetTrigger("Hit");
+
         rewdSys.StopCombo();
         // Start invencibility coroutine:
         StartCoroutine(InvencibilityTime(_invencibilityTimeInSeconds));

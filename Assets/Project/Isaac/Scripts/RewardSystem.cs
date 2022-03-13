@@ -65,12 +65,14 @@ public class RewardSystem : MonoBehaviour
     {
         while (true)
         {
+
+
+            yield return new WaitForSeconds(1);
+
             if (bulletsShot != 0)
             {
                 accuracy = ((float)bulletsHit / (float)bulletsShot) * 100;
             }
-
-            yield return new WaitForSeconds(1);
         }
     }
 }

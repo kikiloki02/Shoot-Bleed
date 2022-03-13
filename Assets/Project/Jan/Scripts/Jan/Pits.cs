@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Pits : MonoBehaviour
 {
-    void OnTriggerEnter2D(Collider2D collider)
+    void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collider.CompareTag("Player"))
+        if (collision.collider.CompareTag("Player"))
         {
-            collider.gameObject.GetComponent<Player_Controller>().Fall();
+            collision.gameObject.GetComponent<Player_Controller>().Fall();
         }
     }
 }

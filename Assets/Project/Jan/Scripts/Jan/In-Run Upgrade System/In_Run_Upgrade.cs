@@ -31,6 +31,8 @@ public class In_Run_Upgrade : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E) && _ready)
         {
+            _player.GetComponent<Player_Controller>().PlayUpgradeAnimation();
+
             Debug.Log("E pressed");
 
             PickedUp(true);
