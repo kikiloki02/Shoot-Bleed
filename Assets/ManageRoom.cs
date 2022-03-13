@@ -61,7 +61,6 @@ public class ManageRoom : MonoBehaviour
         if (enemiesDead())
         {
             OpenDoors();
-            Debug.Log("All Dead");
         }
     }
 

@@ -23,6 +23,7 @@ public class RoomSystem : MonoBehaviour
     {
         totalScenesCompleted++;
         FindObjectOfType<RewardSystem>().stageReached = totalScenesCompleted;
+        FindObjectOfType<CanvasText>().SetStageTxt(totalScenesCompleted);
         string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount-1).name;
 
         if (sceneType == SceneType.Easy)

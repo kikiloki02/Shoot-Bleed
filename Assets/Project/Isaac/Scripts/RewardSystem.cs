@@ -15,9 +15,12 @@ public class RewardSystem : MonoBehaviour
     public int bulletsHit;
     public int bulletsShot;
 
+    private CanvasText canvasTxt;
+
     // Start is called before the first frame update
     void Start()
     {
+        canvasTxt = FindObjectOfType<CanvasText>();
         actualCombo = maxCombo = 0;
         hitsTaken = 0;
         stageReached = 0;
@@ -38,14 +41,17 @@ public class RewardSystem : MonoBehaviour
     {
         hitsTaken++;
         actualCombo = 0;
+        canvasTxt.SetComboTxt(actualCombo);
     }
 
     public void AddCombo()
     {
         actualCombo++;
+        canvasTxt.SetComboTxt(actualCombo);
         if (actualCombo > maxCombo)
         {
             maxCombo = actualCombo;
+            canvasTxt.SetMaxComboTxt(maxCombo);
         }
     }
 
@@ -62,7 +68,6 @@ public class RewardSystem : MonoBehaviour
             if (bulletsShot != 0)
             {
                 accuracy = ((float)bulletsHit / (float)bulletsShot) * 100;
-                Debug.Log("Calculated Accuracy");
             }
 
             yield return new WaitForSeconds(1);

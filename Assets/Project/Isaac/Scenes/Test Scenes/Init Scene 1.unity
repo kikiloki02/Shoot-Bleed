@@ -616,10 +616,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCombo: 0
   actualCombo: 0
-  accuracy: 0
   enemiesKilled: 0
   stageReached: 0
   hitsTaken: 0
+  accuracy: 0
+  bulletsHit: 0
+  bulletsShot: 0
 --- !u!4 &1593045330
 Transform:
   m_ObjectHideFlags: 0
@@ -660,6 +662,14 @@ PrefabInstance:
     - target: {fileID: 1020539943200937305, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
       propertyPath: m_AnchoredPosition.y
       value: 76.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1929687198436855326, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3377113277157466448, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4039157463263756706, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
       propertyPath: m_fontSize
