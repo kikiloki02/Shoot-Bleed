@@ -12,8 +12,7 @@ public class ManageRoom : MonoBehaviour
 
     //public HealthSystem[] enemies;
     public int totalEnemies;
-    public GameObject[] door;
-    public Transform[] doorEndPos;
+    public Animator[] doorsAnim;
     public Transform[] playerSpawnPos;
     public GameObject player;
     public Player_Controller playerController;
@@ -66,16 +65,18 @@ public class ManageRoom : MonoBehaviour
 
     private void OpenDoors()
     {
-        for(int i =0; i< door.Length; i++)
+        for(int i =0; i< doorsAnim.Length; i++)
         {
-            door[i].GetComponent<BoxCollider2D>().enabled = false;
+            doorsAnim[i].SetTrigger("Open"); //Activate Animation
+
+            /*door[i].GetComponent<BoxCollider2D>().enabled = false;
             if(door[i].transform != doorEndPos[i].transform)
             {
                door[i].transform.position = doorEndPos[i].transform.position;
                 
                 //door[i].transform.position = new Vector3(Mathf.Lerp(door[i].transform.position.x, doorEndPos[i].transform.position.x, 200), Mathf.Lerp(door[i].transform.position.y, doorEndPos[i].transform.position.y, 200), Mathf.Lerp(door[i].transform.position.z, doorEndPos[i].transform.position.z, 200));
                 
-            }
+            }*/
         }
     }
 }
