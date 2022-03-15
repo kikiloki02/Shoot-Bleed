@@ -10,9 +10,9 @@ public class Seek : MonoBehaviour
     public float velocity;
     public float avoidVelocity;
 
-    public Vector3 targetDirection = Vector3.zero;
-    public Vector3 RightPerpendicularTargetDirection = Vector3.zero;
-    public Vector3 LeftPerpendicularTargetDirection = Vector3.zero;
+     Vector3 targetDirection = Vector3.zero;
+     Vector3 RightPerpendicularTargetDirection = Vector3.zero;
+     Vector3 LeftPerpendicularTargetDirection = Vector3.zero;
 
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
@@ -180,22 +180,22 @@ public class Seek : MonoBehaviour
 
 
 
-            Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
-            Debug.DrawRay(topLeft, topRight - hit2D[0].collider.transform.position, Color.blue);
+           // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
             
         }
 
         else if (hit2D[1])
         {
          
-            dirOfMovementToAvoidObstacle = topLeft - hit2D[1].collider.transform.position;
+            dirOfMovementToAvoidObstacle = centerLeft;
 
-            dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[1].collider.transform.position);
+            dirOfMovementToAvoidObstacle *= Vector2.Distance(center, centerLeft);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
             rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
 
-            Debug.DrawRay(hit2D[1].collider.transform.position, topLeft - hit2D[1].collider.transform.position, Color.white);
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
             
         }
         else if (hit2D[2])

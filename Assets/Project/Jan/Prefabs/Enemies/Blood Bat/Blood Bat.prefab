@@ -387,10 +387,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 12
-  avoidVelocity: 2.5
-  targetDirection: {x: 0, y: 0, z: 0}
-  RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
-  LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
+  avoidVelocity: 250.5
   followingPercentage: 0.100000024
 --- !u!1 &63675566420931335
 GameObject:
