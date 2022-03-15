@@ -17,7 +17,7 @@ public class Seek : MonoBehaviour
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
 
-    Vector3 topLeft, topRight,bottomLeft, bottomRight, center, bottomMid, topMid, centerleft , centerRight;
+    Vector3 topLeft, topRight,bottomLeft, bottomRight, center, bottomMid, topMid, centerLeft , centerRight;
 
     public const float avoidingPercentage = 0.9f;
     public float followingPercentage = 1 - avoidingPercentage;
@@ -35,8 +35,8 @@ public class Seek : MonoBehaviour
         target = player.transform;
         targetDirection = player.transform.position - this.transform.position;
 
-        //RightPerpendicularTargetDirection = new Vector3(targetDirection.y, -targetDirection.x, targetDirection.z);
-        //LeftPerpendicularTargetDirection = new Vector3(-targetDirection.y, targetDirection.x, targetDirection.z);
+        RightPerpendicularTargetDirection = new Vector3(targetDirection.y, -targetDirection.x, targetDirection.z);
+        LeftPerpendicularTargetDirection = new Vector3(-targetDirection.y, targetDirection.x, targetDirection.z);
 
     }
 
@@ -63,8 +63,8 @@ public class Seek : MonoBehaviour
         topMid = transform.position + targetDirection.normalized * maxSeeAhead;
         topRight = transform.position + (targetDirection.normalized + RightPerpendicularTargetDirection.normalized) * (maxSeeAhead); 
         topLeft = transform.position + (targetDirection.normalized + LeftPerpendicularTargetDirection.normalized) * (maxSeeAhead);
-        centerleft = new Vector3(this.transform.position.x - 4, this.transform.position.y, this.transform.position.z);
-        centerRight = new Vector3(this.transform.position.x + 4, this.transform.position.y, this.transform.position.z);
+        centerLeft = new Vector3(-targetDirection.y, targetDirection.x, 0);
+        centerRight = new Vector3(targetDirection.y, -targetDirection.x, 0);
 
         //if (targetDirection.y > 0 && targetDirection.y > targetDirection.x)
         //{
@@ -140,7 +140,9 @@ public class Seek : MonoBehaviour
         Debug.DrawRay(center, (topMid - center), Color.green);
         Debug.DrawRay(center, (topRight - center), Color.red);
         Debug.DrawRay(center, (topLeft - center), Color.yellow);
-        Debug.DrawRay(center, (centerleft - center), Color.white);
+        Debug.DrawRay(center, centerLeft.normalized*2, Color.red);
+        Debug.DrawRay(center, centerRight.normalized*2, Color.white);
+        Debug.DrawRay(center, (player.transform.position - center), Color.cyan);
         // Debug.DrawRay(center, (LeftPerpendicularTargetDirection.normalized - center), Color.white);
         
 
@@ -167,11 +169,11 @@ public class Seek : MonoBehaviour
         {
             /* if a collision was detected on the left side of the bounding box, the direction of movement (to
             steer away from the obstacle) will be to the right. */
-            dirOfMovementToAvoidObstacle = topRight - hit2D[0].collider.transform.position;
+            dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
 
             /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
              This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-            dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[0].collider.transform.position);
+            dirOfMovementToAvoidObstacle *= Vector2.Distance(center, centerRight);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
             rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
