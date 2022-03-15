@@ -616,10 +616,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxCombo: 0
   actualCombo: 0
-  accuracy: 0
   enemiesKilled: 0
   stageReached: 0
   hitsTaken: 0
+  accuracy: 0
+  bulletsHit: 0
+  bulletsShot: 0
 --- !u!4 &1593045330
 Transform:
   m_ObjectHideFlags: 0
