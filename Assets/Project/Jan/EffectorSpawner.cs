@@ -20,7 +20,7 @@ public class EffectorSpawner : MonoBehaviour
                 TileBase tile = tilemap.GetTile(new Vector3Int((int)pos.x, (int)pos.y, (int)pos.z));
                 if (tile != null)
                 {
-                    if(tile.name != "Test_tilemap_53")
+                    if(tile.name != "Test_tilemap_16" && tile.name != "Test_tilemap_31")
                         Instantiate(prefab, pos + new Vector3(0.5f, 0.5f, 0f), Quaternion.identity, null);
                 }
                     
