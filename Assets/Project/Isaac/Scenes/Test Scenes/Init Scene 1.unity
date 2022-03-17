@@ -333,10 +333,13 @@ MonoBehaviour:
   - MediumScene2
   - MediumScene3
   - MediumScene4
+  - MediumScene5
   HardScenes:
   - HardScene1
   - HardScene2
   - HardScene3
+  - HardScene4
+  - HardScene5
   UpgradeScenes:
   - Upgrade Scene 1
   VictoryScenes:
