@@ -19,7 +19,7 @@ EditorBuildSettings:
     guid: 655167b845738f2478b8ffb491b0b362
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene1.unity
-    guid: dfb22a32131ca494c9d560999a606030
+    guid: ab2400d4164e80d46b373e01f1d76c63
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene2.unity
     guid: ce9ad99b2aede454eb2d22863b348598
@@ -27,20 +27,29 @@ EditorBuildSettings:
     path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene3.unity
     guid: 4bb40cf1c2286834299ce0687f419b92
   - enabled: 1
+    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene4.unity
+    guid: 231f6de6ab1b6f5448f9f8062ba7a6e0
+  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene5.unity
+    guid: 735426dfe28a86b47ba17fd7c45d3443
+  - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene1.unity
-    guid: ab2400d4164e80d46b373e01f1d76c63
+    guid: 537d9e819e475dc438455fa92a4c3deb
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene2.unity
-    guid: 67342b6f7c8eb0d4087600a8549be33b
+    guid: fefbac50c5f803d4b9d1e8999a327a3f
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene3.unity
-    guid: 1dd3453b70804944588b3a0785209d5d
+    guid: 67342b6f7c8eb0d4087600a8549be33b
+  - enabled: 1
+    path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene4.unity
+    guid: 5acf9db40ccbe64489a00c93e28f170c
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene1.unity
     guid: fd987368f7feb354da3524c2fa42c105
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene2.unity
-    guid: 6df01dd497a1a0144bc7a5439f6e1eb5
+    guid: dfb22a32131ca494c9d560999a606030
   - enabled: 1
     path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene3.unity
     guid: 5d2dead2d2d1f87419c35f019639e1a7

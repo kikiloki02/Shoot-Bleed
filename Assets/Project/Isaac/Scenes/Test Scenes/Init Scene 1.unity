@@ -326,10 +326,13 @@ MonoBehaviour:
   - EasyScene1
   - EasyScene2
   - EasyScene3
+  - EasyScene4
+  - EasyScene5
   MediumScenes:
   - MediumScene1
   - MediumScene2
   - MediumScene3
+  - MediumScene4
   HardScenes:
   - HardScene1
   - HardScene2
