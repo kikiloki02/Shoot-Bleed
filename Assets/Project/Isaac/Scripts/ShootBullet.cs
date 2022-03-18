@@ -38,6 +38,9 @@ public class ShootBullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Time.timeScale == 0.0f)
+            return;
+
         directionToMouse = (Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 0f)) - this.transform.position).normalized;
         this.transform.right = new Vector2(directionToMouse.x, directionToMouse.y);
 
@@ -83,6 +86,7 @@ public class ShootBullet : MonoBehaviour
         //CameraShake
         CinemachineShake.Instance.ShakeCamera(cameraShake, timeToShake);
         shootParticles.Play();
+        FindObjectOfType<RewardSystem>().bulletsShot++;
     }
 
     IEnumerator AvailableShoot(float seconds)

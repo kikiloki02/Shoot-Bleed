@@ -22,15 +22,19 @@ public class LoadNextScene : MonoBehaviour
     public SceneType nextSceneType;
 
     private int randomRoomType;
+    private bool roomRemoved;
 
     // Start is called before the first frame update
     void Start()
     {
+
         player = FindObjectOfType<PlayerLifeManagement>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         manageRoom = FindObjectOfType<ManageRoom>();
         actualSceneType = manageRoom.sceneType;
         roomSys = FindObjectOfType<RoomSystem>();
+        //Remove actual scene from the list
+        RemoveActualRoom();
         SetNextRoomType();
         SetNextRoom();
     }
@@ -56,7 +60,8 @@ public class LoadNextScene : MonoBehaviour
         {
             if (actualSceneType != SceneType.Upgrade)
             {
-                roomSys.RemoveRoom(actualSceneType);
+                roomSys.UnloadRoom();
+                roomSys.fightingRoomsCompleted++;
             }
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         }
@@ -65,7 +70,7 @@ public class LoadNextScene : MonoBehaviour
 
     private void SetNextRoomType()
     {
-        if (!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard))
+        if (roomSys.fightingRoomsCompleted == 10 ||(!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard)))
         {
             nextSceneType = SceneType.Victory;
             return;
@@ -120,5 +125,14 @@ public class LoadNextScene : MonoBehaviour
             NextScene = roomSys.VictoryScenes[roomNum];
         }
 
+    }
+
+    private void RemoveActualRoom()
+    {
+        if (manageRoom.roomRemoved == false && actualSceneType != SceneType.Upgrade)
+        {
+            roomSys.RemoveRoom(actualSceneType);
+            manageRoom.roomRemoved = true;
+        }
     }
 }

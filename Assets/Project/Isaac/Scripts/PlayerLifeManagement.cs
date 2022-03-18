@@ -37,11 +37,14 @@ public class PlayerLifeManagement : HealthSystem
 
     public UnityEvent OnDeath;
 
+    private RewardSystem rewdSys;
 
+    public GameObject _healingAnimation;
 
     // Start is called before the first frame update
     void Start()
     {
+        rewdSys = FindObjectOfType<RewardSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
 
@@ -51,6 +54,7 @@ public class PlayerLifeManagement : HealthSystem
         _spriteWhiteColor = new Color32(255, 255, 255, 255);
 
         _invencibilityTimeInSeconds = _player.GetComponent<Player_Controller>()._invincibilityTimeBetweenHitsInSeconds;
+
     }
 
     // Update is called once per frame
@@ -59,7 +63,8 @@ public class PlayerLifeManagement : HealthSystem
         // Slow effect:
         currentTime = Mathf.Min(0.85f, currentTime + Time.unscaledDeltaTime);
         // Time.timeScale = Mathf.Sin((currentTime / 0.5f) * Mathf.PI * 0.5f);
-        Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
+        if(Time.timeScale > 0.0f)
+            Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
 
         criticalState = isCritical();
 
@@ -85,7 +90,6 @@ public class PlayerLifeManagement : HealthSystem
             currentHealth -= 1;
             healthBar.SetHealth(currentHealth);
         }
-       
     }
 
     bool isCritical()
@@ -100,6 +104,9 @@ public class PlayerLifeManagement : HealthSystem
             return;
         }
 
+        GetComponent<Animator>().SetTrigger("Hit");
+
+        rewdSys.StopCombo();
         // Start invencibility coroutine:
         StartCoroutine(InvencibilityTime(_invencibilityTimeInSeconds));
 
@@ -122,6 +129,8 @@ public class PlayerLifeManagement : HealthSystem
 
     public void RecoverHealth(int addHp)
     {
+        _healingAnimation.GetComponent<Animator>().SetTrigger("Activate");
+
         _heal.Play();
 
         currentHealth += addHp;

@@ -14983,6 +14983,7 @@ GameObject:
   - component: {fileID: 6346537619474854505}
   - component: {fileID: 3065939049626629956}
   - component: {fileID: 8332804646269269796}
+  - component: {fileID: 1731649446638624693}
   m_Layer: 8
   m_Name: Blade Knight
   m_TagString: Enemy
@@ -15128,7 +15129,6 @@ MonoBehaviour:
   _collisionDamageValue: 2
   _movementSpeed: 1000
   _chargeDistance: 25
-  _healPlayer: 15
   _attack1ChargeTime: 0.4
   _attack2ChargeTime: 0.4
   _attack3ChargeTime: 0.4
@@ -15175,6 +15175,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   currentHealth: 0
+  _healPlayer: 15
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 3065939049626629957}
 --- !u!114 &8332804646269269796
@@ -15189,12 +15190,31 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 175
-  avoidVelocity: 35
+  velocity: 225
+  avoidVelocity: 1
   targetDirection: {x: 0, y: 0, z: 0}
   RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   followingPercentage: 0.100000024
+--- !u!95 &1731649446638624693
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065939049626629957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0810092cc3206945903161d18d48d0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3065939049651484319
 GameObject:
   m_ObjectHideFlags: 0

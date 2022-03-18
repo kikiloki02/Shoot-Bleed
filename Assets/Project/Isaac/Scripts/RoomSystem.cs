@@ -12,6 +12,7 @@ public class RoomSystem : MonoBehaviour
     public List<string> UpgradeScenes;
     public List<string> VictoryScenes;
     public int totalScenesCompleted = 0;
+    public int fightingRoomsCompleted = 0;
 
 
     public void Start()
@@ -22,6 +23,8 @@ public class RoomSystem : MonoBehaviour
     public void RemoveRoom(SceneType sceneType)
     {
         totalScenesCompleted++;
+        FindObjectOfType<RewardSystem>().stageReached = totalScenesCompleted;
+        FindObjectOfType<CanvasText>().SetStageTxt(totalScenesCompleted);
         string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount-1).name;
 
         if (sceneType == SceneType.Easy)
@@ -33,6 +36,10 @@ public class RoomSystem : MonoBehaviour
         else if (sceneType == SceneType.Hard)
             HardScenes.Remove(actualScene);
 
+    }
+    public void UnloadRoom()
+    {
+        string actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
         SceneManager.UnloadSceneAsync(actualScene);
     }
     public bool RoomsRemaining(SceneType sceneType)

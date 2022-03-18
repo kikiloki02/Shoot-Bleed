@@ -10,14 +10,14 @@ public class Seek : MonoBehaviour
     public float velocity;
     public float avoidVelocity;
 
-    public Vector3 targetDirection = Vector3.zero;
-    public Vector3 RightPerpendicularTargetDirection = Vector3.zero;
-    public Vector3 LeftPerpendicularTargetDirection = Vector3.zero;
+     Vector3 targetDirection = Vector3.zero;
+     Vector3 RightPerpendicularTargetDirection = Vector3.zero;
+     Vector3 LeftPerpendicularTargetDirection = Vector3.zero;
 
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
 
-    Vector3 topLeft, topRight,bottomLeft, bottomRight, center, bottomMid, topMid;
+    Vector3 topLeft, topRight,bottomLeft, bottomRight, center, bottomMid, topMid, centerLeft , centerRight;
 
     public const float avoidingPercentage = 0.9f;
     public float followingPercentage = 1 - avoidingPercentage;
@@ -34,6 +34,8 @@ public class Seek : MonoBehaviour
     {
         target = player.transform;
         targetDirection = player.transform.position - this.transform.position;
+        if(targetDirection.x < 0) { this.GetComponent<SpriteRenderer>().flipX = true; }
+        else { this.GetComponent<SpriteRenderer>().flipX = false; }
 
         RightPerpendicularTargetDirection = new Vector3(targetDirection.y, -targetDirection.x, targetDirection.z);
         LeftPerpendicularTargetDirection = new Vector3(-targetDirection.y, targetDirection.x, targetDirection.z);
@@ -62,8 +64,10 @@ public class Seek : MonoBehaviour
         center = this.transform.position;
         topMid = transform.position + targetDirection.normalized * maxSeeAhead;
         topRight = transform.position + (targetDirection.normalized + RightPerpendicularTargetDirection.normalized) * (maxSeeAhead); 
-        topLeft = transform.position + (targetDirection.normalized + LeftPerpendicularTargetDirection.normalized) * (maxSeeAhead); 
-        
+        topLeft = transform.position + (targetDirection.normalized + LeftPerpendicularTargetDirection.normalized) * (maxSeeAhead);
+        centerLeft = new Vector3(-targetDirection.y, targetDirection.x, 0);
+        centerRight = new Vector3(targetDirection.y, -targetDirection.x, 0);
+
         //if (targetDirection.y > 0 && targetDirection.y > targetDirection.x)
         //{
 
@@ -118,9 +122,9 @@ public class Seek : MonoBehaviour
         //    bottomMid = transform.position + (transform.right * 0) + (transform.right * (ySize / 2));
         //    topMid = transform.position + ((transform.right * 0) + (transform.right * (maxSeeAhead)));
         //}
-        
+
         //float rotZ = Mathf.Atan2(targetDirection.normalized.y, targetDirection.normalized.x) * Mathf.Rad2Deg;
-        
+
         //topRight = Quaternion.Euler(0, 0, (rotZ+90)) * (target.transform.position + target.transform.up);
         //topLeft = Quaternion.Euler(0, 0, (rotZ-90)) * (target.transform.position + target.transform.up);
         //topMid = Quaternion.Euler(0, 0, 0f) * (target.transform.position + target.transform.up);
@@ -134,10 +138,14 @@ public class Seek : MonoBehaviour
 
         //Debug.DrawRay(center, (topRight - center), Color.red);
         //Debug.DrawRay(center, (topLeft - center), Color.red);
-        
+
         Debug.DrawRay(center, (topMid - center), Color.green);
         Debug.DrawRay(center, (topRight - center), Color.red);
         Debug.DrawRay(center, (topLeft - center), Color.yellow);
+        Debug.DrawRay(center, centerLeft.normalized*2, Color.red);
+        Debug.DrawRay(center, centerRight.normalized*2, Color.white);
+        Debug.DrawRay(center, (player.transform.position - center), Color.cyan);
+        // Debug.DrawRay(center, (LeftPerpendicularTargetDirection.normalized - center), Color.white);
         
 
     }
@@ -145,7 +153,7 @@ public class Seek : MonoBehaviour
     private void CheckForCollisionDetected()
     {
         RaycastHit2D[] hit2D = new RaycastHit2D[3];
-        LayerMask mask = LayerMask.GetMask("object");
+        LayerMask mask = LayerMask.GetMask("Object"); //Chgange to "object"
 
 
         /* 2 raycasts are used for this, one points from the bottom left corner to the top left corner of the agent and
@@ -163,29 +171,33 @@ public class Seek : MonoBehaviour
         {
             /* if a collision was detected on the left side of the bounding box, the direction of movement (to
             steer away from the obstacle) will be to the right. */
-            dirOfMovementToAvoidObstacle = topRight - hit2D[0].collider.transform.position;
+            dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
 
-            /* Make the direction of vector to avoid obtacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
+            /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
              This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-            dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[0].collider.transform.position);
+            dirOfMovementToAvoidObstacle *= Vector2.Distance(center, centerRight);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
             rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
-            Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
+
+
+
+           // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
             
         }
 
         else if (hit2D[1])
         {
          
-            dirOfMovementToAvoidObstacle = topLeft - hit2D[1].collider.transform.position;
+            dirOfMovementToAvoidObstacle = centerLeft;
 
-            dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[1].collider.transform.position);
+            dirOfMovementToAvoidObstacle *= Vector2.Distance(center, centerLeft);
             rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
             rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
 
 
-            Debug.DrawRay(hit2D[1].collider.transform.position, topLeft - hit2D[1].collider.transform.position, Color.white);
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
             
         }
         else if (hit2D[2])

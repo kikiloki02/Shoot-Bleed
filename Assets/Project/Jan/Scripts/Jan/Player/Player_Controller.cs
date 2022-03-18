@@ -29,6 +29,7 @@ public class Player_Controller : MonoBehaviour
     private bool _isPlayerWalking = false;
     private bool _isPlayerDashing = false;
     private bool _canPlayerDash = true;
+    private bool _canMove = true;
     // private bool _isPlayerInvincible = false;
 
     private Vector2 _movement; // X, and Y;
@@ -57,8 +58,6 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame;
     void Update()
     {
-        if (_canPlayerDash) { StartCoroutine(Dash()); }
-
         ProcessInputs();
 
         ProcessAnimations();
@@ -68,14 +67,68 @@ public class Player_Controller : MonoBehaviour
         ProcessAudio();
 
         ProcessUpgrades();
+
+        UpdateSpriteRenderer();
     }
 
     private void FixedUpdate()
     {
         Move();
+
+        ProcessPhysics();
+
+        if (_canPlayerDash && _isPlayerDashing) {
+            if (_movement.magnitude != 0)
+            {
+                Debug.Log("Dashed");
+
+                _canPlayerDash = false;
+
+                // _isPlayerInvincible = true;
+
+                _dashSound.Play();
+
+                _dashParticles.Play();
+
+                _rigidBody.AddForce(_movement * _movementSpeed * _dashDistance);
+                _rigidBody.velocity = Vector3.Max(_movement.normalized * 10.0f, _rigidBody.velocity);
+                Physics2D.IgnoreLayerCollision(7, 12, true); //true = ignore collision
+
+                _isPlayerDashing = false;
+                Invoke("ResetDash", _dashCooldown);
+            }
+            else { _isPlayerDashing = false; }
+        }
     }
 
-// ------ METHODS: ------
+    // ------ METHODS: ------
+
+    public void Fall()
+    {
+        Debug.Log("I fell :^(");
+        // Activate Falling Animation.
+            // In the last frame of the falling animation we should
+            // call a function to subtracts health from the Player
+            // and moves the Player to the Spawining point of the room
+
+        // Consider adding an effector to the pits
+    }
+
+    void UpdateSpriteRenderer()
+    {
+        if (!_canMove) { return; }
+
+        bool _spriteRendererFlipXValue = GetComponent<SpriteRenderer>().flipX;
+
+        if (_movement.x < -0.01f && !_spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else if (_movement.x > 0.01f && _spriteRendererFlipXValue)
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
+        }
+    }
 
     void ProcessInputs()
     {
@@ -85,12 +138,6 @@ public class Player_Controller : MonoBehaviour
         _movement = _movement.normalized; // We normalize the vector2 to avoid moving faster Diagonally than Horiontally or Vertically;
         // If we don't normalize it, when we move diagonally we will get a magnitude of the square root of 2, which is 1.4, which is
         // 40% greater than the maximum horizontal or vertical speeds;
-
-        if (Input.GetKeyDown(KeyCode.U)) // Hit effect -> Just for testing purposes
-            _rigidBody.AddForce(Vector2.up * 1000f);
-
-        if (Input.GetKey(KeyCode.LeftShift)) // Walking -> Just for testing purposes
-            _isPlayerWalking = true;
 
         if (Input.GetKeyDown(KeyCode.Space) && _canPlayerDash) // Dash -> Just for testing purposes
             _isPlayerDashing = true;
@@ -105,21 +152,24 @@ public class Player_Controller : MonoBehaviour
 
     void ProcessAnimations()
     {
-        _animator.SetFloat("Horizontal", _movement.x);
-        _animator.SetFloat("Vertical", _movement.y);
         _animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 
     void ProcessParticles()
     {
-        // If the player is walking, don't emit particles.
-
         _runningParticles.transform.right = -_rigidBody.velocity;
     }
 
     void ProcessAudio()
     {
         
+    }
+
+    public void PlayUpgradeAnimation()
+    {
+        GetComponent<Animator>().SetTrigger("Upgrade");
+
+        StartCoroutine(BlockMovement(1.65f));
     }
 
     void ProcessUpgrades()
@@ -134,8 +184,10 @@ public class Player_Controller : MonoBehaviour
                 {
                     _playerUpgrades[i]._active = false;
                     this.GetComponent<PlayerLifeManagement>().maxHealth += 8;
+                    this.GetComponent<PlayerLifeManagement>().currentHealth += 8;
 
                     this.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetMaxHealth(this.GetComponent<PlayerLifeManagement>().maxHealth);
+                    this.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetHealth(this.GetComponent<PlayerLifeManagement>().currentHealth);
 
                     break;
                 }
@@ -182,57 +234,34 @@ public class Player_Controller : MonoBehaviour
 
     void Move()
     {
-        if (!_isPlayerWalking)
-            _rigidBody.AddForce(_movement * _movementSpeed);
-        else
-        {
-            _rigidBody.AddForce((_movement * _movementSpeed) / 2);
-            _isPlayerWalking = false;
-        }
+        if (!_canMove) { return; }
+
+        _rigidBody.AddForce(_movement * _movementSpeed);
 
         if (_rigidBody.velocity.magnitude > 1f)
         {
-            if (!_isPlayerWalking)
-            {
-                float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
-                _rigidBody.velocity = _rigidBody.velocity.normalized * maxSpeed;
-            }
-            else
-            {
-                float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
-                _rigidBody.velocity = (_rigidBody.velocity.normalized * maxSpeed) / 2;
-            }
+            float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
+            _rigidBody.velocity = _rigidBody.velocity.normalized * maxSpeed;
         }
     }
 
 // ------ COROUTINES: ------
 
-    IEnumerator Dash()
+    void ResetDash()
     {
-        if (_isPlayerDashing)
-        {
-            if (_movement.magnitude != 0) // Moving.
-            {
-                Debug.Log("Dashed");
+         _canPlayerDash = true;  
+    }
+    void ProcessPhysics()
+    {
+        Physics2D.IgnoreLayerCollision(7, 12, _rigidBody.velocity.magnitude > 8f);
+    }
 
-                _canPlayerDash = false;
+    IEnumerator BlockMovement(float time)
+    {
+        _canMove = false;
 
-                // _isPlayerInvincible = true;
+        yield return new WaitForSeconds(time);
 
-                _dashSound.Play();
-
-                _dashParticles.Play();
-
-                _rigidBody.AddForce(_movement * _movementSpeed * _dashDistance);
-
-                _isPlayerDashing = false;
-
-                yield return new WaitForSeconds(_dashCooldown);
-
-                Debug.Log("You can Dash again");
-                _canPlayerDash = true;
-            }
-            else { _isPlayerDashing = false; }
-        }
+        _canMove = true;
     }
 }

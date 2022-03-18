@@ -10,17 +10,19 @@ public enum SceneType
 public class ManageRoom : MonoBehaviour
 {
 
-    public HealthSystem[] enemies;
-    public GameObject[] door;
-    public Transform[] doorEndPos;
+    //public HealthSystem[] enemies;
+    public int totalEnemies;
+    public Animator[] doorsAnim;
     public Transform[] playerSpawnPos;
     public GameObject player;
     public Player_Controller playerController;
     public SceneType sceneType;
+    public bool roomRemoved;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        roomRemoved = false;
         player = FindObjectOfType<Player_Controller>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         if(playerController.lastRoomExit == RoomPos.RIGHT) //Spawn on left
@@ -39,6 +41,8 @@ public class ManageRoom : MonoBehaviour
 
     private bool enemiesDead()
     {
+        return totalEnemies <= 0;
+        /*
         bool allDead = true;
         for(int i = 0; i < enemies.Length; i++)
         {
@@ -48,7 +52,7 @@ public class ManageRoom : MonoBehaviour
             }
         }
 
-        return allDead;
+        return allDead;*/
     }
 
     private void EndRoom()
@@ -56,22 +60,23 @@ public class ManageRoom : MonoBehaviour
         if (enemiesDead())
         {
             OpenDoors();
-            Debug.Log("All Dead");
         }
     }
 
     private void OpenDoors()
     {
-        for(int i =0; i< door.Length; i++)
+        for(int i =0; i< doorsAnim.Length; i++)
         {
-            door[i].GetComponent<BoxCollider2D>().enabled = false;
+            doorsAnim[i].SetTrigger("Open"); //Activate Animation
+
+            /*door[i].GetComponent<BoxCollider2D>().enabled = false;
             if(door[i].transform != doorEndPos[i].transform)
             {
                door[i].transform.position = doorEndPos[i].transform.position;
                 
                 //door[i].transform.position = new Vector3(Mathf.Lerp(door[i].transform.position.x, doorEndPos[i].transform.position.x, 200), Mathf.Lerp(door[i].transform.position.y, doorEndPos[i].transform.position.y, 200), Mathf.Lerp(door[i].transform.position.z, doorEndPos[i].transform.position.z, 200));
                 
-            }
+            }*/
         }
     }
 }

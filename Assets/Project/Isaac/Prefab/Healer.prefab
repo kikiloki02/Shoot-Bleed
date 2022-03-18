@@ -148,7 +148,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4170ac36c4bf208478ad208ac4553e90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointsToHeal: 5
+  pointsToHeal: 0
   velocity: 100
   maxVelocity: 100
   distanceToFollow: 4
@@ -182,7 +182,7 @@ ParticleSystem:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6389572601574557839}
   serializedVersion: 7
-  lengthInSec: 5
+  lengthInSec: 0.05
   simulationSpeed: 1
   stopAction: 0
   cullingMode: 0
@@ -364,7 +364,7 @@ ParticleSystem:
       serializedVersion: 2
       minMaxState: 0
       minColor: {r: 1, g: 1, b: 1, a: 1}
-      maxColor: {r: 0.7843138, g: 0.0627451, b: 0.058823533, a: 1}
+      maxColor: {r: 0.8117648, g: 0.019607844, b: 0.043137256, a: 1}
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
@@ -1437,7 +1437,7 @@ ParticleSystem:
         m_RotationOrder: 4
     separateAxes: 0
   ColorModule:
-    enabled: 1
+    enabled: 0
     gradient:
       serializedVersion: 2
       minMaxState: 1
@@ -1445,7 +1445,7 @@ ParticleSystem:
       maxColor: {r: 1, g: 1, b: 1, a: 1}
       maxGradient:
         serializedVersion: 2
-        key0: {r: 0.6415094, g: 0.036573566, b: 0.033285867, a: 1}
+        key0: {r: 0.8117648, g: 0.019607844, b: 0.043137256, a: 1}
         key1: {r: 0.7843138, g: 0.0627451, b: 0.058823533, a: 0.5019608}
         key2: {r: 0, g: 0, b: 0, a: 0}
         key3: {r: 0, g: 0, b: 0, a: 0}
@@ -1461,7 +1461,7 @@ ParticleSystem:
         ctime5: 0
         ctime6: 0
         ctime7: 0
-        atime0: 0
+        atime0: 45875
         atime1: 65535
         atime2: 0
         atime3: 0

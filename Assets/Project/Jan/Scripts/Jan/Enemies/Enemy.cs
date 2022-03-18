@@ -9,7 +9,6 @@ public class Enemy : MonoBehaviour
     public int _collisionDamageValue;
     public int _movementSpeed;
     public int _chargeDistance;
-    public int _healPlayer;
 
     // Cooldown related variables:
     public float _attack1ChargeTime;
