@@ -475,6 +475,7 @@ MonoBehaviour:
   VictoryScenes:
   - VictoryScene
   totalScenesCompleted: 0
+  fightingRoomsCompleted: 0
 --- !u!4 &830258789
 Transform:
   m_ObjectHideFlags: 0
@@ -1298,10 +1299,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 369736254}
     m_Modifications:
+    - target: {fileID: 4913870264556681511, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_Name
+      value: Forfeit Run
+      objectReference: {fileID: 0}
     - target: {fileID: 4913870265297332067, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 622074490}
+    - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_text
+      value: Forfeit
+      objectReference: {fileID: 0}
     - target: {fileID: 4913870266486824912, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_Pivot.x
       value: 0

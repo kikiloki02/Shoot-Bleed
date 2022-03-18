@@ -23,13 +23,14 @@ public class Player_Controller : MonoBehaviour
     public AudioSource _dashSound;
     public RoomPos lastRoomExit;
     public GameObject _weapon;
+    public bool _canMove = true;
 
-// ------ PRIVATE: ------
+
+    // ------ PRIVATE: ------
 
     private bool _isPlayerWalking = false;
     private bool _isPlayerDashing = false;
     private bool _canPlayerDash = true;
-    private bool _canMove = true;
     // private bool _isPlayerInvincible = false;
 
     private Vector2 _movement; // X, and Y;
@@ -38,11 +39,12 @@ public class Player_Controller : MonoBehaviour
     {
         public int _id;
         public bool _active;
+        public bool _pickedUp;
 
-        public Upgrade(int id, bool active)
+        public Upgrade(int id, bool pickedUp)
         {
             _id = id;
-            _active = active;
+            _pickedUp = pickedUp;
         }
     };
 
@@ -77,7 +79,13 @@ public class Player_Controller : MonoBehaviour
 
         ProcessPhysics();
 
-        if (_canPlayerDash && _isPlayerDashing) {
+        Dash();
+    }
+
+    private void Dash()
+    {
+        if (_canPlayerDash && _isPlayerDashing)
+        {
             if (_movement.magnitude != 0)
             {
                 Debug.Log("Dashed");
@@ -96,12 +104,30 @@ public class Player_Controller : MonoBehaviour
 
                 _isPlayerDashing = false;
                 Invoke("ResetDash", _dashCooldown);
+
+                for (int i = 0; i < _playerUpgrades.Count; i++)
+                {
+                    if (_playerUpgrades[i]._id == 3 && _playerUpgrades[i]._active == true)
+                    {
+                        StartCoroutine(GuardDash(3));
+
+                    }
+                }
             }
             else { _isPlayerDashing = false; }
         }
     }
 
     // ------ METHODS: ------
+
+    IEnumerator GuardDash(float time)
+    {
+        GetComponent<PlayerLifeManagement>().InvencibilityTime(time);
+
+        yield return new WaitForSeconds(time);
+
+        
+    }
 
     public void Fall()
     {
@@ -176,13 +202,16 @@ public class Player_Controller : MonoBehaviour
     {
         for (int i = 0; i < _playerUpgrades.Count; i++)
         {
-            if (!_playerUpgrades[i]._active) { continue; }
+            if (!_playerUpgrades[i]._pickedUp) { continue; }
 
             switch (_playerUpgrades[i]._id)
             {
                 case 1: // Wider Heart
                 {
-                    _playerUpgrades[i]._active = false;
+                    _playerUpgrades[i]._pickedUp = false;
+
+                    _playerUpgrades[i]._active = true;
+
                     this.GetComponent<PlayerLifeManagement>().maxHealth += 8;
                     this.GetComponent<PlayerLifeManagement>().currentHealth += 8;
 
@@ -195,6 +224,11 @@ public class Player_Controller : MonoBehaviour
                 case 2: // Explosive Corpses
                 {
                     // Code
+                    _playerUpgrades[i]._pickedUp = false;
+
+                    _playerUpgrades[i]._active = true;
+
+                    // Upgrade implementation:
 
                     break;
                 }
@@ -203,12 +237,24 @@ public class Player_Controller : MonoBehaviour
                 {
                     // Code
 
+                    _playerUpgrades[i]._pickedUp = false;
+
+                    _playerUpgrades[i]._active = true;
+
+                    _dashCooldown += 2;
+
+                    // Upgrade implementation:
+
+                    // Dash cooldown += ??
+
                     break;
                 }
 
                 case 4: // Heavy Bullets
                 {
-                    _playerUpgrades[i]._active = false;
+                    _playerUpgrades[i]._pickedUp = false;
+
+                    _playerUpgrades[i]._active = true;
 
                     _secondsPerBullet += 0.2f;
                     _weapon.GetComponent<ShootBullet>().secondsPerBullet += 0.2f;
@@ -221,7 +267,9 @@ public class Player_Controller : MonoBehaviour
 
                 case 5: // Fast Shooting
                 {
-                    _playerUpgrades[i]._active = false;
+                    _playerUpgrades[i]._pickedUp = false;
+
+                    _playerUpgrades[i]._active = true;
 
                     _secondsPerBullet -= 0.15f;
                     _weapon.GetComponent<ShootBullet>().secondsPerBullet -= 0.15f;

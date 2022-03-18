@@ -1851,7 +1851,7 @@ CompositeCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_GeometryType: 0
+  m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
   m_ColliderPaths:
@@ -4375,6 +4375,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 385313122}
     m_Modifications:
+    - target: {fileID: 4624287772282763370, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
+      propertyPath: avoidVelocity
+      value: 0.01
+      objectReference: {fileID: 0}
     - target: {fileID: 4932033076728276826, guid: f8162df2ae0e1784a9f402e5ba030d3f, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -4426,10 +4430,6 @@ PrefabInstance:
     - target: {fileID: 4932033076728276830, guid: f8162df2ae0e1784a9f402e5ba030d3f, type: 3}
       propertyPath: m_Name
       value: North Right Door
-      objectReference: {fileID: 0}
-    - target: {fileID: 4624287772282763370, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
-      propertyPath: avoidVelocity
-      value: 0.01
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f8162df2ae0e1784a9f402e5ba030d3f, type: 3}

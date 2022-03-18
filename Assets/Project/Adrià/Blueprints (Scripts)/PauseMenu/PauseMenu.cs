@@ -11,8 +11,13 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject aim;
     public GameObject SettingsCanvas;
+    [SerializeField] GameObject playerController;
 
 
+    private void Start()
+    {
+        playerController = FindObjectOfType<Player_Controller>().gameObject;
+    }
 
     // Update is called once per frame
     void Update()
@@ -48,6 +53,10 @@ public class PauseMenu : MonoBehaviour
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
         GamePaused = false;
+        playerController.GetComponent<Player_Controller>()._canMove = true;
+
+
+
     }
     public void Pause()
     {
@@ -58,6 +67,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0.0f;
         GamePaused = true;
         SettingsMenu = false;
+        playerController.GetComponent<Player_Controller>()._canMove = false;
+
     }
     public void LoadMenu()
     {
