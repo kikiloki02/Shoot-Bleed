@@ -416,6 +416,7 @@ GameObject:
   - component: {fileID: 4980406151714934706}
   - component: {fileID: 4980406151714934709}
   - component: {fileID: 4980406151714934708}
+  - component: {fileID: 958146694459790092}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged

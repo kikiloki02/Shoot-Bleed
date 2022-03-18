@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 107144406}
   - component: {fileID: 107144405}
   - component: {fileID: 107144404}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Spikes
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -2861,7 +2861,7 @@ GameObject:
   - component: {fileID: 928523986}
   - component: {fileID: 928523985}
   - component: {fileID: 928523984}
-  m_Layer: 12
+  m_Layer: 0
   m_Name: Pits
   m_TagString: Wall
   m_Icon: {fileID: 0}
