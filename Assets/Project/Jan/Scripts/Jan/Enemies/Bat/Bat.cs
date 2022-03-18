@@ -77,6 +77,8 @@ public class Bat : Enemy
 
     void Attack1()
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -136,6 +138,8 @@ public class Bat : Enemy
 
     IEnumerator Attack2(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("FastAttack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -151,6 +155,8 @@ public class Bat : Enemy
         StartCoroutine(AttackColliderSwitch(0, _activeTimeAttack2Forth));
 
         yield return new WaitForSeconds(seconds); // Wait
+
+        GetComponent<Animator>().SetTrigger("FastAttack");
 
         _attackParticles.Play();
 
@@ -175,6 +181,8 @@ public class Bat : Enemy
 
     IEnumerator Attack3(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _rotate = false;
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
@@ -193,6 +201,8 @@ public class Bat : Enemy
         _attackPivot.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
         yield return new WaitForSeconds(seconds); // Wait
+
+        GetComponent<Animator>().SetTrigger("Attack");
 
         _attackParticles.Play();
 
@@ -218,6 +228,8 @@ public class Bat : Enemy
 
     IEnumerator Charging(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Charge");
+
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;

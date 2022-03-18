@@ -80,6 +80,8 @@ public class BloodBat : Enemy
 
     void Attack1()
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -102,6 +104,8 @@ public class BloodBat : Enemy
 
     void Attack2(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -132,6 +136,8 @@ public class BloodBat : Enemy
 
     void Attack3(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -193,6 +199,8 @@ public class BloodBat : Enemy
 
     IEnumerator Charging(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Charge");
+
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;

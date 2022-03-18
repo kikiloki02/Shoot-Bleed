@@ -14983,6 +14983,7 @@ GameObject:
   - component: {fileID: 6346537619474854505}
   - component: {fileID: 3065939049626629956}
   - component: {fileID: 8332804646269269796}
+  - component: {fileID: 1731649446638624693}
   m_Layer: 8
   m_Name: Blade Knight
   m_TagString: Enemy
@@ -15195,6 +15196,25 @@ MonoBehaviour:
   RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   followingPercentage: 0.100000024
+--- !u!95 &1731649446638624693
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3065939049626629957}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a0810092cc3206945903161d18d48d0c, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &3065939049651484319
 GameObject:
   m_ObjectHideFlags: 0
