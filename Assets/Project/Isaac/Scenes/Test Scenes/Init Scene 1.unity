@@ -473,8 +473,9 @@ MonoBehaviour:
   UpgradeScenes:
   - Upgrade Scene 1
   VictoryScenes:
-  - VictoryScene
+  - ScoreReward
   totalScenesCompleted: 0
+  fightingRoomsCompleted: 0
 --- !u!4 &830258789
 Transform:
   m_ObjectHideFlags: 0
