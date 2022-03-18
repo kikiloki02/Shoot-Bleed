@@ -12,6 +12,7 @@ public class RoomSystem : MonoBehaviour
     public List<string> UpgradeScenes;
     public List<string> VictoryScenes;
     public int totalScenesCompleted = 0;
+    public int fightingRoomsCompleted = 0;
 
 
     public void Start()

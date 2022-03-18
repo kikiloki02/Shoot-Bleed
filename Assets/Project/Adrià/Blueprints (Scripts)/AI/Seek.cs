@@ -34,6 +34,8 @@ public class Seek : MonoBehaviour
     {
         target = player.transform;
         targetDirection = player.transform.position - this.transform.position;
+        if(targetDirection.x < 0) { this.GetComponent<SpriteRenderer>().flipX = true; }
+        else { this.GetComponent<SpriteRenderer>().flipX = false; }
 
         RightPerpendicularTargetDirection = new Vector3(targetDirection.y, -targetDirection.x, targetDirection.z);
         LeftPerpendicularTargetDirection = new Vector3(-targetDirection.y, targetDirection.x, targetDirection.z);

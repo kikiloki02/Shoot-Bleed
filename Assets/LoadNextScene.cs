@@ -61,6 +61,7 @@ public class LoadNextScene : MonoBehaviour
             if (actualSceneType != SceneType.Upgrade)
             {
                 roomSys.UnloadRoom();
+                roomSys.fightingRoomsCompleted++;
             }
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         }
@@ -69,7 +70,7 @@ public class LoadNextScene : MonoBehaviour
 
     private void SetNextRoomType()
     {
-        if (!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard))
+        if (roomSys.fightingRoomsCompleted == 10 ||(!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard)))
         {
             nextSceneType = SceneType.Victory;
             return;
