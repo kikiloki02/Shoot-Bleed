@@ -56,9 +56,14 @@ public class RewardSystem : MonoBehaviour
     }
 
 
-    void CalculateReward()
+    public int CalculateReward()
     {
-        //Do the formula
+        return (int)(enemiesKilled + (stageReached * 1.5) - hitsTaken) * (maxCombo / 10);
+    }
+
+    public int CalculateReward2()
+    {
+        return (int)((enemiesKilled/2) + (stageReached - (hitsTaken*1.5)) * (maxCombo / 10));
     }
 
     IEnumerator CalculateAccuracy()

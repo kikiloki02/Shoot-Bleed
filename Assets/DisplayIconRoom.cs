@@ -34,6 +34,8 @@ public class DisplayIconRoom : MonoBehaviour
             case SceneType.Upgrade:
                 this.gameObject.GetComponent<SpriteRenderer>().sprite = doorSprites[3];
                 break;
+            default:
+                break;
 
         }
     }
