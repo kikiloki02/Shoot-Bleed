@@ -39,7 +39,7 @@ public class PlayerLifeManagement : HealthSystem
 
     private RewardSystem rewdSys;
 
-
+    public GameObject _healingAnimation;
 
     // Start is called before the first frame update
     void Start()
@@ -89,7 +89,6 @@ public class PlayerLifeManagement : HealthSystem
             currentHealth -= 1;
             healthBar.SetHealth(currentHealth);
         }
-       
     }
 
     bool isCritical()
@@ -99,7 +98,6 @@ public class PlayerLifeManagement : HealthSystem
 
     public override void GetDamage(int damage)
     {
-
         if (!_canGetHit)
         {
             return;
@@ -130,6 +128,8 @@ public class PlayerLifeManagement : HealthSystem
 
     public void RecoverHealth(int addHp)
     {
+        _healingAnimation.GetComponent<Animator>().SetTrigger("Activate");
+
         _heal.Play();
 
         currentHealth += addHp;

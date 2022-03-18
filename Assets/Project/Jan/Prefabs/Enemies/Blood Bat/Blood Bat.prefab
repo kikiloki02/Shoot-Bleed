@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 1314935124251881722}
   - component: {fileID: 63675566395749084}
   - component: {fileID: 4624287772282763370}
+  - component: {fileID: 5388500795356956270}
   m_Layer: 8
   m_Name: Blood Bat
   m_TagString: Enemy
@@ -323,7 +324,6 @@ MonoBehaviour:
   _collisionDamageValue: 1
   _movementSpeed: 100
   _chargeDistance: 5
-  _healPlayer: 9
   _attack1ChargeTime: 0.75
   _attack2ChargeTime: 0.75
   _attack3ChargeTime: 0.75
@@ -393,6 +393,25 @@ MonoBehaviour:
   RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   followingPercentage: 0.100000024
+--- !u!95 &5388500795356956270
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 63675566395749085}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 479970b0f6612a04aa4c903b75180aae, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &63675566420931335
 GameObject:
   m_ObjectHideFlags: 0

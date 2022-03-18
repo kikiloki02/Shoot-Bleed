@@ -20,7 +20,18 @@ public class Blade_Knight : Enemy
 
     private void Update()
     {
-        
+        // Flip the SpriteRederer (X axis) when switching from moving left to right and vice-versa:
+
+        //bool _spriteRendererFlipXValue = GetComponent<SpriteRenderer>().flipX;
+
+        //if (_movement.x < -0.01f && !_spriteRendererFlipXValue)
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = true;
+        //}
+        //else if (_movement.x > 0.01f && _spriteRendererFlipXValue)
+        //{
+        //    GetComponent<SpriteRenderer>().flipX = false;
+        //}
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -77,6 +88,8 @@ public class Blade_Knight : Enemy
 
     void Attack1()
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -98,6 +111,8 @@ public class Blade_Knight : Enemy
 
     void Attack2(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -119,6 +134,8 @@ public class Blade_Knight : Enemy
 
     void Attack3(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Attack");
+
         _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(false);
 
         _attackParticles.Play();
@@ -166,6 +183,8 @@ public class Blade_Knight : Enemy
 
     IEnumerator Charging(float seconds)
     {
+        GetComponent<Animator>().SetTrigger("Charge");
+
         _isCharging = true;
 
         this.GetComponent<Seek>().enabled = false;

@@ -29,6 +29,7 @@ public class Player_Controller : MonoBehaviour
     private bool _isPlayerWalking = false;
     private bool _isPlayerDashing = false;
     private bool _canPlayerDash = true;
+    private bool _canMove = true;
     // private bool _isPlayerInvincible = false;
 
     private Vector2 _movement; // X, and Y;
@@ -57,7 +58,6 @@ public class Player_Controller : MonoBehaviour
     // Update is called once per frame;
     void Update()
     {
-
         ProcessInputs();
 
         ProcessAnimations();
@@ -99,7 +99,6 @@ public class Player_Controller : MonoBehaviour
             }
             else { _isPlayerDashing = false; }
         }
-
     }
 
     // ------ METHODS: ------
@@ -117,6 +116,8 @@ public class Player_Controller : MonoBehaviour
 
     void UpdateSpriteRenderer()
     {
+        if (!_canMove) { return; }
+
         bool _spriteRendererFlipXValue = GetComponent<SpriteRenderer>().flipX;
 
         if (_movement.x < -0.01f && !_spriteRendererFlipXValue)
@@ -138,12 +139,6 @@ public class Player_Controller : MonoBehaviour
         // If we don't normalize it, when we move diagonally we will get a magnitude of the square root of 2, which is 1.4, which is
         // 40% greater than the maximum horizontal or vertical speeds;
 
-        if (Input.GetKeyDown(KeyCode.U)) // Hit effect -> Just for testing purposes
-            _rigidBody.AddForce(Vector2.up * 1000f);
-
-        if (Input.GetKey(KeyCode.LeftShift)) // Walking -> Just for testing purposes
-            _isPlayerWalking = true;
-
         if (Input.GetKeyDown(KeyCode.Space) && _canPlayerDash) // Dash -> Just for testing purposes
             _isPlayerDashing = true;
     }
@@ -157,15 +152,11 @@ public class Player_Controller : MonoBehaviour
 
     void ProcessAnimations()
     {
-        //_animator.SetFloat("Horizontal", _movement.x);
-        //_animator.SetFloat("Vertical", _movement.y);
         _animator.SetFloat("Speed", _movement.sqrMagnitude);
     }
 
     void ProcessParticles()
     {
-        // If the player is walking, don't emit particles.
-
         _runningParticles.transform.right = -_rigidBody.velocity;
     }
 
@@ -178,7 +169,7 @@ public class Player_Controller : MonoBehaviour
     {
         GetComponent<Animator>().SetTrigger("Upgrade");
 
-        StartCoroutine(BlockMovement(0.5f));
+        StartCoroutine(BlockMovement(1.65f));
     }
 
     void ProcessUpgrades()
@@ -193,8 +184,10 @@ public class Player_Controller : MonoBehaviour
                 {
                     _playerUpgrades[i]._active = false;
                     this.GetComponent<PlayerLifeManagement>().maxHealth += 8;
+                    this.GetComponent<PlayerLifeManagement>().currentHealth += 8;
 
                     this.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetMaxHealth(this.GetComponent<PlayerLifeManagement>().maxHealth);
+                    this.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetHealth(this.GetComponent<PlayerLifeManagement>().currentHealth);
 
                     break;
                 }
@@ -241,26 +234,14 @@ public class Player_Controller : MonoBehaviour
 
     void Move()
     {
-        if (!_isPlayerWalking)
-            _rigidBody.AddForce(_movement * _movementSpeed);
-        else
-        {
-            _rigidBody.AddForce((_movement * _movementSpeed) / 2);
-            _isPlayerWalking = false;
-        }
+        if (!_canMove) { return; }
+
+        _rigidBody.AddForce(_movement * _movementSpeed);
 
         if (_rigidBody.velocity.magnitude > 1f)
         {
-            if (!_isPlayerWalking)
-            {
-                float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
-                _rigidBody.velocity = _rigidBody.velocity.normalized * maxSpeed;
-            }
-            else
-            {
-                float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
-                _rigidBody.velocity = (_rigidBody.velocity.normalized * maxSpeed) / 2;
-            }
+            float maxSpeed = Mathf.Lerp(_rigidBody.velocity.magnitude, 1f, Time.fixedDeltaTime * 5f);
+            _rigidBody.velocity = _rigidBody.velocity.normalized * maxSpeed;
         }
     }
 
@@ -277,8 +258,10 @@ public class Player_Controller : MonoBehaviour
 
     IEnumerator BlockMovement(float time)
     {
-        //_
+        _canMove = false;
 
         yield return new WaitForSeconds(time);
+
+        _canMove = true;
     }
 }
