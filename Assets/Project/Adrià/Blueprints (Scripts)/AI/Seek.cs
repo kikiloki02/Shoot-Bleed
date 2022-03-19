@@ -7,6 +7,7 @@ public class Seek : MonoBehaviour
     private GameObject player;
     private Transform target;
     private Rigidbody2D rb;
+    private HealthSystem enemyHealth;
     public float velocity;
     public float avoidVelocity;
 
@@ -25,6 +26,7 @@ public class Seek : MonoBehaviour
 
     void Start()
     {
+        enemyHealth = this.GetComponent<HealthSystem>();
         player = FindObjectOfType<Player_Controller>().gameObject;
         rb = GetComponent<Rigidbody2D>();
 
@@ -58,7 +60,7 @@ public class Seek : MonoBehaviour
         ySize = GetComponent<SpriteRenderer>().bounds.size.y;
         //transform.rotation = Quaternion.Euler(new Vector3(0, 0, currentZRotation));
     }
-
+    
     private void CreateVirtualBoundingBox()
     {
         center = this.transform.position;
@@ -67,7 +69,7 @@ public class Seek : MonoBehaviour
         topLeft = transform.position + (targetDirection.normalized + LeftPerpendicularTargetDirection.normalized) * (maxSeeAhead);
         centerLeft = new Vector3(-targetDirection.y, targetDirection.x, 0);
         centerRight = new Vector3(targetDirection.y, -targetDirection.x, 0);
-
+        
         //if (targetDirection.y > 0 && targetDirection.y > targetDirection.x)
         //{
 
@@ -150,6 +152,7 @@ public class Seek : MonoBehaviour
 
     }
 
+
     private void CheckForCollisionDetected()
     {
         RaycastHit2D[] hit2D = new RaycastHit2D[3];
@@ -161,9 +164,14 @@ public class Seek : MonoBehaviour
         hit2D[0] = Physics2D.Raycast(center, topLeft - center, (maxSeeAhead),mask);
         hit2D[1] = Physics2D.Raycast(center, topRight - center, (maxSeeAhead),mask);
         hit2D[2] = Physics2D.Raycast(center, topMid - center, maxSeeAhead,mask);
-      
 
 
+        switch (enemyHealth.maxHealth)
+        {
+            case :
+            default:
+                break;
+        }
 
         Vector2 dirOfMovementToAvoidObstacle;
        // hit2D[0].normal
