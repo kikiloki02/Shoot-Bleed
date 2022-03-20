@@ -7,6 +7,7 @@ public class SetRunsResumeText : MonoBehaviour
 {
     public TextMeshProUGUI[] texts;
     public TextMeshProUGUI[] titles;
+    public GameObject bloodGem;
     private int[] textValues;
     RewardSystem rwdSys;
     public CinemachineShake shake;
@@ -22,7 +23,21 @@ public class SetRunsResumeText : MonoBehaviour
             titles[i].gameObject.SetActive(false);
             texts[i].gameObject.SetActive(false);
         }
+        bloodGem.SetActive(false);
         StartCoroutine("TextAnimation");
+
+        //Player Prefs for BloodGem
+        
+        if (!PlayerPrefs.HasKey("BloodGem"))
+        {
+            PlayerPrefs.SetInt("BloodGem", textValues[4]);
+        }
+        else
+        {
+            int bloodGemsInRun = textValues[4];
+            bloodGemsInRun += PlayerPrefs.GetInt("BloodGem");
+            PlayerPrefs.SetInt("BloodGem", bloodGemsInRun);
+        }
     }
 
     void SetStringTexts()
@@ -52,7 +67,19 @@ public class SetRunsResumeText : MonoBehaviour
             {
                 currentTime = Mathf.Min(currentTime + Time.deltaTime, 1f);
                 texts[i].gameObject.SetActive(true);
-                texts[i].text = ((int)Mathf.Lerp(0f, textValues[i], Mathf.Sin(currentTime * Mathf.PI * 0.5f))).ToString();
+                if (i == texts.Length - 1)
+                {
+                    bloodGem.SetActive(true);
+                    texts[i].text = ((int)Mathf.Lerp(0f, textValues[i], Mathf.Sin(currentTime * Mathf.PI * 0.5f))).ToString();
+                }
+                else if ( i == 3)
+                {
+                    texts[i].text = ((int)Mathf.Lerp(0f, textValues[i], Mathf.Sin(currentTime * Mathf.PI * 0.5f))).ToString() + "%";
+                }
+                else
+                {
+                    texts[i].text = ((int)Mathf.Lerp(0f, textValues[i], Mathf.Sin(currentTime * Mathf.PI * 0.5f))).ToString();
+                }
                 yield return null;
             }
             yield return new WaitForSeconds(0.5f);

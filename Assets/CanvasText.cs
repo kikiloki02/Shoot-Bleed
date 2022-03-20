@@ -7,12 +7,14 @@ public class CanvasText : MonoBehaviour
     public TextMeshProUGUI stage;
     public TextMeshProUGUI combo;
     public TextMeshProUGUI maxCombo;
+    public TextMeshProUGUI bloodGems;
     // Start is called before the first frame update
     void Start()
     {
         stage.text = "Stage: 0";
         combo.text = "Combo: 0";
         maxCombo.text = "Max Combo: 0";
+        bloodGems.text = "0";
     }
 
     public void SetStageTxt(int stg)
@@ -28,5 +30,10 @@ public class CanvasText : MonoBehaviour
     public void SetMaxComboTxt(int mCmbo)
     {
         maxCombo.text = "Max Combo: " + mCmbo.ToString();
+    }
+
+    public void SetBloodGemsTxt(int currency)
+    {
+        bloodGems.text = currency.ToString();
     }
 }
