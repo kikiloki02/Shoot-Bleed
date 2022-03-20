@@ -4762,6 +4762,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1872688715}
     m_Modifications:
+    - target: {fileID: 827598571620721895, guid: 0b113bddadaf669479c5b328e90cd045, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 827598572703407139, guid: 0b113bddadaf669479c5b328e90cd045, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 827598572774607016, guid: 0b113bddadaf669479c5b328e90cd045, type: 3}
+      propertyPath: m_SortingOrder
+      value: -2
+      objectReference: {fileID: 0}
     - target: {fileID: 827598572774607018, guid: 0b113bddadaf669479c5b328e90cd045, type: 3}
       propertyPath: doorTrigger
       value: 
@@ -4884,6 +4896,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 1872688715}
     m_Modifications:
+    - target: {fileID: 7622347046592508370, guid: bdaab465563ddce468ffd87dd5e319dd, type: 3}
+      propertyPath: m_SortingOrder
+      value: -1
+      objectReference: {fileID: 0}
     - target: {fileID: 7622347046623873273, guid: bdaab465563ddce468ffd87dd5e319dd, type: 3}
       propertyPath: doorTrigger
       value: 
