@@ -45,8 +45,6 @@ public class In_Run_Upgrade : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (_disabled == true) { return; }
-
         if (other.tag != "Player") { return; }
 
         _ready = true;
@@ -57,8 +55,6 @@ public class In_Run_Upgrade : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (_disabled == true) { return; }
-
         if (other.tag != "Player") { return; }
 
         _ready = false;

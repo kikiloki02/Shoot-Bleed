@@ -15,11 +15,6 @@ public class RoomSystem : MonoBehaviour
     public int fightingRoomsCompleted = 0;
 
 
-    public void Start()
-    {
-        
-    }
-
     public void RemoveRoom(SceneType sceneType)
     {
         totalScenesCompleted++;

@@ -66,6 +66,9 @@ EditorBuildSettings:
     path: Assets/Project/Isaac/Scenes/GameScenes/Upgrade Scenes/Upgrade Scene 1.unity
     guid: 8d59b047a13c2844e84d5c29b2cf49c9
   - enabled: 1
+    path: Assets/Project/Isaac/Scenes/Canvas Scenes/ScoreReward.unity
+    guid: bcd54d3ce9e565f4fa1c7ec555ea0516
+  - enabled: 1
     path: "Assets/Project/Adri\xE0/Scenes/VictoryScene.unity"
     guid: 1a4e14c640d822744b2f42eb6789d7ce
   - enabled: 1

@@ -14,6 +14,7 @@ public class RewardSystem : MonoBehaviour
     public float accuracy; //Bullets hit / Bullets shot
     public int bulletsHit;
     public int bulletsShot;
+    public int bloodGems;
 
     private CanvasText canvasTxt;
 
@@ -27,6 +28,8 @@ public class RewardSystem : MonoBehaviour
         enemiesKilled = 0;
         accuracy = 100;
         bulletsHit = bulletsShot = 0;
+        bloodGems = PlayerPrefs.GetInt("BloodGem", 0);
+        canvasTxt.SetBloodGemsTxt(bloodGems);
 
         DontDestroyOnLoad(this.gameObject);
     }
@@ -56,9 +59,14 @@ public class RewardSystem : MonoBehaviour
     }
 
 
-    void CalculateReward()
+    public int CalculateReward()
     {
-        //Do the formula
+        return (int)((enemiesKilled + (((float)stageReached * 1.5) - hitsTaken)) * (float)(maxCombo / 10.0f));
+    }
+
+    public int CalculateReward2()
+    {
+        return (int)((enemiesKilled/2) + (stageReached - (float)(hitsTaken*1.5)) * maxCombo / 10);
     }
 
     IEnumerator CalculateAccuracy()

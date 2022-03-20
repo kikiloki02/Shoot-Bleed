@@ -18,6 +18,7 @@ public class Upgrade_Room_Manager : MonoBehaviour
         int randomNumber1 = Random.Range(0, _upgrades.Count); // min included, max excluded
 
         _upgrades[randomNumber1].gameObject.transform.position = new Vector3(-4.5f, -0.5f, 0f);
+        _upgrades[randomNumber1].gameObject.GetComponent<In_Run_Upgrade>()._icon.SetActive(true);
 
         int randomNumber2;
 
@@ -28,6 +29,7 @@ public class Upgrade_Room_Manager : MonoBehaviour
         while (randomNumber2 == randomNumber1);
 
         _upgrades[randomNumber2].gameObject.transform.position = new Vector3(2.5f, -0.5f, 0f);
+        _upgrades[randomNumber2].gameObject.GetComponent<In_Run_Upgrade>()._icon.SetActive(true);
 
         _leftUpgrade = randomNumber1;
         _rightUpgrade = randomNumber2;

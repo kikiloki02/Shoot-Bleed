@@ -14,7 +14,6 @@ public class Attack_Player : MonoBehaviour
     private void Start()
     {
         _player = FindObjectOfType<Player_Controller>().gameObject;
-
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

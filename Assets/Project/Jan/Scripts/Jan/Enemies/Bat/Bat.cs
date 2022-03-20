@@ -14,7 +14,7 @@ public class Bat : Enemy
         _spawnedParticles.Play();
 
         _spriteRedColor = new Color32(255, 100, 100, 255);
-        _spriteBlueColor = new Color32(0, 0, 255, 255);
+        _spriteBlueColor = new Color32(255, 255, 255, 255); // Now it's white as well
         _spriteWhiteColor = new Color32(255, 255, 255, 255);
     }
 
@@ -65,7 +65,9 @@ public class Bat : Enemy
 
     public override void Die()
     {
-        _death.Play(); // Die SFX
+        AudioSource.PlayClipAtPoint(_death.clip, Camera.main.transform.position, 0.2f);
+
+        // Death particles:
     }
 
     public override void GetHit()
