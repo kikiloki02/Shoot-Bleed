@@ -271,7 +271,7 @@ PrefabInstance:
     - target: {fileID: 1497293833413482988, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
+      objectReference: {fileID: 3065939049626629957, guid: 76b919a25fc4bca42a290638f32bace3, type: 3}
     - target: {fileID: 1497293833413482990, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: m_Name
       value: Instant Spawner
@@ -683,7 +683,7 @@ PrefabInstance:
     - target: {fileID: 1497293833413482988, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
+      objectReference: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
     - target: {fileID: 1497293833413482990, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: m_Name
       value: Instant Spawner (1)
@@ -3928,6 +3928,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 623434968}
     m_Modifications:
+    - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
+      propertyPath: _enemy
+      value: 
+      objectReference: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
     - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
       propertyPath: _timeOffset
       value: 4

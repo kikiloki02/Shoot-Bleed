@@ -21,7 +21,7 @@ public class EffectorSpawner : MonoBehaviour
                 if (tile != null)
                 {
                     if(tile.name != "Test_tilemap_16" && tile.name != "Test_tilemap_31")
-                        Instantiate(prefab, pos + new Vector3(0.5f, 0.5f, 0f), Quaternion.identity, null);
+                        Instantiate(prefab, pos + new Vector3(0.5f, 0.5f, 0f), Quaternion.identity, this.transform);
                 }
                     
             }

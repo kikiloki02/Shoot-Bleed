@@ -3045,7 +3045,7 @@ PrefabInstance:
       objectReference: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
     - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
       propertyPath: _timeOffset
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
       propertyPath: _spawningTime
@@ -3517,7 +3517,7 @@ PrefabInstance:
       objectReference: {fileID: 1226302043328788157, guid: b63b428dd7a9c2948aa65cbd9575971f, type: 3}
     - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
       propertyPath: _timeOffset
-      value: 8
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 5056485867225048163, guid: 7cbf34bd271e1b64c9d5592e88f0d639, type: 3}
       propertyPath: _spawningTime
