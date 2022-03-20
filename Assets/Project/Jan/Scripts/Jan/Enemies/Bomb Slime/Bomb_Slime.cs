@@ -98,7 +98,7 @@ public class Bomb_Slime : Enemy
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
 
-        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+       
 
         // Follow the Player while being underground:
         _followPlayer = true;
@@ -120,6 +120,7 @@ public class Bomb_Slime : Enemy
     {
         // Stop following the Player (while being underground):
         _followPlayer = false;
+        _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
 
         yield return new WaitForSeconds(time);
 

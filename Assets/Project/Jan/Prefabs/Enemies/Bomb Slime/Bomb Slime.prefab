@@ -5456,7 +5456,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56c6e73ee32b009498185870cbc28091, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   currentHealth: 0
   _healPlayer: 15
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
@@ -5475,9 +5475,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 85
   avoidVelocity: 1
-  targetDirection: {x: 0, y: 0, z: 0}
-  RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
-  LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
   followingPercentage: 0.100000024
 --- !u!95 &1731649446638624693
 Animator:
