@@ -1163,6 +1163,21 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2747565258418037093, guid: 02167f3b2197ac9438378deaafa125f0, type: 3}
+      propertyPath: m_text
+      value: 'You are invincible for a short moment after each Dash.
+
+        But,
+        your Dash cooldown is longer.
+
+'
+      objectReference: {fileID: 0}
+    - target: {fileID: 5745223792414061398, guid: 02167f3b2197ac9438378deaafa125f0, type: 3}
+      propertyPath: m_text
+      value: 'All enemies explode on Death, dealing damage to other nearby foes.
+
+'
+      objectReference: {fileID: 0}
     - target: {fileID: 7895191481296771730, guid: 02167f3b2197ac9438378deaafa125f0, type: 3}
       propertyPath: m_Name
       value: Upgrade Room Manager
