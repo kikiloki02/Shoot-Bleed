@@ -50,7 +50,7 @@ public class HealthSystem : MonoBehaviour
 
                 Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
             }
-
+            this.GetComponent<Enemy>().Die();
             Destroy(this.gameObject); // <-- AQUÍ
         }
     }
