@@ -6,72 +6,69 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: "Assets/Project/Adri\xE0/Scenes/MainMenu.unity"
+    path: Assets/Project/Scenes/In-Game/MainMenu.unity
     guid: a8ce1fa2751f06f4681cf310ae3ef688
   - enabled: 1
-    path: "Assets/Project/Adri\xE0/Scenes/Lobby.unity"
+    path: Assets/Project/Scenes/In-Game/Lobby.unity
     guid: a37c2e30ada1f9f4aa2647e57a8dff58
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/Test Scenes/Init Scene 1.unity
+    path: Assets/Project/Scenes/In-Game/Test Scenes/Init Scene 1.unity
     guid: e5adc05527476c14b8b907b98ae2a98b
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/Test Scenes/Init Game.unity
+    path: Assets/Project/Scenes/In-Game/Test Scenes/Init Game.unity
     guid: 655167b845738f2478b8ffb491b0b362
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene1.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Easy Scenes/EasyScene1.unity
     guid: ab2400d4164e80d46b373e01f1d76c63
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene2.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Easy Scenes/EasyScene2.unity
     guid: ce9ad99b2aede454eb2d22863b348598
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene3.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Easy Scenes/EasyScene3.unity
     guid: 4bb40cf1c2286834299ce0687f419b92
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene4.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Easy Scenes/EasyScene4.unity
     guid: 231f6de6ab1b6f5448f9f8062ba7a6e0
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene5.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Easy Scenes/EasyScene5.unity
     guid: 735426dfe28a86b47ba17fd7c45d3443
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene2.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Medium Scenes/MediumScene1.unity
+    guid: 537d9e819e475dc438455fa92a4c3deb
+  - enabled: 1
+    path: Assets/Project/Scenes/In-Game/GameScenes/Medium Scenes/MediumScene2.unity
+    guid: fefbac50c5f803d4b9d1e8999a327a3f
+  - enabled: 1
+    path: Assets/Project/Scenes/In-Game/GameScenes/Medium Scenes/MediumScene3.unity
     guid: 67342b6f7c8eb0d4087600a8549be33b
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene4.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Medium Scenes/MediumScene4.unity
     guid: 5acf9db40ccbe64489a00c93e28f170c
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Medium Scenes/MediumScene5.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Medium Scenes/MediumScene5.unity
     guid: 9a6b6349794d12a4faefb28549ed38cc
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene1.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Hard Scenes/HardScene1.unity
     guid: fd987368f7feb354da3524c2fa42c105
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Easy Scenes/EasyScene1.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Hard Scenes/HardScene2.unity
     guid: dfb22a32131ca494c9d560999a606030
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene3.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Hard Scenes/HardScene3.unity
     guid: b256a8e7ccd43214c936868d5d5e2d1f
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene4.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Hard Scenes/HardScene4.unity
     guid: 5d2dead2d2d1f87419c35f019639e1a7
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Hard Scenes/HardScene5.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Hard Scenes/HardScene5.unity
     guid: 31deab4ec1e759e48a4b7f1fcfde00d7
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/GameScenes/Upgrade Scenes/Upgrade Scene 1.unity
+    path: Assets/Project/Scenes/In-Game/GameScenes/Upgrade Scenes/Upgrade Scene 1.unity
     guid: 8d59b047a13c2844e84d5c29b2cf49c9
   - enabled: 1
-    path: Assets/Project/Isaac/Scenes/Canvas Scenes/ScoreReward.unity
+    path: Assets/Project/Scenes/In-Game/Canvas Scenes/ScoreReward.unity
     guid: bcd54d3ce9e565f4fa1c7ec555ea0516
   - enabled: 1
-    path: "Assets/Project/Adri\xE0/Scenes/VictoryScene.unity"
-    guid: 1a4e14c640d822744b2f42eb6789d7ce
-  - enabled: 1
-    path: "Assets/Project/Adri\xE0/Scenes/ScoreScene.unity"
+    path: Assets/Project/Scenes/In-Game/ScoreScene.unity
     guid: ccbf5cf105058d242b1ba1228e84c8a1
   m_configObjects: {}
