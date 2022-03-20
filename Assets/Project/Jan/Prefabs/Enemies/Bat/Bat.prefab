@@ -373,6 +373,7 @@ MonoBehaviour:
   _healPlayer: 6
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 1226302043328788157}
+  explosionRadius: {fileID: 2672202200147895118, guid: 38a700eab1e585341bbb53696cb0beb3, type: 3}
 --- !u!114 &6619949856514583086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -385,11 +386,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 40
-  avoidVelocity: 1
-  targetDirection: {x: 0, y: 0, z: 0}
-  RightPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
-  LeftPerpendicularTargetDirection: {x: 0, y: 0, z: 0}
+  velocity: 20
+  avoidVelocity: 20
   followingPercentage: 0.100000024
 --- !u!95 &5621948509267266245
 Animator:

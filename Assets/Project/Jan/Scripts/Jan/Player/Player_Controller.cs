@@ -23,6 +23,7 @@ public class Player_Controller : MonoBehaviour
     public AudioSource _dashSound;
     public RoomPos lastRoomExit;
     public GameObject _weapon;
+    public GameObject _shield;
     public bool _canMove = true;
 
 
@@ -48,7 +49,7 @@ public class Player_Controller : MonoBehaviour
         }
     };
 
-    private List<Upgrade> _playerUpgrades = new List<Upgrade>();
+    public List<Upgrade> _playerUpgrades = new List<Upgrade>();
 
 // ------ START / UPDATE / FIXEDUPDATE: ------
 
@@ -109,8 +110,7 @@ public class Player_Controller : MonoBehaviour
                 {
                     if (_playerUpgrades[i]._id == 3 && _playerUpgrades[i]._active == true)
                     {
-                        StartCoroutine(GuardDash(3));
-
+                        StartCoroutine(GuardDash(0.5f));
                     }
                 }
             }
@@ -122,11 +122,12 @@ public class Player_Controller : MonoBehaviour
 
     IEnumerator GuardDash(float time)
     {
-        GetComponent<PlayerLifeManagement>().InvencibilityTime(time);
+        StartCoroutine(GetComponent<PlayerLifeManagement>().InvencibilityTime(time));
+        _shield.SetActive(true);
 
         yield return new WaitForSeconds(time);
 
-        
+        _shield.SetActive(false);
     }
 
     public void Fall()
@@ -241,11 +242,8 @@ public class Player_Controller : MonoBehaviour
 
                     _playerUpgrades[i]._active = true;
 
-                    _dashCooldown += 2;
+                    _dashCooldown += 0.25f;
 
-                    // Upgrade implementation:
-
-                    // Dash cooldown += ??
 
                     break;
                 }

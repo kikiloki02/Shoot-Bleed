@@ -549,6 +549,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 3060272417040684063, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: _shield
+      value: 
+      objectReference: {fileID: 2049927136}
     - target: {fileID: 4262791607163136345, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
       propertyPath: healthBar
       value: 
@@ -1227,6 +1231,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7d4ed3c0a2135c409f16bc5cfb10301, type: 3}
+--- !u!1 &2049927136 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2837299285016384540, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+  m_PrefabInstance: {fileID: 1018617585}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1289861531525371215
 PrefabInstance:
   m_ObjectHideFlags: 0
