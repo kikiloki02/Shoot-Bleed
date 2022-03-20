@@ -13,9 +13,14 @@ public class HealthSystem : MonoBehaviour
 
     public GameObject enemy;
 
+    public GameObject explosionRadius;
+
+    private Player_Controller player_Controller;
+
     // Start is called before the first frame update
     void Start()
     {
+        player_Controller = FindObjectOfType<Player_Controller>();
         currentHealth = maxHealth;
     }
 
@@ -35,14 +40,14 @@ public class HealthSystem : MonoBehaviour
 
     void Death()
     {
-        if(currentHealth <= 0) 
+        if (currentHealth <= 0)
         {
             if (this.gameObject.CompareTag("Enemy"))
             {
                 GameObject Healer;
                 //FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
 
-                Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0,0,0));
+                Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
                 FindObjectOfType<ManageRoom>().totalEnemies--;
                 RewardSystem rewdSys = FindObjectOfType<RewardSystem>();
                 rewdSys.enemiesKilled++;
@@ -50,8 +55,15 @@ public class HealthSystem : MonoBehaviour
 
                 Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
             }
-            this.GetComponent<Enemy>().Die();
-            Destroy(this.gameObject); // <-- AQUÍ
+            for (int i = 0; i < player_Controller._playerUpgrades.Count; i++)
+            {
+                if (player_Controller._playerUpgrades[i]._id == 2 && player_Controller._playerUpgrades[i]._active == true)
+                {
+                    Instantiate(explosionRadius,transform.position,Quaternion.Euler(0,0,0));
+                }
+            }
+
+            Destroy(this.gameObject); // <-- AQUï¿½
         }
     }
 }

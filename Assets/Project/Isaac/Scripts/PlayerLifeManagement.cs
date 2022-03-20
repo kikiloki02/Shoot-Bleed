@@ -165,7 +165,7 @@ public class PlayerLifeManagement : HealthSystem
         _available = true;
     }
 
-    private IEnumerator InvencibilityTime(float seconds)
+    public IEnumerator InvencibilityTime(float seconds)
     {
         _canGetHit = false;
 
