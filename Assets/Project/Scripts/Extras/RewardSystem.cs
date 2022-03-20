@@ -28,8 +28,7 @@ public class RewardSystem : MonoBehaviour
         enemiesKilled = 0;
         accuracy = 100;
         bulletsHit = bulletsShot = 0;
-        bloodGems = PlayerPrefs.GetInt("BloodGem", 0);
-        canvasTxt.SetBloodGemsTxt(bloodGems);
+        StartCoroutine(SetBloodGems());
 
         DontDestroyOnLoad(this.gameObject);
     }
@@ -75,12 +74,20 @@ public class RewardSystem : MonoBehaviour
         {
 
 
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(0.2f);
 
             if (bulletsShot != 0)
             {
                 accuracy = ((float)bulletsHit / (float)bulletsShot) * 100;
             }
         }
+    }
+
+    IEnumerator SetBloodGems()
+    {
+        yield return new WaitForSeconds(1);
+
+        bloodGems = PlayerPrefs.GetInt("BloodGem", 0);
+        canvasTxt.SetBloodGemsTxt(bloodGems);
     }
 }
