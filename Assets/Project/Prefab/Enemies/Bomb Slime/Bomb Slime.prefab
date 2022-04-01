@@ -5461,6 +5461,7 @@ MonoBehaviour:
   _healPlayer: 15
   healer: {fileID: 6389572601574557839, guid: a4bfafff7a7271443b1a9e0ec425b265, type: 3}
   enemy: {fileID: 3065939049626629957}
+  explosionRadius: {fileID: 2672202200147895118, guid: 38a700eab1e585341bbb53696cb0beb3, type: 3}
 --- !u!114 &8332804646269269796
 MonoBehaviour:
   m_ObjectHideFlags: 0
