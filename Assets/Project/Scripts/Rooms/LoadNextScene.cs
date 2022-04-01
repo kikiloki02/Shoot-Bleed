@@ -22,7 +22,6 @@ public class LoadNextScene : MonoBehaviour
     public SceneType nextSceneType;
 
     private int randomRoomType;
-    private bool roomRemoved;
 
     // Start is called before the first frame update
     void Start()
@@ -79,7 +78,11 @@ public class LoadNextScene : MonoBehaviour
         do //Puede reventar si no quedan salas en ningún pool
         {
             roomRemains = true;
-            if(roomSys.totalScenesCompleted % 2 == 0)
+            if((roomSys.fightingRoomsCompleted) % roomSys.numberOfRoomsForUpgrade == 0 && (roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted && roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted - 1))
+            {
+                randomRoomType = (int)SceneType.Upgrade;
+            }
+            else if((roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted && roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted - 1))
             {
                 randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 1);
             }
@@ -93,6 +96,8 @@ public class LoadNextScene : MonoBehaviour
                 roomRemains = false;
 
         } while (!roomRemains);
+
+        if(randomRoomType == (int)SceneType.Upgrade) { roomSys.lastUpgradeRoom = roomSys.fightingRoomsCompleted; }
         
     }
 
