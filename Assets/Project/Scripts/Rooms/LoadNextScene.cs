@@ -78,6 +78,15 @@ public class LoadNextScene : MonoBehaviour
         do //Puede reventar si no quedan salas en ningún pool
         {
             roomRemains = true;
+            roomSys.upgradeRoomProbability = 20 * (roomSys.fightingRoomsCompleted - roomSys.lastUpgradeRoom);
+            int random = UnityEngine.Random.Range(0, 100);
+            float roomsProbability = (100 - roomSys.upgradeRoomProbability) / 3;
+
+            if(random <= roomsProbability) { randomRoomType = (int)SceneType.Easy; }
+            else if(random <= roomsProbability * 2) { randomRoomType = (int)SceneType.Medium; }
+            else if(random <= roomsProbability * 3) { randomRoomType = (int)SceneType.Hard; }
+            else { randomRoomType = (int)SceneType.Upgrade; }
+            /*
             if((roomSys.fightingRoomsCompleted) % roomSys.numberOfRoomsForUpgrade == 0 && (roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted && roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted - 1))
             {
                 randomRoomType = (int)SceneType.Upgrade;
@@ -89,7 +98,8 @@ public class LoadNextScene : MonoBehaviour
             else
             {
                 randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 2);
-            }
+            }*/
+
             if (roomSys.RoomsRemaining((SceneType)randomRoomType))
                 nextSceneType = (SceneType)randomRoomType;
             else
@@ -97,7 +107,11 @@ public class LoadNextScene : MonoBehaviour
 
         } while (!roomRemains);
 
-        if(randomRoomType == (int)SceneType.Upgrade) { roomSys.lastUpgradeRoom = roomSys.fightingRoomsCompleted; }
+        if(randomRoomType == (int)SceneType.Upgrade) 
+        { 
+            roomSys.lastUpgradeRoom = roomSys.fightingRoomsCompleted;
+            roomSys.upgradeRoomProbability = 0;
+        }
         
     }
 
