@@ -78,27 +78,31 @@ public class LoadNextScene : MonoBehaviour
         do //Puede reventar si no quedan salas en ningún pool
         {
             roomRemains = true;
-            roomSys.upgradeRoomProbability = 20 * (roomSys.fightingRoomsCompleted - roomSys.lastUpgradeRoom);
+            //roomSys.upgradeRoomProbability = 20 * (roomSys.fightingRoomsCompleted - roomSys.lastUpgradeRoom);
+
+            if(roomSys.totalScenesCompleted > 1 && roomSys.totalScenesCompleted < 5 && !roomSys.shownUpgradeRoom) 
+            {
+                roomSys.upgradeRoomProbability += 34;
+                roomSys.shownUpgradeRoom = true;
+            }
+            else if (roomSys.totalScenesCompleted > 5 && roomSys.totalScenesCompleted < 11 && !roomSys.shownUpgradeRoom)
+            {
+                roomSys.upgradeRoomProbability += 25;
+                roomSys.shownUpgradeRoom = true;
+            }
+            else if(roomSys.totalScenesCompleted == 5)
+            {
+                roomSys.shownUpgradeRoom = false;
+                roomSys.upgradeRoomProbability = 0;
+            }
+
             int random = UnityEngine.Random.Range(0, 100);
             float roomsProbability = (100 - roomSys.upgradeRoomProbability) / 3;
 
-            if(random <= roomsProbability) { randomRoomType = (int)SceneType.Easy; }
+            if (random <= roomsProbability) { randomRoomType = (int)SceneType.Easy; }
             else if(random <= roomsProbability * 2) { randomRoomType = (int)SceneType.Medium; }
             else if(random <= roomsProbability * 3) { randomRoomType = (int)SceneType.Hard; }
             else { randomRoomType = (int)SceneType.Upgrade; }
-            /*
-            if((roomSys.fightingRoomsCompleted) % roomSys.numberOfRoomsForUpgrade == 0 && (roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted && roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted - 1))
-            {
-                randomRoomType = (int)SceneType.Upgrade;
-            }
-            else if((roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted && roomSys.lastUpgradeRoom != roomSys.fightingRoomsCompleted - 1))
-            {
-                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 1);
-            }
-            else
-            {
-                randomRoomType = UnityEngine.Random.Range(0, (int)SceneType.Count - 2);
-            }*/
 
             if (roomSys.RoomsRemaining((SceneType)randomRoomType))
                 nextSceneType = (SceneType)randomRoomType;

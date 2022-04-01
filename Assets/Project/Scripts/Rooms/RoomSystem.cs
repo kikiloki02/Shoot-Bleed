@@ -14,13 +14,13 @@ public class RoomSystem : MonoBehaviour
     public int totalScenesCompleted = 0;
     public int fightingRoomsCompleted = 0;
     public int lastUpgradeRoom = 0;
-    //public int numberOfRoomsForUpgrade = 4;
+    public bool shownUpgradeRoom = false;
     public int upgradeRoomProbability;
 
 
     private void Start()
     {
-        upgradeRoomProbability = 20;
+        upgradeRoomProbability = 0;
     }
     public void RemoveRoom(SceneType sceneType)
     {
