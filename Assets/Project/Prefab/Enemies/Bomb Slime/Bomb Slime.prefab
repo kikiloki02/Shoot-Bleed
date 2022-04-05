@@ -5475,7 +5475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 85
-  avoidVelocity: 1
+  avoidVelocity: 75
   followingPercentage: 0.100000024
 --- !u!95 &1731649446638624693
 Animator:

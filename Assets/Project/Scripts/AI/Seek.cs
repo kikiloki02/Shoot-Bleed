@@ -14,6 +14,7 @@ public class Seek : MonoBehaviour
      Vector3 targetDirection = Vector3.zero;
      Vector3 RightPerpendicularTargetDirection = Vector3.zero;
      Vector3 LeftPerpendicularTargetDirection = Vector3.zero;
+     Vector2 dirOfMovementToAvoidObstacle = Vector2.zero;
 
     float maxSeeAhead = 1.0f;
     float xSize, ySize;
@@ -155,220 +156,55 @@ public class Seek : MonoBehaviour
 
     private void CheckForCollisionDetected()
     {
-        RaycastHit2D[] hit2D = new RaycastHit2D[3];
-        LayerMask mask = LayerMask.GetMask("object"); //Chgange to "object"
+        string[] masks = { "object", "Pit" }; 
+        RaycastHit2D[] hit2D = new RaycastHit2D[2];
+        RaycastHit2D[] hit2DForKnightAndSlime = new RaycastHit2D[3];
+        LayerMask mask = LayerMask.GetMask("object"); //Chgange to "object" bit wise or
+        LayerMask mask2 = LayerMask.GetMask(masks); 
 
 
         /* 2 raycasts are used for this, one points from the bottom left corner to the top left corner of the agent and
         the other from the bottom right to the top right */
         hit2D[0] = Physics2D.Raycast(center, topLeft - center, (maxSeeAhead),mask);
         hit2D[1] = Physics2D.Raycast(center, topRight - center, (maxSeeAhead),mask);
-        hit2D[2] = Physics2D.Raycast(center, topMid - center, maxSeeAhead,mask);
+        hit2DForKnightAndSlime[0] = Physics2D.Raycast(center, topLeft - center, (maxSeeAhead),mask2);
+        hit2DForKnightAndSlime[1] = Physics2D.Raycast(center, topRight - center, (maxSeeAhead),mask2);
+        hit2DForKnightAndSlime[2] = Physics2D.Raycast(center, topMid - center, maxSeeAhead, mask2);
 
-        Vector2 dirOfMovementToAvoidObstacle;
+        // hit2D[2] = Physics2D.Raycast(center, topMid - center, maxSeeAhead,mask);
+
+
 
 
         switch (enemyHealth.maxHealth)
         {
             case 8://bat
-                if (hit2D[0])
-                {
-                    /* if a collision was detected on the left side of the bounding box, the direction of movement (to
-                    steer away from the obstacle) will be to the right. */
-                    dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
 
-                    /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
-                     This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized;//Vector2.Distance(center, centerRight);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-
-
-                    // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
-
-                }
-
-                if (hit2D[1])
-                {
-
-                    dirOfMovementToAvoidObstacle = centerLeft;
-
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized;//Vector2.Distance(center, centerLeft);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
-
-                }
-
-                //if (hit2D[2])
-                //{
-                //    dirOfMovementToAvoidObstacle = center - hit2D[2].collider.transform.position;
-                //    dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[2].collider.transform.position);
-                //    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                //    rb.AddForce(targetDirection.normalized * ((velocity + 20) * followingPercentage));
-
-                //    Debug.DrawRay(hit2D[2].collider.transform.position, bottomMid - hit2D[2].collider.transform.position, Color.white);
-                //}
-
-                /* If no obstacle was detected, then just steer it towards it's current velocity */
-                else
-                {
-                    rb.AddForce(targetDirection.normalized * velocity);
-                }
+                ResultVectorMovement(hit2D, dirOfMovementToAvoidObstacle);
 
                 break;
 
             case 20://knight
-                if (hit2D[0])
-                {
-                    /* if a collision was detected on the left side of the bounding box, the direction of movement (to
-                    steer away from the obstacle) will be to the right. */
-                    dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
 
-                    /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
-                     This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized*2;//Vector2.Distance(center, centerRight);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-
-
-                    // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
-
-                }
-
-                if (hit2D[1])
-                {
-
-                    dirOfMovementToAvoidObstacle = centerLeft;
-
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized*2;//Vector2.Distance(center, centerLeft);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
-
-                }
-
-                //if (hit2D[2])
-                //{
-                //    dirOfMovementToAvoidObstacle = center - hit2D[2].collider.transform.position;
-                //    dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[2].collider.transform.position);
-                //    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                //    rb.AddForce(targetDirection.normalized * ((velocity + 20) * followingPercentage));
-
-                //    Debug.DrawRay(hit2D[2].collider.transform.position, bottomMid - hit2D[2].collider.transform.position, Color.white);
-                //}
-
-                /* If no obstacle was detected, then just steer it towards it's current velocity */
-                else
-                {
-                    rb.AddForce(targetDirection.normalized * velocity);
-                }
+                ResultVectorMovement(hit2DForKnightAndSlime, dirOfMovementToAvoidObstacle);
 
                 break;
 
             case 12://blood bat
 
-                if (hit2D[0])
-                {
-                    /* if a collision was detected on the left side of the bounding box, the direction of movement (to
-                    steer away from the obstacle) will be to the right. */
-                    dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
+                ResultVectorMovement(hit2D, dirOfMovementToAvoidObstacle);
 
-                    /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
-                     This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized;//Vector2.Distance(center, centerRight);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
+                break;
 
 
+            case 15://bomb slime
 
-
-                    // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
-
-                }
-
-                if (hit2D[1])
-                {
-
-                    dirOfMovementToAvoidObstacle = centerLeft;
-
-                    dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized;//Vector2.Distance(center, centerLeft);
-                    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                    rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-                    Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
-
-                }
-
-                //if (hit2D[2])
-                //{
-                //    dirOfMovementToAvoidObstacle = center - hit2D[2].collider.transform.position;
-                //    dirOfMovementToAvoidObstacle *= Vector2.Distance(transform.position, hit2D[2].collider.transform.position);
-                //    rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-                //    rb.AddForce(targetDirection.normalized * ((velocity + 20) * followingPercentage));
-
-                //    Debug.DrawRay(hit2D[2].collider.transform.position, bottomMid - hit2D[2].collider.transform.position, Color.white);
-                //}
-
-                /* If no obstacle was detected, then just steer it towards it's current velocity */
-                else
-                {
-                    rb.AddForce(targetDirection.normalized * velocity);
-                }
-
+                ResultVectorMovement(hit2DForKnightAndSlime, dirOfMovementToAvoidObstacle);
 
                 break;
 
             default:
                 break;
-        }
-
-        
-       // hit2D[0].normal
-        if (hit2D[0])
-        {
-            /* if a collision was detected on the left side of the bounding box, the direction of movement (to
-            steer away from the obstacle) will be to the right. */
-            dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
-
-            /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
-             This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
-            dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized * 2;//Vector2.Distance(center, centerRight);
-            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-
-
-           // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
-            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
-            
-        }
-
-        if (hit2D[1])
-        {
-         
-            dirOfMovementToAvoidObstacle = centerLeft;
-
-            dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized * 2;//Vector2.Distance(center, centerLeft);
-            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
-            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
-
-
-            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
-            
         }
 
         //if (hit2D[2])
@@ -382,9 +218,57 @@ public class Seek : MonoBehaviour
         //}
 
         /* If no obstacle was detected, then just steer it towards it's current velocity */
+       
+           // rb.AddForce(targetDirection.normalized * velocity);
+        
+    }
+
+    private void ResultVectorMovement(RaycastHit2D[] _hit2D, Vector2 _dirOfMovementToAvoidObstacle)
+    {
+        //if(_hit2D[0])
+        //{
+        //    if targe
+              
+
+
+        //}
+        if (_hit2D[0])
+        {
+            /* if a collision was detected on the left side of the bounding box, the direction of movement (to
+            steer away from the obstacle) will be to the right. */
+            dirOfMovementToAvoidObstacle = centerRight;//topRight - hit2D[0].collider.transform.position;
+
+            /* Make the direction of vector to avoid obstacle, point away from it as much as possible to ensure the obstacle doesnt collide with it
+             This can obviously be changed to make your own direction of movement when an obstacle is detected.*/
+            dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized * 2;//Vector2.Distance(center, centerRight);
+            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
+            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
+
+
+            // Debug.DrawRay(hit2D[0].collider.transform.position, topRight - hit2D[0].collider.transform.position, Color.white);
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.blue);
+
+        }
+        
+        else if (_hit2D[1])
+        {
+
+            dirOfMovementToAvoidObstacle = centerLeft;
+
+            dirOfMovementToAvoidObstacle = dirOfMovementToAvoidObstacle.normalized * 2;//Vector2.Distance(center, centerLeft);
+            rb.AddForce(dirOfMovementToAvoidObstacle * (avoidVelocity * avoidingPercentage));
+            rb.AddForce(targetDirection.normalized * (velocity * followingPercentage));
+
+
+            Debug.DrawRay(center, dirOfMovementToAvoidObstacle, Color.green);
+
+        }
+
+        /* If no obstacle was detected, then just steer it towards it's current velocity */
         else
         {
             rb.AddForce(targetDirection.normalized * velocity);
         }
+
     }
 }
