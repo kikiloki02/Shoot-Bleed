@@ -2,10 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemOutRun : MonoBehaviour
+public class ShopUpgrade : MonoBehaviour
 {
-    int price;
-
     // Start is called before the first frame update
     void Start()
     {
