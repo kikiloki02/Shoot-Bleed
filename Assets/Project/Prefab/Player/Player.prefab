@@ -291,6 +291,7 @@ MonoBehaviour:
   _dashSound: {fileID: 7065121161485805946}
   lastRoomExit: 0
   _weapon: {fileID: 8406800397279954213}
+  _shield: {fileID: 0}
   _canMove: 1
 --- !u!114 &4262791607163136345
 MonoBehaviour:
@@ -309,6 +310,7 @@ MonoBehaviour:
   _healPlayer: 0
   healer: {fileID: 0}
   enemy: {fileID: 0}
+  explosionRadius: {fileID: 0}
   _player: {fileID: 3060272417040684033}
   criticalState: 0
   loselife: 1
@@ -890,6 +892,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2375589719272225312, guid: e7bc4439c2a7aff43832a9a8948191f7, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 9da2ca906aeeecc4bb7f942a9927235b, type: 3}
     - target: {fileID: 3059099639952037025, guid: e7bc4439c2a7aff43832a9a8948191f7, type: 3}
       propertyPath: m_Name
       value: DashSound
@@ -925,6 +931,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 7
       objectReference: {fileID: 0}
+    - target: {fileID: 2514097011180312883, guid: 79df1ee098457904ab1cb667fa9efa34, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 7b5592f98b6f74e4690920f2cf0aac15, type: 3}
     - target: {fileID: 7204191323555634401, guid: 79df1ee098457904ab1cb667fa9efa34, type: 3}
       propertyPath: m_RootOrder
       value: 3

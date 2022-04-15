@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 public enum SceneType
@@ -19,6 +20,7 @@ public class ManageRoom : MonoBehaviour
     public SceneType sceneType;
     public bool roomRemoved;
 
+    private NewAudioManager audioManager;
     // Start is called before the first frame update
     void Awake()
     {
@@ -29,6 +31,7 @@ public class ManageRoom : MonoBehaviour
             player.transform.position = playerSpawnPos[0].position;
         else //Spawn bottom
             player.transform.position = playerSpawnPos[1].position;
+        audioManager = FindObjectOfType<NewAudioManager>();
 
     }
 
@@ -48,7 +51,9 @@ public class ManageRoom : MonoBehaviour
     {
         if (enemiesDead())
         {
+            audioManager.Play("Open Door");
             OpenDoors();
+            audioManager.Play("Room Ends");
         }
     }
 
@@ -58,5 +63,6 @@ public class ManageRoom : MonoBehaviour
         {
             doorsAnim[i].SetTrigger("Open"); //Activate Animation
         }
+        
     }
 }

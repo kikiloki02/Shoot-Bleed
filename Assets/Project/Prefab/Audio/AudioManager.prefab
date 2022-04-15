@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4329700523412526829}
   - component: {fileID: 70786754952609057}
+  - component: {fileID: -644607331343308567}
   m_Layer: 0
   m_Name: AudioManager
   m_TagString: Untagged
@@ -44,7 +45,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4175150349107244494}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b395e67d0564b84b8331619bf74c5af, type: 3}
   m_Name: 
@@ -58,6 +59,31 @@ MonoBehaviour:
   - {fileID: 0}
   bgm:
   - {fileID: 0}
+--- !u!114 &-644607331343308567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4175150349107244494}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e176226ac3ab484d8c11f8f5386a8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sounds:
+  - name: Room Ends
+    clip: {fileID: 8300000, guid: 20c6f4745d93e2b409735b1096fd8de2, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
+  - name: Open Door
+    clip: {fileID: 8300000, guid: 076e998e627bca647a1a5c38087cdf37, type: 3}
+    volume: 1
+    pitch: 0
+    loop: 0
+    source: {fileID: 0}
 --- !u!1001 &163102037347217283
 PrefabInstance:
   m_ObjectHideFlags: 0
