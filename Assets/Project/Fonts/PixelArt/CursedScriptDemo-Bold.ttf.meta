@@ -1,0 +1,22 @@
+fileFormatVersion: 2
+guid: ea30b0572c990ab4e856b37039040c2b
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontNames:
+  - CursedScriptDemo
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 2169c9a8b6be2e749bd26ea029a6c2fb, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
