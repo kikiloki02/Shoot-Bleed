@@ -51,9 +51,9 @@ public class ManageRoom : MonoBehaviour
     {
         if (enemiesDead())
         {
+            audioManager.Play("Room Ends");
             audioManager.Play("Open Door");
             OpenDoors();
-            audioManager.Play("Room Ends");
         }
     }
 

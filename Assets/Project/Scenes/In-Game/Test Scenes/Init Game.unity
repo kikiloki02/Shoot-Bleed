@@ -2683,8 +2683,6 @@ MonoBehaviour:
   - {fileID: 124048808}
   - {fileID: 1549784268}
   - {fileID: 1021249253}
-  doorsSound: {fileID: 997151060}
-  endRoom: {fileID: 5348748}
   playerSpawnPos:
   - {fileID: 1416414592}
   - {fileID: 1973705326}
@@ -4114,6 +4112,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 173064998}
     m_Modifications:
+    - target: {fileID: -644607331343308567, guid: 6e27dce3f62d9004daf8d3119116ccc5, type: 3}
+      propertyPath: sounds.Array.data[0].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: -644607331343308567, guid: 6e27dce3f62d9004daf8d3119116ccc5, type: 3}
+      propertyPath: sounds.Array.data[1].pitch
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 70786754952609057, guid: 6e27dce3f62d9004daf8d3119116ccc5, type: 3}
       propertyPath: sfx.Array.size
       value: 6
@@ -4644,7 +4650,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2028237102
 Transform:
   m_ObjectHideFlags: 0

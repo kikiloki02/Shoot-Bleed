@@ -6,19 +6,11 @@ using UnityEngine;
 
 public class NewAudioManager : MonoBehaviour
 {
-
     public Sound[] sounds;
-
-    public static NewAudioManager instance;
+    
     void Awake()
     {
-        if (instance == null)
-            instance = this;
-        else
-        {
-            Destroy(this.gameObject);
-            return;
-        }
+
         DontDestroyOnLoad(gameObject);
         foreach(Sound s in sounds)
         {
@@ -28,6 +20,7 @@ public class NewAudioManager : MonoBehaviour
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
             s.source.loop = s.loop;
+            s.source.outputAudioMixerGroup = s.mixer;
         }
     }
 
