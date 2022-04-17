@@ -107,8 +107,8 @@ public class Upgrades : MonoBehaviour
 
         if (pickedUp) {
 
-            StartCoroutine(ShowPickedUpText(1f));
-            StartCoroutine(shopUpgrade.ShowPickedUpTextShopKeeper(1f)); 
+            StartCoroutine(ShowPickedUpText(2f));
+            StartCoroutine(shopUpgrade.ShowPickedUpTextShopKeeper(2f)); 
         }
 
     }

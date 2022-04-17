@@ -575,7 +575,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idx: 0
   priceText: {fileID: 493932016602361252}
-  price: 20
+  price: 25
   sprite: {fileID: 7687248749197381475}
   popUpCanvas: {fileID: 7687248748867524366}
   descriptionCanvas: {fileID: 7687248749518813259}

@@ -56,14 +56,14 @@ public class ShopUpgrade : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.tag != "Player") { return; }
-        StartCoroutine(ShowWelcomingShopKeeper(1f));
+        StartCoroutine(ShowWelcomingShopKeeper(2f));
         
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
         if (other.tag != "Player") { return; }
-        StartCoroutine(ShowFarewellShopKeeper(1f));
+        StartCoroutine(ShowFarewellShopKeeper(2f));
        
     }
 

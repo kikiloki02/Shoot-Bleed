@@ -620,13 +620,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idx: 1
   priceText: {fileID: 4261153441956934041}
-  price: 20
+  price: 45
   sprite: {fileID: 8587839560669902388}
   popUpCanvas: {fileID: 8587839562745307050}
   descriptionCanvas: {fileID: 8587839561219709463}
   PickedUpCanvas: {fileID: 8587839562747215684}
   shopUpgrade: {fileID: 0}
-  percentage: 0.05
+  percentage: 0.2
 --- !u!70 &8587839561757045307
 CapsuleCollider2D:
   m_ObjectHideFlags: 0

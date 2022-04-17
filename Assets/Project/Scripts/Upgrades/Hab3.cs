@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Hab3 : Upgrades // fire Rate
 {
-    float fireRate;
+    
     float percentage;
     Player_Controller player_Controller;
+    public GameObject _weapon;
     // Start is called before the first frame update
     void Start()
     {
@@ -34,7 +35,9 @@ public class Hab3 : Upgrades // fire Rate
     {
         base.Activate();
         player_Controller = FindObjectOfType<Player_Controller>();
-        player_Controller._secondsPerBullet = (int) (fireRate * (1 + percentage));
+
+        player_Controller._weapon.GetComponent<ShootBullet>().secondsPerBullet -= 0.08f;
+        //player_Controller._secondsPerBullet *= (0.5f);
     }
     public override void Disable()
     {

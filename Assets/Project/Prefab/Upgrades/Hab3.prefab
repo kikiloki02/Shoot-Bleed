@@ -877,12 +877,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idx: 2
   priceText: {fileID: 5725589245583839314}
-  price: 20
+  price: 50
   sprite: {fileID: 6866088769770728561}
   popUpCanvas: {fileID: 6866088770645981274}
   descriptionCanvas: {fileID: 6866088770567923700}
   PickedUpCanvas: {fileID: 6866088769372074491}
   shopUpgrade: {fileID: 0}
+  _weapon: {fileID: 3327711187561752896, guid: 49af3c3e0e5290e419d5a4fe07ca4724, type: 3}
 --- !u!70 &6866088771052624639
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
