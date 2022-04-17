@@ -707,6 +707,8 @@ GameObject:
   m_Component:
   - component: {fileID: 345169552}
   - component: {fileID: 345169553}
+  - component: {fileID: 345169555}
+  - component: {fileID: 345169554}
   m_Layer: 0
   m_Name: Shop_table_top
   m_TagString: Untagged
@@ -779,6 +781,58 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &345169554
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345169551}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 2.0029993, y: -0.51115143}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 2}
+    newSize: {x: 6, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.87660027, y: 2.7845576}
+  m_EdgeRadius: 0
+--- !u!61 &345169555
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 345169551}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -1.997056, y: -0.4754895}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 2}
+    newSize: {x: 6, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.86471367, y: 2.6656854}
+  m_EdgeRadius: 0
 --- !u!1 &420957082
 GameObject:
   m_ObjectHideFlags: 0
@@ -4984,7 +5038,7 @@ MonoBehaviour:
       m_Calls: []
   m_text: New Text
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 27c72cd4fe63f994297117d296a5efb8, type: 2}
+  m_fontAsset: {fileID: 0}
   m_sharedMaterial: {fileID: -1191474755246639308, guid: 27c72cd4fe63f994297117d296a5efb8, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -5491,6 +5545,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1248132304}
   - component: {fileID: 1248132305}
+  - component: {fileID: 1248132306}
   m_Layer: 0
   m_Name: Shop_table_bottom
   m_TagString: Untagged
@@ -5563,6 +5618,32 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!61 &1248132306
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248132303}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.225}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 6, y: 2}
+    newSize: {x: 6.095238, y: 2}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 4.878483, y: 0.8}
+  m_EdgeRadius: 0
 --- !u!1 &1292517095
 GameObject:
   m_ObjectHideFlags: 0
@@ -6010,6 +6091,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1511931373}
   - component: {fileID: 1511931374}
+  - component: {fileID: 1511931375}
   m_Layer: 0
   m_Name: Shopkeeper
   m_TagString: Untagged
@@ -6083,6 +6165,22 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!70 &1511931375
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1511931372}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.29123712}
+  m_Size: {x: 0.809803, y: 1.4175258}
+  m_Direction: 0
 --- !u!1 &1571918309
 GameObject:
   m_ObjectHideFlags: 0
