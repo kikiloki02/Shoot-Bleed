@@ -584,7 +584,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 85bb89ec4601c4349b06d476be813e3b, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 08d08b377e5d11a44b13d530f8c44ab2, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -645,7 +645,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   idx: 3
   priceText: {fileID: 8701366484677415491}
-  price: 5
+  price: 60
   sprite: {fileID: 962888874199866993}
   popUpCanvas: {fileID: 962888874469834717}
   descriptionCanvas: {fileID: 962888873865807707}

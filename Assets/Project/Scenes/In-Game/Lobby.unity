@@ -793,7 +793,7 @@ GameObject:
   - component: {fileID: 345169554}
   m_Layer: 0
   m_Name: Shop_table_top
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5480,7 +5480,7 @@ GameObject:
   - component: {fileID: 1248132306}
   m_Layer: 0
   m_Name: Shop_table_bottom
-  m_TagString: Untagged
+  m_TagString: Wall
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5867,8 +5867,8 @@ MonoBehaviour:
   - 'Till next time! '
   - See you soon!
   shopKeeperMessage: {fileID: 921853182}
---- !u!58 &1452249154
-CircleCollider2D:
+--- !u!61 &1452249154
+BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -5880,9 +5880,19 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0.96}
+  m_Offset: {x: -1.9447603, y: -3.6842575}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   serializedVersion: 2
-  m_Radius: 5.3672657
+  m_Size: {x: 12.206217, y: 16.297678}
+  m_EdgeRadius: 0
 --- !u!1 &1485320386
 GameObject:
   m_ObjectHideFlags: 0

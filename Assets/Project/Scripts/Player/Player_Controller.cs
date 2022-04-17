@@ -270,7 +270,7 @@ public class Player_Controller : MonoBehaviour
                     _playerUpgrades[i]._active = true;
 
                     _secondsPerBullet -= 0.15f;
-                    _weapon.GetComponent<ShootBullet>().secondsPerBullet -= 0.15f;
+                    _weapon.GetComponent<ShootBullet>().secondsPerBullet -= 0.07f;
 
                     break;
                 }
