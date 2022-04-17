@@ -511,7 +511,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerUpgrades: []
-  shopUpgrade: {fileID: 0}
+  skillsOwned: 0
   addedNewAb: 0
 --- !u!1001 &1018617585
 PrefabInstance:
