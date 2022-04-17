@@ -7,7 +7,7 @@ public class Hab3 : Upgrades // fire Rate
     float fireRate;
     float percentage;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         base.Start();
         isActive = false;
@@ -34,7 +34,7 @@ public class Hab3 : Upgrades // fire Rate
     public override void Activate()
     {
         base.Activate();
-        fireRate *= (1 + percentage);
+        fireRate = (int) (fireRate * (1 + percentage));
     }
     public override void Disable()
     {

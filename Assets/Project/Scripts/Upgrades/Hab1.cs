@@ -6,7 +6,7 @@ public class Hab1 : Upgrades // Max Health
 {
     private int maxHealth;
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         base.Start();
         isActive = false;

@@ -53,7 +53,8 @@ public class Player_Upgrade : MonoBehaviour
        
         for(int i = 0; i < shopUpgrade.upgradesInShop.Count; i++)
         {
-            if((skillsOwned << shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex()) % 2 != 0)
+            int actualCheckSkill = (skillsOwned >> shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex()) % 2;
+            if (actualCheckSkill != 0)
             {
                 InitActivate(shopUpgrade,i);             
             }

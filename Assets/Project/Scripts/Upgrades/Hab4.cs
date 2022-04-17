@@ -9,7 +9,7 @@ public class Hab4 : Upgrades //
     public float percentage;
 
     // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         base.Start();
         isActive = false;
@@ -35,11 +35,11 @@ public class Hab4 : Upgrades //
     public override void Activate()
     {
         base.Activate();
-        //accion de la habilidad
-       for(int i = 0; i <= shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop.Count; i++)
+        //accion de la habilidad PETA x NULL OBJECT
+       /*for(int i = 0; i <= shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop.Count; i++)
        {
             shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price = (int)(shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price * (1 - percentage)); 
-       }
+       }*/
     }
 
     public override void Disable()

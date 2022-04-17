@@ -7,15 +7,10 @@ using TMPro;
 public class ShopUpgrade : MonoBehaviour
 {
     public List<GameObject> upgradesInShop; // les que té
-    
-
-    //crear pref habilidfaes ,añadirlas desde el inspector
 
     public List<GameObject> exposedUpgrades; //les que s'exposen
-    
 
     public Transform[] positions;
-
 
     private int numberOfUpgInStock;
 

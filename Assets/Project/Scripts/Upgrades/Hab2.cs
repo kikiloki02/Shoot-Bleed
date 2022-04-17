@@ -7,7 +7,7 @@ public class Hab2 : Upgrades //movement Speed
     private float movementSpeed;
     public float percentage; // porcentage en el inspector
                              // Start is called before the first frame update
-    void Awake()
+    void Start()
     {
         base.Start();
         isActive = false;
@@ -34,7 +34,7 @@ public class Hab2 : Upgrades //movement Speed
     {
         base.Activate();
         //accion de la habilidad
-        movementSpeed *= (1 + percentage); 
+        movementSpeed = (int) (movementSpeed * (1 + percentage)); 
        
     }
 
