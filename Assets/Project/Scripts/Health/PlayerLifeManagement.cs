@@ -30,6 +30,7 @@ public class PlayerLifeManagement : HealthSystem
 
     private SpriteRenderer _renderer;
 
+
     private Color32 _spriteRedColor;
     private Color32 _spriteWhiteColor;
 
