@@ -6,6 +6,7 @@ public class HealthSystem : MonoBehaviour
 {
     public int maxHealth;
     public int currentHealth;
+    private bool dead = false;
 
     public int _healPlayer;
 
@@ -40,20 +41,17 @@ public class HealthSystem : MonoBehaviour
 
     void Death()
     {
-        if (currentHealth <= 0)
+        if (currentHealth <= 0 && !dead)
         {
+            dead = true;
             if (this.gameObject.CompareTag("Enemy"))
             {
-                GameObject Healer;
-                //FindObjectOfType<PlayerLifeManagement>().RecoverHealth(enemy.GetComponent<Enemy>()._healPlayer);
 
-                Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
                 FindObjectOfType<ManageRoom>().totalEnemies--;
                 RewardSystem rewdSys = FindObjectOfType<RewardSystem>();
                 rewdSys.enemiesKilled++;
                 rewdSys.AddCombo();
 
-                Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
             }
             for (int i = 0; i < player_Controller._playerUpgrades.Count; i++)
             {
@@ -63,7 +61,30 @@ public class HealthSystem : MonoBehaviour
                 }
             }
 
-            Destroy(this.gameObject); // <-- AQU�
+            GetComponent<Animator>().SetBool("Dead", true);
+            
         }
+    }
+
+    public void SpawnHealer()
+    {
+        GameObject Healer;
+
+        Healer = Instantiate(healer, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+        Healer.GetComponent<Healer>().SetPointsToHeal(_healPlayer);
+    }
+
+    public void DesactivateBehaviours()
+    {
+        GetComponent<Enemy>()._attackIndicator.SetActive(false); ;
+        GetComponent<Enemy>().enabled = false;
+        GetComponent<Seek>().enabled = false;
+        if(GetComponent<CapsuleCollider2D>() != null) { GetComponent<CapsuleCollider2D>().enabled = false; }
+        else { GetComponent<CircleCollider2D>().enabled = false; }
+        GetComponent<CircleCollider2D>().enabled = false;
+    }
+    public void DestroyAfterDeath()
+    {
+        Destroy(this.gameObject); // <-- AQU�
     }
 }

@@ -230,72 +230,69 @@ public class Bat : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        GetComponent<Animator>().SetTrigger("Charge");
+            GetComponent<Animator>().SetTrigger("Charge");
 
-        _isCharging = true;
+            _isCharging = true;
 
-        this.GetComponent<Seek>().enabled = false;
+            this.GetComponent<Seek>().enabled = false;
 
-        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
-        _chargeDirection.Normalize();
+            _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
+            _chargeDirection.Normalize();
 
-        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
+            _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
-        // Show the according particles and play the according sound to telegraph the attack:
-        switch (_randomNumber)
-        {
-            case 0:
-            case 1:
-            case 2:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesBasic.Play();
-                break;
-            case 3:
-            case 4:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesForthAndBack.Play();
-                break;
-            case 5:
-            case 6:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesChain.Play();
-                _rotate = true;
-                break;
-        }
+            // Show the according particles and play the according sound to telegraph the attack:
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesBasic.Play();
+                    break;
+                case 3:
+                case 4:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesForthAndBack.Play();
+                    break;
+                case 5:
+                case 6:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesChain.Play();
+                    _rotate = true;
+                    break;
+            }
 
-        // Logic:
-        _canAttack = false;
+            // Logic:
+            _canAttack = false;
 
-        _spriteRenderer.color = new Color32(255, 0, 0, 255);
-
+            _spriteRenderer.color = new Color32(255, 0, 0, 255);
         yield return new WaitForSeconds(seconds); // Wait
+            _spriteRenderer.color = _spriteWhiteColor;
 
-        _spriteRenderer.color = _spriteWhiteColor;
-
-        // Execute the corresponding attack move:
-        switch (_randomNumber)
-        {
-            case 0:
-            case 1:
-            case 2:
-                _chargingParticlesBasic.Stop();
-                Attack1();
-                break;
-            case 3:
-            case 4:
-                _chargingParticlesForthAndBack.Stop();
-                StartCoroutine(Attack2(_attack2point5Cooldown));
-                break;
-            case 5:
-            case 6:
-                _chargingParticlesChain.Stop();
-                StartCoroutine(Attack3(_attack3point5Cooldown));
-                break;
-        }
-
+            // Execute the corresponding attack move:
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    _chargingParticlesBasic.Stop();
+                    Attack1();
+                    break;
+                case 3:
+                case 4:
+                    _chargingParticlesForthAndBack.Stop();
+                    StartCoroutine(Attack2(_attack2point5Cooldown));
+                    break;
+                case 5:
+                case 6:
+                    _chargingParticlesChain.Stop();
+                    StartCoroutine(Attack3(_attack3point5Cooldown));
+                    break;
+            }
         _isCharging = false;
     }
 
