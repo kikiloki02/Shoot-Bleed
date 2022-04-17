@@ -98,8 +98,6 @@ public class Bomb_Slime : Enemy
         GetComponent<SpriteRenderer>().enabled = false;
         GetComponent<CapsuleCollider2D>().enabled = false;
 
-       
-
         // Follow the Player while being underground:
         _followPlayer = true;
 
@@ -169,13 +167,14 @@ public class Bomb_Slime : Enemy
 
         yield return new WaitForSeconds(seconds); // Wait
 
-        _spriteRenderer.color = new Color(255, 255, 255);
+            _spriteRenderer.color = new Color(255, 255, 255);
 
-        // Execute the corresponding attack move:
+            // Execute the corresponding attack move:
 
-        StartCoroutine(PreparedToAttack(_reactionTime));
+            StartCoroutine(PreparedToAttack(_reactionTime));
 
         _isCharging = false;
+
     }
 
     IEnumerator AttackCooldown(float seconds) // DONE!

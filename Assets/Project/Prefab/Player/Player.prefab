@@ -291,6 +291,7 @@ MonoBehaviour:
   _dashSound: {fileID: 7065121161485805946}
   lastRoomExit: 0
   _weapon: {fileID: 8406800397279954213}
+  _shield: {fileID: 0}
   _canMove: 1
 --- !u!114 &4262791607163136345
 MonoBehaviour:
@@ -309,6 +310,7 @@ MonoBehaviour:
   _healPlayer: 0
   healer: {fileID: 0}
   enemy: {fileID: 0}
+  explosionRadius: {fileID: 0}
   _player: {fileID: 3060272417040684033}
   criticalState: 0
   loselife: 1
