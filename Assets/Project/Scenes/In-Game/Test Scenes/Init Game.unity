@@ -4103,7 +4103,7 @@ PrefabInstance:
     - target: {fileID: 1497293833413482988, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: _enemy
       value: 
-      objectReference: {fileID: 63675566395749085, guid: 357684c7dd1dc0948b1c6aea5667707c, type: 3}
+      objectReference: {fileID: 3065939049626629957, guid: afb771001787034419df739a5fa0da75, type: 3}
     - target: {fileID: 1497293833413482988, guid: be0f4a4719b301c46a31ea4f1b355334, type: 3}
       propertyPath: _isTrigger
       value: 1
