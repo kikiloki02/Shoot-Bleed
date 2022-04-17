@@ -2,16 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Hab1 : Upgrades // Max Health
 {
-    private int maxHealth;
+    
+    private Player_Controller player_Controller;
     // Start is called before the first frame update
+
     void Start()
     {
         base.Start();
         isActive = false;
-
-        maxHealth = FindObjectOfType<HealthSystem>().maxHealth;
         shopUpgrade = FindObjectOfType<ShopUpgrade>();
     }
 
@@ -34,7 +35,14 @@ public class Hab1 : Upgrades // Max Health
     {
         base.Activate();
         //accion de la habilidad
-        maxHealth += 5;
+        player_Controller = FindObjectOfType<Player_Controller>();
+
+        player_Controller.GetComponent<PlayerLifeManagement>().maxHealth += 5;
+        player_Controller.GetComponent<PlayerLifeManagement>().currentHealth += 5;
+
+        player_Controller.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetMaxHealth(player_Controller.GetComponent<PlayerLifeManagement>().maxHealth);
+        player_Controller.GetComponent<PlayerLifeManagement>().healthBar.GetComponent<HealthBar>().SetHealth(player_Controller.GetComponent<PlayerLifeManagement>().currentHealth);
+        
     }
 
     public override void Disable()

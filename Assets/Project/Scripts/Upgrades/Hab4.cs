@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Hab4 : Upgrades //
 {
-
-    
     public float percentage;
 
     // Start is called before the first frame update
@@ -13,7 +11,6 @@ public class Hab4 : Upgrades //
     {
         base.Start();
         isActive = false;
-
         shopUpgrade = FindObjectOfType<ShopUpgrade>();
     }
 
@@ -34,12 +31,24 @@ public class Hab4 : Upgrades //
 
     public override void Activate()
     {
+        
         base.Activate();
-        //accion de la habilidad PETA x NULL OBJECT
-       /*for(int i = 0; i <= shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop.Count; i++)
-       {
-            shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price = (int)(shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price * (1 - percentage)); 
-       }*/
+        if(shopUpgrade == null){
+            shopUpgrade = FindObjectOfType<ShopUpgrade>();
+        }
+        for (int i = 0; i < shopUpgrade.exposedUpgrades.Count; i++)
+        {
+            int newPrice = (int)(shopUpgrade.GetComponent<ShopUpgrade>().exposedUpgrades[i].GetComponent<Upgrades>().price * (1 - percentage));
+            //shopUpgrade.GetComponent<ShopUpgrade>().exposedUpgrades[i].GetComponent<Upgrades>().price = newPrice;
+            shopUpgrade.GetComponent<ShopUpgrade>().exposedUpgrades[i].GetComponent<Upgrades>().ChangeTextPrice(newPrice);
+        }
+        for (int i = 0; i < shopUpgrade.upgradesInShop.Count; i++)
+        {
+            int newPrice = (int)(shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price * (1 - percentage));
+            //shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().price = newPrice;
+            shopUpgrade.GetComponent<ShopUpgrade>().upgradesInShop[i].GetComponent<Upgrades>().ChangeTextPrice(newPrice);
+        }
+
     }
 
     public override void Disable()

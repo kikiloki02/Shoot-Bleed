@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Hab2 : Upgrades //movement Speed
 {
-    private float movementSpeed;
+    private Player_Controller player_Controller;
     public float percentage; // porcentage en el inspector
                              // Start is called before the first frame update
     void Start()
@@ -12,7 +12,7 @@ public class Hab2 : Upgrades //movement Speed
         base.Start();
         isActive = false;
 
-        movementSpeed = FindObjectOfType<Player_Controller>()._movementSpeed;
+
         shopUpgrade = FindObjectOfType<ShopUpgrade>();
     }
     public override void Update()
@@ -32,9 +32,10 @@ public class Hab2 : Upgrades //movement Speed
 
     public override void Activate()
     {
+        player_Controller = FindObjectOfType<Player_Controller>();
         base.Activate();
         //accion de la habilidad
-        movementSpeed = (int) (movementSpeed * (1 + percentage)); 
+        player_Controller._movementSpeed = (int)(player_Controller._movementSpeed * (1 + percentage)); 
        
     }
 

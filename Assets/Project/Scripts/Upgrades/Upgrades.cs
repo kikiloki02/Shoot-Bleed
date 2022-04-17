@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Upgrades : MonoBehaviour
 {
@@ -11,6 +12,10 @@ public class Upgrades : MonoBehaviour
     protected bool disabled;
     protected bool pickedUp;
     protected Player_Upgrade playerUpgrade;
+    
+    public TextMeshProUGUI priceText;
+
+    private CanvasText canvasTxt;
 
     public int price;
     public GameObject sprite;
@@ -23,6 +28,8 @@ public class Upgrades : MonoBehaviour
     // Start is called before the first frame update
     public virtual void Start()
     {
+        canvasTxt = FindObjectOfType<CanvasText>();
+        priceText.text = price.ToString();
         bloodGems += PlayerPrefs.GetInt("BloodGem");
         playerUpgrade = FindObjectOfType<Player_Upgrade>();
     }
@@ -30,19 +37,22 @@ public class Upgrades : MonoBehaviour
     // Update is called once per frame
     public virtual void Update()
     {
+       // priceText.text = price.ToString();
+
         if (Input.GetKeyDown(KeyCode.E) && ready)
         {
+            bloodGems = PlayerPrefs.GetInt("BloodGem");
             Debug.Log("E pressed");
+
              if(bloodGems >= price)
              {
 
-                int bloodGems = PlayerPrefs.GetInt("BloodGem");
                 bloodGems -= price;
                 PlayerPrefs.SetInt("BloodGem", bloodGems);
 
-                
+                canvasTxt.SetBloodGemsTxt(bloodGems);
 
-                StartCoroutine(shopUpgrade.ShowPickedUpTextShopKeeper(1f));
+                StartCoroutine(shopUpgrade.ShowPickedUpTextShopKeeper(2f));
                 pickedUp = true;
 
                 playerUpgrade.playerUpgrades.Add(this.gameObject);
@@ -55,8 +65,7 @@ public class Upgrades : MonoBehaviour
              else
              {
                 Debug.Log(bloodGems);
-                StartCoroutine(shopUpgrade.ShowNotEnoughBloodGems(1f));
-                //fer que surti missatge del tendero
+                StartCoroutine(shopUpgrade.ShowNotEnoughBloodGems(2f));
              }
         }
     }
@@ -65,6 +74,7 @@ public class Upgrades : MonoBehaviour
     {
         if (other.tag != "Player") { return; }
 
+        if (isActive) { return; }
         ready = true;
 
         popUpCanvas.SetActive(true);
@@ -116,6 +126,12 @@ public class Upgrades : MonoBehaviour
     public virtual bool GetIsActive()
     {
         return isActive;
+    }
+
+    public virtual void ChangeTextPrice(int _price)
+    {
+        price = _price;
+        priceText.text = price.ToString();
     }
 
     public virtual IEnumerator ShowPickedUpText(float seconds)

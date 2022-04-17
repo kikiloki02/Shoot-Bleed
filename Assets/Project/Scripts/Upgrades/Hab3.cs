@@ -6,13 +6,12 @@ public class Hab3 : Upgrades // fire Rate
 {
     float fireRate;
     float percentage;
+    Player_Controller player_Controller;
     // Start is called before the first frame update
     void Start()
     {
         base.Start();
         isActive = false;
-
-        fireRate = FindObjectOfType<Player_Controller>()._secondsPerBullet;
         shopUpgrade = FindObjectOfType<ShopUpgrade>();
     }
 
@@ -34,7 +33,8 @@ public class Hab3 : Upgrades // fire Rate
     public override void Activate()
     {
         base.Activate();
-        fireRate = (int) (fireRate * (1 + percentage));
+        player_Controller = FindObjectOfType<Player_Controller>();
+        player_Controller._secondsPerBullet = (int) (fireRate * (1 + percentage));
     }
     public override void Disable()
     {

@@ -40,6 +40,7 @@ public class RewardSystem : MonoBehaviour
         {
             bloodGems += 50;
             canvasTxt.SetBloodGemsTxt(bloodGems);
+            PlayerPrefs.SetInt("BloodGem", bloodGems);
         }
         StartCoroutine(CalculateAccuracy());
     }

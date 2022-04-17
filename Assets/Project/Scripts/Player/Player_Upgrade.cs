@@ -18,12 +18,10 @@ public class Player_Upgrade : MonoBehaviour
         CheckActiveAbility();
     }
 
-    private void Save()
+    private void Save(GameObject upg)
     {
-        for (int i = 0; i < playerUpgrades.Count; i++)
-        {
-            skillsOwned +=  (int)Mathf.Pow(2,playerUpgrades[i].GetComponent<Upgrades>().GetIndex());
-        }
+        skillsOwned +=  (int)Mathf.Pow(2,upg.GetComponent<Upgrades>().GetIndex());
+
         PlayerPrefs.SetInt("UpgradesOwned", skillsOwned);
     }
 
@@ -33,8 +31,23 @@ public class Player_Upgrade : MonoBehaviour
 
         playerUpgrades.Add(shopUpgrade.upgradesInShop[index]);
 
-        shopUpgrade.upgradesInShop.Remove(shopUpgrade.upgradesInShop[index]);
+    }
 
+    private void RemoveFromUpgradesInShop(ShopUpgrade shopUpgrade, GameObject upg)
+    {
+        if(upg != null)
+        {
+          shopUpgrade.upgradesInShop.Remove(upg);
+        }
+    }
+
+    public GameObject FindAbilityWithIndex(ShopUpgrade shopUpgrade, int abilityIndex)
+    {
+        for(int i = 0; i < shopUpgrade.upgradesInShop.Count; i++)
+        {
+            if(shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex() == abilityIndex) { return shopUpgrade.upgradesInShop[i]; }
+        }
+        return null;
     }
 
     public void Activate(GameObject upg)
@@ -43,23 +56,34 @@ public class Player_Upgrade : MonoBehaviour
 
         upg.GetComponent<Upgrades>().Disable();
 
-        Save();
+        Save(upg);
     }
 
     public void Load(ShopUpgrade shopUpgrade) 
     {
 
         skillsOwned = PlayerPrefs.GetInt("UpgradesOwned",0);
-       
-        for(int i = 0; i < shopUpgrade.upgradesInShop.Count; i++)
+        int initialCount = shopUpgrade.upgradesInShop.Count;
+        for (int i = 0; i < initialCount; i++)
         {
             int actualCheckSkill = (skillsOwned >> shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex()) % 2;
             if (actualCheckSkill != 0)
             {
-                InitActivate(shopUpgrade,i);             
+                InitActivate(shopUpgrade,i); 
+                
             }
         }
-        
+        for (int i = 0; i < initialCount; i++)
+        {
+            int actualCheckSkill = (skillsOwned >> shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex()) % 2;
+
+            if (actualCheckSkill != 0)
+            {
+                RemoveFromUpgradesInShop(shopUpgrade, FindAbilityWithIndex(shopUpgrade, shopUpgrade.upgradesInShop[i].GetComponent<Upgrades>().GetIndex()));
+                i--;
+                initialCount--;
+            }
+        }
     }
 
     private void CheckActiveAbility()
