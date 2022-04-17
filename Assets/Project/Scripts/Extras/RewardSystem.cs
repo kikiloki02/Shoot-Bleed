@@ -36,6 +36,11 @@ public class RewardSystem : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown("u"))
+        {
+            bloodGems += 50;
+            canvasTxt.SetBloodGemsTxt(bloodGems);
+        }
         StartCoroutine(CalculateAccuracy());
     }
 
