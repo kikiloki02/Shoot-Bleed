@@ -185,75 +185,72 @@ public class Blade_Knight : Enemy
 
     IEnumerator Charging(float seconds)
     {
-        GetComponent<Animator>().SetTrigger("Charge");
+            GetComponent<Animator>().SetTrigger("Charge");
 
-        _isCharging = true;
+            _isCharging = true;
 
-        this.GetComponent<Seek>().enabled = false;
+            this.GetComponent<Seek>().enabled = false;
 
-        _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
-        _chargeDirection.Normalize();
+            _chargeDirection = _player.GetComponent<Transform>().position - this.gameObject.transform.position;
+            _chargeDirection.Normalize();
 
-        _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
+            _attackIndicator.transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(Vector2.right, _chargeDirection));
 
-        // Random attack move: (between 3 attacks)
-        if(doRandom)
-            _randomNumber = Random.Range(0, 7); // min included, max excluded
+            // Random attack move: (between 3 attacks)
+            if (doRandom)
+                _randomNumber = Random.Range(0, 7); // min included, max excluded
 
-        // Show the according particles and play the according sound to telegraph the attack:
-        switch (_randomNumber)
-        {
-            case 0:
-            case 1:
-            case 2:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesBasic.Play();
-                break;
-            case 3:
-            case 4:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesForthAndBack.Play();
-                break;
-            case 5:
-            case 6:
-                _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(true);
-                _charge.Play(); // Charge1 SFX
-                _chargingParticlesChain.Play();
-                break;
-        }
+            // Show the according particles and play the according sound to telegraph the attack:
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[0].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesBasic.Play();
+                    break;
+                case 3:
+                case 4:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[1].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesForthAndBack.Play();
+                    break;
+                case 5:
+                case 6:
+                    _attackIndicator.GetComponent<AttackPivot_Manager>()._attacks[2].gameObject.SetActive(true);
+                    _charge.Play(); // Charge1 SFX
+                    _chargingParticlesChain.Play();
+                    break;
+            }
 
-        // Logic:
-        _canAttack = false;
+            // Logic:
+            _canAttack = false;
 
-        _spriteRenderer.color = new Color(255, 0, 0);
-
+            _spriteRenderer.color = new Color(255, 0, 0);
         yield return new WaitForSeconds(seconds); // Wait
+            _spriteRenderer.color = new Color(255, 255, 255);
 
-        _spriteRenderer.color = new Color(255, 255, 255);
-
-        // Execute the corresponding attack move:
-        switch (_randomNumber)
-        {
-            case 0:
-            case 1:
-            case 2:
-                _chargingParticlesBasic.Stop();
-                Attack1();
-                break;
-            case 3:
-            case 4:
-                _chargingParticlesForthAndBack.Stop();
-                Attack2(0.5f);
-                break;
-            case 5:
-            case 6:
-                _chargingParticlesChain.Stop();
-                Attack3(0.5f);
-                break;
-        }
-
+            // Execute the corresponding attack move:
+            switch (_randomNumber)
+            {
+                case 0:
+                case 1:
+                case 2:
+                    _chargingParticlesBasic.Stop();
+                    Attack1();
+                    break;
+                case 3:
+                case 4:
+                    _chargingParticlesForthAndBack.Stop();
+                    Attack2(0.5f);
+                    break;
+                case 5:
+                case 6:
+                    _chargingParticlesChain.Stop();
+                    Attack3(0.5f);
+                    break;
+            }
         _isCharging = false;
     }
 

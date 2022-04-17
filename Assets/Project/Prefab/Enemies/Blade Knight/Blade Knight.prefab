@@ -15094,7 +15094,7 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.19, y: 0}
+  m_Offset: {x: -0.2, y: -0.24}
   m_Size: {x: 0.7, y: 1.7}
   m_Direction: 0
 --- !u!58 &3065939049626629978
@@ -15191,7 +15191,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7dbfa696c164ac74a8f84e27d0458586, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  velocity: 100
+  velocity: 200
   avoidVelocity: 90
   followingPercentage: 0.100000024
 --- !u!95 &1731649446638624693
@@ -20573,12 +20573,32 @@ PrefabInstance:
     m_TransformParent: {fileID: 3065939049626629982}
     m_Modifications:
     - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e01bb0a9d4d2db479dd107a2c5eb23e, type: 3}
+    - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_DrawMode
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_MaskInteraction
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 318790885385966122, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 770322559353465177, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_IsActive
@@ -20608,6 +20628,18 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -2413806693520163455, guid: bb79678692ce4244f8bc3e563e06b091, type: 3}
+    - target: {fileID: 3228138217923014802, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228138217923014802, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3228138217923014802, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3228138217923014802, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_WasSpriteAssigned
       value: 1
@@ -20679,6 +20711,26 @@ PrefabInstance:
     - target: {fileID: 4530037421155362116, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 2.375
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045713611591212893, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e01bb0a9d4d2db479dd107a2c5eb23e, type: 3}
+    - target: {fileID: 8045713611591212893, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045713611591212893, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045713611591212893, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8045713611591212893, guid: e4762bd419e798448821eca74c05900c, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8358326676167357148, guid: e4762bd419e798448821eca74c05900c, type: 3}
       propertyPath: m_IsActive

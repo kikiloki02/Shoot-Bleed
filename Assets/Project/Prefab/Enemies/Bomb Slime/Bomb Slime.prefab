@@ -134,7 +134,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: -1
   m_Sprite: {fileID: -2413806693520163455, guid: bb79678692ce4244f8bc3e563e06b091, type: 3}
-  m_Color: {r: 0.9339623, g: 0.101326115, b: 0.101326115, a: 0.5019608}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -5475,7 +5475,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   velocity: 85
-  avoidVelocity: 1
+  avoidVelocity: 75
   followingPercentage: 0.100000024
 --- !u!95 &1731649446638624693
 Animator:

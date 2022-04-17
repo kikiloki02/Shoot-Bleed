@@ -72,6 +72,7 @@ public class PauseMenu : MonoBehaviour
     }
     public void LoadMenu()
     {
+        //poner el boton de Main Menu a Normal
         SceneManager.LoadScene("MainMenu");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
