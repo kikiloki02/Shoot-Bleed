@@ -1218,7 +1218,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6c57be0b6be0ecd4eb402b1da4a631b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicNames:
+  constMusicNames:
   - Music1
   - Music2
   - Music3
@@ -1226,9 +1226,10 @@ MonoBehaviour:
   - Music5
   - Music6
   - Music7
-  - Music8
+  - Music9
   - Music9
   - Music10
+  musicNames: []
 --- !u!4 &1787302264
 Transform:
   m_ObjectHideFlags: 0

@@ -4,7 +4,11 @@ using UnityEngine;
 
 public class MusicManager : MonoBehaviour
 {
-    public List<string> musicNames;
+    public List<string> constMusicNames;
+
+    [SerializeField]
+    private List<string> musicNames;
+
     private string currentMusic;
     private int currentMusicIdx;
     NewAudioManager newAudioManager;
@@ -13,6 +17,8 @@ public class MusicManager : MonoBehaviour
     void Start()
     {
         newAudioManager = FindObjectOfType<NewAudioManager>();
+        FillMusicNames();
+        Debug.Log(musicNames.Count);
     }
 
     public void StartMusicPlaying()
@@ -26,6 +32,14 @@ public class MusicManager : MonoBehaviour
     {
         currentMusicIdx = Random.Range(0, musicNames.Count);
         return musicNames[currentMusicIdx];
+    }
+
+    void FillMusicNames()
+    {
+        for(int i = 0; i < constMusicNames.Count; i++)
+        {
+            musicNames.Insert(i, constMusicNames[i]);
+        }
     }
     IEnumerator PlayMusic()
     {
@@ -43,6 +57,7 @@ public class MusicManager : MonoBehaviour
             if (!newAudioManager.sounds[currentMusicIdxSound].source.isPlaying)
             {
                 musicNames.Remove(currentMusic);
+                if(musicNames.Count <= 0) { FillMusicNames(); }
                 currentMusic = GetRandomMusicName();
                 newAudioManager.Play(currentMusic);
             }

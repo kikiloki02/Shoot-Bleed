@@ -24,10 +24,12 @@ public class LoadNextScene : MonoBehaviour
     private int randomRoomType;
     private bool roomRemoved;
 
+    private NewAudioManager newAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        newAudioManager = FindObjectOfType<NewAudioManager>();
         player = FindObjectOfType<PlayerLifeManagement>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         manageRoom = FindObjectOfType<ManageRoom>();
@@ -37,13 +39,14 @@ public class LoadNextScene : MonoBehaviour
         RemoveActualRoom();
         SetNextRoomType();
         SetNextRoom();
+        newAudioManager.FadeInMusic();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            //Scene followingScene = SceneManager.GetSceneByName(NextScene);
+            newAudioManager.FadeOutMusic();
             playerController.lastRoomExit = roomPosition;
             StartCoroutine(LoadNxtScene(animator, transitionTime));
         }

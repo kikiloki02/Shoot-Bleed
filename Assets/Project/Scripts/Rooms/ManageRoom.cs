@@ -19,6 +19,7 @@ public class ManageRoom : MonoBehaviour
     public Player_Controller playerController;
     public SceneType sceneType;
     public bool roomRemoved;
+    private bool deadOnce = false;
 
     private NewAudioManager audioManager;
     // Start is called before the first frame update
@@ -49,10 +50,11 @@ public class ManageRoom : MonoBehaviour
 
     private void EndRoom()
     {
-        if (enemiesDead())
+        if (enemiesDead() && !deadOnce)
         {
-            audioManager.Play("Room Ends");
-            audioManager.Play("Open Door");
+            deadOnce = !deadOnce;
+            //audioManager.Play("Room Ends");
+            //audioManager.Play("Open Door");
             OpenDoors();
         }
     }

@@ -8,11 +8,15 @@ public class LoadScene : MonoBehaviour
     public bool unloadPreviousScene;
     public bool loadOnCollision;
     public Collider2D coll;
+    private NewAudioManager audioManager;
     // Start is called before the first frame update
     void Start()
     {
         //SceneManager.LoadScene("Init Game", LoadSceneMode.Additive);
         //LoadWantedSceneAdditive(_scene);
+
+        audioManager = FindObjectOfType<NewAudioManager>();
+        
         if (_scene == "")
             return;
 
@@ -65,6 +69,8 @@ public class LoadScene : MonoBehaviour
         if(_scene == null || _scene == "") { return; }
         if (other.gameObject.CompareTag("Player"))
         {
+            audioManager.FadeOutMusic();
+
             if (isAdditive)
             {
                 LoadWantedSceneAdditive(_scene);
