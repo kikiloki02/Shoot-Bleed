@@ -6,8 +6,12 @@ using UnityEngine;
 
 public class NewAudioManager : MonoBehaviour
 {
+    public AudioMixerGroup Music;
+    public AudioMixerGroup Sounds;
+
     public Sound[] sounds;
-    
+
+
     void Awake()
     {
 
@@ -31,5 +35,41 @@ public class NewAudioManager : MonoBehaviour
         if (s == null) 
             return;
         s.source.Play();
+    }
+
+    public void FadeOutMusic()
+    {
+        float volume;
+        Sounds.audioMixer.GetFloat("MusicVolume", out volume);
+        FadeOutCorrutine(volume);
+    }
+
+    public void FadeInMusic()
+    {
+        float volume;
+        Sounds.audioMixer.GetFloat("MusicVolume", out volume);
+        FadeInCorrutine(volume);
+    }
+
+    IEnumerator FadeOutCorrutine(float vol)
+    {
+        vol -= 0.1f;
+        Sounds.audioMixer.SetFloat("MusicVolume", Mathf.Log10(vol) * 20);
+        yield return 0.1f;
+        if(vol >= 0)
+        {
+            FadeOutCorrutine(vol);
+        }
+    }
+    
+    IEnumerator FadeInCorrutine(float vol)
+    {
+        vol += 0.1f;
+        Sounds.audioMixer.SetFloat("MusicVolume", Mathf.Log10(vol) * 20);
+        yield return 0.1f;
+        if(vol < 1.0f)
+        {
+            FadeInCorrutine(vol);
+        }
     }
 }

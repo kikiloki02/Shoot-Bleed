@@ -43,6 +43,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e176226ac3ab484d8c11f8f5386a8dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Music: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+  Sounds: {fileID: 9077375278287764265, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
   sounds:
   - name: Room Ends
     clip: {fileID: 8300000, guid: 20c6f4745d93e2b409735b1096fd8de2, type: 3}
@@ -54,6 +56,76 @@ MonoBehaviour:
   - name: Open Door
     clip: {fileID: 8300000, guid: 076e998e627bca647a1a5c38087cdf37, type: 3}
     mixer: {fileID: 9077375278287764265, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music1
+    clip: {fileID: 8300000, guid: 963d6ef8e9864f34d954de31d17ac239, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music2
+    clip: {fileID: 8300000, guid: 99f0a5dc0d3bb124bac0fdf6200cec95, type: 3}
+    mixer: {fileID: 24300002, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music3
+    clip: {fileID: 8300000, guid: 98af0b82e1093cf46ae83ff6c4f6fa4a, type: 3}
+    mixer: {fileID: 24300002, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music4
+    clip: {fileID: 8300000, guid: d7978d7d55b0ab644b82277f2524507e, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music5
+    clip: {fileID: 8300000, guid: c5f232d00fba89c4a8992dfe030e928a, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music6
+    clip: {fileID: 8300000, guid: 7a5d668804c5ae84ab7632aa4134ba13, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music7
+    clip: {fileID: 8300000, guid: d56f07ce9e3471746ba65a5a52c59093, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music8
+    clip: {fileID: 8300000, guid: 97cb870c9ebf13c49b88df9cb721aa7d, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music9
+    clip: {fileID: 8300000, guid: 549965b9ec731664aaf4bab594f20bab, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
+    volume: 1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music10
+    clip: {fileID: 8300000, guid: c63b10c6af84e5e4285999ae33457a0e, type: 3}
+    mixer: {fileID: 8666007971495584475, guid: a89278ddecddaaf4eab24aabda6ebe1f, type: 2}
     volume: 1
     pitch: 1
     loop: 0
