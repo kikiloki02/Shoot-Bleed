@@ -59,7 +59,10 @@ public class ManageRoom : MonoBehaviour
     private void OpenDoors()
     {
         //Play sounds
-        newAudioManager.FadeOutMusic();
+        if (sceneType != SceneType.Upgrade)
+        {
+            newAudioManager.FadeOutMusic();
+        }
         for (int i =0; i< doorsAnim.Length; i++)
         {
             doorsAnim[i].SetTrigger("Open"); //Activate Animation

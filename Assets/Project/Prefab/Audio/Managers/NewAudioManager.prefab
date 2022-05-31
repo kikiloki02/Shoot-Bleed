@@ -49,70 +49,84 @@ MonoBehaviour:
   - name: Music1
     clip: {fileID: 8300000, guid: caf9028ea729a564b83ea83299620abb, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music2
     clip: {fileID: 8300000, guid: 73fe5ae98e37adb48b755265d482c9c6, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music3
     clip: {fileID: 8300000, guid: 8efb80182fcfc5a4ab86d6f821111575, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music4
     clip: {fileID: 8300000, guid: cb45565497dffbb48beb23cbd6f7d2c0, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music5
     clip: {fileID: 8300000, guid: feb166a098bdc5b47b530494b040354a, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music6
-    clip: {fileID: 8300000, guid: feae97be5a700554cb96529aed79e9ba, type: 3}
+    clip: {fileID: 8300000, guid: 6bbd4caa8cce17545b4baf7a952317e0, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music7
-    clip: {fileID: 8300000, guid: 6bbd4caa8cce17545b4baf7a952317e0, type: 3}
+    clip: {fileID: 8300000, guid: 51574f6124a847a45a7ffa95c303019e, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music8
-    clip: {fileID: 8300000, guid: 51574f6124a847a45a7ffa95c303019e, type: 3}
+    clip: {fileID: 8300000, guid: 39736b7f728b46c46b883879dbc3accb, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
   - name: Music9
     clip: {fileID: 8300000, guid: 3101e60bbe9d82c4b9f03be5867265f0, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     source: {fileID: 0}
-  - name: Music10
-    clip: {fileID: 8300000, guid: 39736b7f728b46c46b883879dbc3accb, type: 3}
+  - name: UpgradeRoomMusic
+    clip: {fileID: 8300000, guid: feae97be5a700554cb96529aed79e9ba, type: 3}
     mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
-    volume: 1
+    volume: 0.15
     pitch: 1
-    loop: 0
+    loop: 1
+    source: {fileID: 0}
+  - name: MainMenuMusic
+    clip: {fileID: 8300000, guid: 7b064061d9e31944cb781dcefa6eea40, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LobbyMusic
+    clip: {fileID: 8300000, guid: 667035b3f373b814389f20039d99945a, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1
+    loop: 1
     source: {fileID: 0}
