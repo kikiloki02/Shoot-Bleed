@@ -33,6 +33,10 @@ public class ManageRoom : MonoBehaviour
         else //Spawn bottom
             player.transform.position = playerSpawnPos[1].position;
 
+        if(sceneType == SceneType.Upgrade)
+        {
+            newAudioManager.PausePlayingMusic();
+        }
     }
 
     // Update is called once per frame

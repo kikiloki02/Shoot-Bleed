@@ -44,6 +44,10 @@ public class LoadNextScene : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //Scene followingScene = SceneManager.GetSceneByName(NextScene);
+            if (actualSceneType == SceneType.Upgrade)
+            {
+                newAudioManager.ResumePlayingMusic();
+            }
             playerController.lastRoomExit = roomPosition;
             StartCoroutine(LoadNxtScene(animator, transitionTime));
         }

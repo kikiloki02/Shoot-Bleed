@@ -53,6 +53,25 @@ public class NewAudioManager : MonoBehaviour
         StartCoroutine(FadeInCorrutine(volume));
     }
 
+    public void PausePlayingMusic()
+    {
+        foreach (Sound s in sounds)
+        {
+            if (s.source.isPlaying)
+            {
+                s.source.Pause();
+            }
+        }
+    }
+
+    public void ResumePlayingMusic()
+    {
+        foreach (Sound s in sounds)
+        {
+           s.source.UnPause();
+        }
+    }
+
     IEnumerator FadeOutCorrutine(float vol)
     {
         keepFadingIn = false;
