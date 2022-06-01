@@ -36,7 +36,8 @@ public class LoadNextScene : MonoBehaviour
         RemoveActualRoom();
         SetNextRoomType();
         SetNextRoom();
-        newAudioManager.FadeInMusic();
+        if(actualSceneType != SceneType.Upgrade)
+        newAudioManager.FadeInMusic("MusicVolume");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +47,7 @@ public class LoadNextScene : MonoBehaviour
             //Scene followingScene = SceneManager.GetSceneByName(NextScene);
             if (actualSceneType == SceneType.Upgrade)
             {
-                newAudioManager.ResumePlayingMusic();
+                newAudioManager.FadeOutMusic("ExtraVolumeMusic");
             }
             playerController.lastRoomExit = roomPosition;
             StartCoroutine(LoadNxtScene(animator, transitionTime));

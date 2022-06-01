@@ -1,5 +1,24 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!243 &-7997523866012088851
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Extra Music
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: 0318adccf2cd159439a10cf1d73edd59
+  m_Children: []
+  m_Volume: f46fba03c230c7a46b025f9d2b3b8f44
+  m_Pitch: f91208c2990d8f1408470269341fc871
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: -4236828350885998274}
+  m_UserColorIndex: 0
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
 --- !u!244 &-7662251495173425983
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -33,6 +52,20 @@ AudioMixerGroupController:
   m_Mute: 0
   m_Solo: 0
   m_BypassEffects: 0
+--- !u!244 &-4236828350885998274
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: b32694fd79813bc40a4fefeac1d594e6
+  m_EffectName: Attenuation
+  m_MixLevel: 7b1343c80c4effe44bad7e09bfd43a5f
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!241 &24100000
 AudioMixerController:
   m_ObjectHideFlags: 0
@@ -49,6 +82,8 @@ AudioMixerController:
   m_EnableSuspend: 1
   m_UpdateMode: 0
   m_ExposedParameters:
+  - guid: f46fba03c230c7a46b025f9d2b3b8f44
+    name: ExtraMusicVolume
   - guid: f61066f08e01ca84288ef3427ff3c79c
     name: MusicVolume
   m_AudioMixerGroupViews:
@@ -56,6 +91,7 @@ AudioMixerController:
     - ee2e8e125bc20514eb6195d64b0414e5
     - 50bb1c38bacb96e4d85ed01a3fbc97f5
     - 03f2c34f5375e51479a40a33a92d8907
+    - 0318adccf2cd159439a10cf1d73edd59
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -71,6 +107,7 @@ AudioMixerGroupController:
   m_Children:
   - {fileID: -5098762254284796235}
   - {fileID: 6985906024015715318}
+  - {fileID: -7997523866012088851}
   m_Volume: f501b906a19c35f41b21d9ed12f61e9b
   m_Pitch: b53dead066c7d92458ff09db3e0d57bf
   m_Send: 00000000000000000000000000000000
@@ -105,7 +142,7 @@ AudioMixerSnapshotController:
   m_SnapshotID: 4a44f6468bc17894fae1d270d2b8833a
   m_FloatValues:
     5e96192091a244f41a2509487f8e7330: 1
-    f61066f08e01ca84288ef3427ff3c79c: 0
+    f61066f08e01ca84288ef3427ff3c79c: 0.04171297
     e2e5a92117cd1b0439d1e15ce627f223: -2476
     91f01a21bc520554ebf0754618ec21d3: -10
     cd4aeaf2baaf54b46acdd67a11fc824d: 18.16
