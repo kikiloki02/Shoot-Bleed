@@ -47,7 +47,7 @@ public class LoadNextScene : MonoBehaviour
             //Scene followingScene = SceneManager.GetSceneByName(NextScene);
             if (actualSceneType == SceneType.Upgrade)
             {
-                newAudioManager.FadeOutMusic("ExtraVolumeMusic");
+                newAudioManager.FadeOutMusic("ExtraMusicVolume");
             }
             playerController.lastRoomExit = roomPosition;
             StartCoroutine(LoadNxtScene(animator, transitionTime));
