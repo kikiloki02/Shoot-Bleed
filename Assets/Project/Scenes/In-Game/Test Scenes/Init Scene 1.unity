@@ -584,6 +584,18 @@ PrefabInstance:
       propertyPath: _criticalStateScreenEffect
       value: 
       objectReference: {fileID: 269422428}
+    - target: {fileID: 7065121161485805946, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: abb6e9046fe4a09479562fea84cd1f86, type: 3}
+    - target: {fileID: 8013086966345620342, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: beaddcb3096f93245928148b87565829, type: 3}
+    - target: {fileID: 8359017836858262364, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 958d47dcaa944d74683d287ceebcf13e, type: 3}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5eadaff2e67e09d4bb57775d8fc0ef18, type: 3}
 --- !u!1001 &1215809382
