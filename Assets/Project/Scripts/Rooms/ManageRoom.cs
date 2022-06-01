@@ -19,9 +19,12 @@ public class ManageRoom : MonoBehaviour
     public SceneType sceneType;
     public bool roomRemoved;
 
+    private bool deadOnce = false;
+    private NewAudioManager newAudioManager;
     // Start is called before the first frame update
     void Awake()
     {
+        newAudioManager = FindObjectOfType<NewAudioManager>();
         roomRemoved = false;
         player = FindObjectOfType<Player_Controller>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
@@ -30,6 +33,10 @@ public class ManageRoom : MonoBehaviour
         else //Spawn bottom
             player.transform.position = playerSpawnPos[1].position;
 
+        if(sceneType == SceneType.Upgrade)
+        {
+            newAudioManager.PausePlayingMusic();
+        }
     }
 
     // Update is called once per frame
@@ -46,15 +53,21 @@ public class ManageRoom : MonoBehaviour
 
     private void EndRoom()
     {
-        if (enemiesDead())
+        if (enemiesDead() && !deadOnce)
         {
+            deadOnce = !deadOnce;
             OpenDoors();
         }
     }
 
     private void OpenDoors()
     {
-        for(int i =0; i< doorsAnim.Length; i++)
+        //Play sounds
+        if (sceneType != SceneType.Upgrade)
+        {
+            newAudioManager.FadeOutMusic();
+        }
+        for (int i =0; i< doorsAnim.Length; i++)
         {
             doorsAnim[i].SetTrigger("Open"); //Activate Animation
         }
