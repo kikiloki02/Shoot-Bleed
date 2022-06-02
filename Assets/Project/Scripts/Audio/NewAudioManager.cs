@@ -8,6 +8,7 @@ public class NewAudioManager : MonoBehaviour
 {
     public AudioMixerGroup Music;
     public AudioMixerGroup Sounds;
+    public AudioMixerGroup Master;
 
     public Sound[] sounds;
     [SerializeField]
@@ -52,6 +53,28 @@ public class NewAudioManager : MonoBehaviour
         float volume;
         Sounds.audioMixer.GetFloat(mixer, out volume);
         StartCoroutine(FadeInCorrutine(volume, mixer));
+    }    
+    
+    public void FadeOutMaster(string mixer) //To use for menus
+    {
+        float volume;
+        Master.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeOutCorrutine(volume, mixer));
+    }
+
+    public void FadeInMaster(string mixer) //To use for menus
+    {
+        float volume;
+        Master.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeInCorrutine(volume, mixer));
+    }
+
+    public void LerpPitch(float pitch, float time)
+    {
+        float actualPitch;
+        Master.audioMixer.GetFloat("MasterPitch", out actualPitch);
+        Mathf.Lerp(actualPitch, pitch, time);
+        Master.audioMixer.SetFloat("MasterPitch", pitch);
     }
 
     IEnumerator FadeOutCorrutine(float vol, string mixer)
