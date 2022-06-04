@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public enum  RoomPos { TOP, RIGHT};
+public enum RoomPos { TOP, RIGHT };
 public class LoadNextScene : MonoBehaviour
 {
     public string NextScene;
@@ -22,11 +22,11 @@ public class LoadNextScene : MonoBehaviour
     public SceneType nextSceneType;
 
     private int randomRoomType;
-
+    private NewAudioManager newAudioManager;
     // Start is called before the first frame update
     void Start()
     {
-
+        newAudioManager = FindObjectOfType<NewAudioManager>();
         player = FindObjectOfType<PlayerLifeManagement>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
         manageRoom = FindObjectOfType<ManageRoom>();
@@ -36,6 +36,8 @@ public class LoadNextScene : MonoBehaviour
         RemoveActualRoom();
         SetNextRoomType();
         SetNextRoom();
+        if(actualSceneType != SceneType.Upgrade)
+        newAudioManager.FadeInMusic("MusicVolume");
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -43,6 +45,10 @@ public class LoadNextScene : MonoBehaviour
         if (other.gameObject.CompareTag("Player"))
         {
             //Scene followingScene = SceneManager.GetSceneByName(NextScene);
+            if (actualSceneType == SceneType.Upgrade)
+            {
+                newAudioManager.FadeOutMusic("ExtraMusicVolume");
+            }
             playerController.lastRoomExit = roomPosition;
             StartCoroutine(LoadNxtScene(animator, transitionTime));
         }
@@ -53,34 +59,34 @@ public class LoadNextScene : MonoBehaviour
         transition.SetTrigger("Start");
 
         yield return new WaitForSeconds(transitionTime);
-        if(nextSceneType == SceneType.Victory)
+        if (nextSceneType == SceneType.Victory)
             SceneManager.LoadScene(NextScene, LoadSceneMode.Single);
         else
         {
             if (actualSceneType != SceneType.Upgrade)
             {
-                roomSys.UnloadRoom();
                 roomSys.fightingRoomsCompleted++;
             }
+            roomSys.UnloadRoom();
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         }
-        
+
     }
 
     private void SetNextRoomType()
     {
-        if (roomSys.fightingRoomsCompleted == 10 ||(!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard)))
+        if (roomSys.fightingRoomsCompleted == 10 || (!roomSys.RoomsRemaining(SceneType.Easy) && !roomSys.RoomsRemaining(SceneType.Medium) && !roomSys.RoomsRemaining(SceneType.Hard)))
         {
             nextSceneType = SceneType.Victory;
             return;
         }
         bool roomRemains;
-        do //Puede reventar si no quedan salas en ningún pool
+        do //Puede reventar si no quedan salas en ningÃºn pool
         {
             roomRemains = true;
             //roomSys.upgradeRoomProbability = 20 * (roomSys.fightingRoomsCompleted - roomSys.lastUpgradeRoom);
 
-            if(roomSys.totalScenesCompleted > 1 && roomSys.totalScenesCompleted < 5 && !roomSys.shownUpgradeRoom) 
+            if (roomSys.totalScenesCompleted > 1 && roomSys.totalScenesCompleted < 5 && !roomSys.shownUpgradeRoom)
             {
                 roomSys.upgradeRoomProbability += 34;
                 roomSys.shownUpgradeRoom = true;
@@ -90,7 +96,7 @@ public class LoadNextScene : MonoBehaviour
                 roomSys.upgradeRoomProbability += 25;
                 roomSys.shownUpgradeRoom = true;
             }
-            else if(roomSys.totalScenesCompleted == 5)
+            else if (roomSys.totalScenesCompleted == 5)
             {
                 roomSys.shownUpgradeRoom = false;
                 roomSys.upgradeRoomProbability = 0;
@@ -100,8 +106,8 @@ public class LoadNextScene : MonoBehaviour
             float roomsProbability = (100 - roomSys.upgradeRoomProbability) / 3;
 
             if (random <= roomsProbability) { randomRoomType = (int)SceneType.Easy; }
-            else if(random <= roomsProbability * 2) { randomRoomType = (int)SceneType.Medium; }
-            else if(random <= roomsProbability * 3) { randomRoomType = (int)SceneType.Hard; }
+            else if (random <= roomsProbability * 2) { randomRoomType = (int)SceneType.Medium; }
+            else if (random <= roomsProbability * 3) { randomRoomType = (int)SceneType.Hard; }
             else { randomRoomType = (int)SceneType.Upgrade; }
 
             if (roomSys.RoomsRemaining((SceneType)randomRoomType))
@@ -111,18 +117,18 @@ public class LoadNextScene : MonoBehaviour
 
         } while (!roomRemains);
 
-        if(randomRoomType == (int)SceneType.Upgrade) 
-        { 
+        if (randomRoomType == (int)SceneType.Upgrade)
+        {
             roomSys.lastUpgradeRoom = roomSys.fightingRoomsCompleted;
             roomSys.upgradeRoomProbability = 0;
         }
-        
+
     }
 
     private void SetNextRoom()
     {
-        
-        if(nextSceneType == SceneType.Easy)
+
+        if (nextSceneType == SceneType.Easy)
         {
             int roomNum = UnityEngine.Random.Range(0, roomSys.EasyScenes.Count);
             NextScene = roomSys.EasyScenes[roomNum];
@@ -137,12 +143,12 @@ public class LoadNextScene : MonoBehaviour
             int roomNum = UnityEngine.Random.Range(0, roomSys.HardScenes.Count);
             NextScene = roomSys.HardScenes[roomNum];
         }
-        else if(nextSceneType == SceneType.Upgrade)
+        else if (nextSceneType == SceneType.Upgrade)
         {
             int roomNum = UnityEngine.Random.Range(0, roomSys.UpgradeScenes.Count);
             NextScene = roomSys.UpgradeScenes[roomNum];
         }
-        else if(nextSceneType == SceneType.Victory)
+        else if (nextSceneType == SceneType.Victory)
         {
             int roomNum = UnityEngine.Random.Range(0, roomSys.VictoryScenes.Count);
             NextScene = roomSys.VictoryScenes[roomNum];
