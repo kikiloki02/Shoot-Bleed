@@ -81,7 +81,7 @@ public class ManageRoom : MonoBehaviour
 
     IEnumerator PlayDoorEffecr()
     {
-        yield return new WaitForSeconds(0.25f);
+        yield return new WaitForSeconds(0.15f);
         newAudioManager.Play("DoorEffect");
     }
 }
