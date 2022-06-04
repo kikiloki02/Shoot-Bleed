@@ -68,7 +68,7 @@ public class LoadScene : MonoBehaviour
         if(_scene == null || _scene == "") { return; }
         if (other.gameObject.CompareTag("Player"))
         {
-            newAudioManager.FadeOutMusic();
+            newAudioManager.FadeOutMusic("MusicVolume");
 
             if (isAdditive)
             {

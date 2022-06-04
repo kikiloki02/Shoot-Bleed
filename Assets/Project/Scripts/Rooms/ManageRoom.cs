@@ -24,7 +24,6 @@ public class ManageRoom : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        newAudioManager = FindObjectOfType<NewAudioManager>();
         roomRemoved = false;
         player = FindObjectOfType<Player_Controller>().gameObject;
         playerController = FindObjectOfType<Player_Controller>();
@@ -33,9 +32,15 @@ public class ManageRoom : MonoBehaviour
         else //Spawn bottom
             player.transform.position = playerSpawnPos[1].position;
 
-        if(sceneType == SceneType.Upgrade)
+    }
+
+    private void Start()
+    {
+        newAudioManager = FindObjectOfType<NewAudioManager>();
+
+        if (sceneType == SceneType.Upgrade)
         {
-            newAudioManager.PausePlayingMusic();
+            newAudioManager.FadeInMusic("ExtraMusicVolume");
         }
     }
 
@@ -56,6 +61,7 @@ public class ManageRoom : MonoBehaviour
         if (enemiesDead() && !deadOnce)
         {
             deadOnce = !deadOnce;
+            StartCoroutine(PlayDoorEffecr());
             OpenDoors();
         }
     }
@@ -65,11 +71,17 @@ public class ManageRoom : MonoBehaviour
         //Play sounds
         if (sceneType != SceneType.Upgrade)
         {
-            newAudioManager.FadeOutMusic();
+            newAudioManager.FadeOutMusic("MusicVolume");
         }
         for (int i =0; i< doorsAnim.Length; i++)
         {
             doorsAnim[i].SetTrigger("Open"); //Activate Animation
         }
+    }
+
+    IEnumerator PlayDoorEffecr()
+    {
+        yield return new WaitForSeconds(0.25f);
+        newAudioManager.Play("DoorEffect");
     }
 }

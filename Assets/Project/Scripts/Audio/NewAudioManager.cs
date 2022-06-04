@@ -8,15 +8,17 @@ public class NewAudioManager : MonoBehaviour
 {
     public AudioMixerGroup Music;
     public AudioMixerGroup Sounds;
+    public AudioMixerGroup Master;
 
     public Sound[] sounds;
+    [SerializeField]
+    private List<Sound> playingSounds;
 
     private bool keepFadingIn = false;
     private bool keepFadingOut = false;
 
     void Awake()
     {
-
         DontDestroyOnLoad(gameObject);
         foreach (Sound s in sounds)
         {
@@ -39,40 +41,43 @@ public class NewAudioManager : MonoBehaviour
         s.source.Play();
     }
 
-    public void FadeOutMusic()
+    public void FadeOutMusic(string mixer)
     {
         float volume;
-        Sounds.audioMixer.GetFloat("MusicVolume", out volume);
-        StartCoroutine(FadeOutCorrutine(volume));
+        Sounds.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeOutCorrutine(volume, mixer));
     }
 
-    public void FadeInMusic()
+    public void FadeInMusic(string mixer)
     {
         float volume;
-        Sounds.audioMixer.GetFloat("MusicVolume", out volume);
-        StartCoroutine(FadeInCorrutine(volume));
-    }
-
-    public void PausePlayingMusic()
+        Sounds.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeInCorrutine(volume, mixer));
+    }    
+    
+    public void FadeOutMaster(string mixer) //To use for menus
     {
-        foreach (Sound s in sounds)
-        {
-            if (s.source.isPlaying)
-            {
-                s.source.Pause();
-            }
-        }
+        float volume;
+        Master.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeOutCorrutine(volume, mixer));
     }
 
-    public void ResumePlayingMusic()
+    public void FadeInMaster(string mixer) //To use for menus
     {
-        foreach (Sound s in sounds)
-        {
-           s.source.UnPause();
-        }
+        float volume;
+        Master.audioMixer.GetFloat(mixer, out volume);
+        StartCoroutine(FadeInCorrutine(volume, mixer));
     }
 
-    IEnumerator FadeOutCorrutine(float vol)
+    public void LerpPitch(float pitch, float time)
+    {
+        float actualPitch;
+        Master.audioMixer.GetFloat("MasterPitch", out actualPitch);
+        Mathf.Lerp(actualPitch, pitch, time);
+        Master.audioMixer.SetFloat("MasterPitch", pitch);
+    }
+
+    IEnumerator FadeOutCorrutine(float vol, string mixer)
     {
         keepFadingIn = false;
         keepFadingOut = true;
@@ -80,12 +85,12 @@ public class NewAudioManager : MonoBehaviour
         while (vol >= -78.0f && keepFadingOut)
         {
             vol -= 2.0f;
-            Sounds.audioMixer.SetFloat("MusicVolume", vol);
+            Sounds.audioMixer.SetFloat(mixer, vol);
             yield return new WaitForSeconds(0.1f);
         }
     }
 
-    IEnumerator FadeInCorrutine(float vol)
+    IEnumerator FadeInCorrutine(float vol, string mixer)
     {
         keepFadingIn = true;
         keepFadingOut = false;
@@ -93,7 +98,7 @@ public class NewAudioManager : MonoBehaviour
         while (vol < 0.0f && keepFadingIn)
         {
             vol += 4.0f;
-            Sounds.audioMixer.SetFloat("MusicVolume", vol);
+            Sounds.audioMixer.SetFloat(mixer, vol);
             yield return new WaitForSeconds(0.1f);
         }
     }
