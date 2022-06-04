@@ -61,6 +61,7 @@ public class ManageRoom : MonoBehaviour
         if (enemiesDead() && !deadOnce)
         {
             deadOnce = !deadOnce;
+            StartCoroutine(PlayDoorEffecr());
             OpenDoors();
         }
     }
@@ -76,5 +77,11 @@ public class ManageRoom : MonoBehaviour
         {
             doorsAnim[i].SetTrigger("Open"); //Activate Animation
         }
+    }
+
+    IEnumerator PlayDoorEffecr()
+    {
+        yield return new WaitForSeconds(0.25f);
+        newAudioManager.Play("DoorEffect");
     }
 }

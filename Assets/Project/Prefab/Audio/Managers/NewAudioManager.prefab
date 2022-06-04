@@ -132,10 +132,10 @@ MonoBehaviour:
     loop: 1
     source: {fileID: 0}
   - name: DoorEffect
-    clip: {fileID: 8300000, guid: 1c7ef5dc7771f9c4ca74b5337a22c55e, type: 3}
+    clip: {fileID: 8300000, guid: dc306d84a0f0f964db8b7db9c29cb69f, type: 3}
     mixer: {fileID: 6985906024015715318, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
     volume: 0.15
-    pitch: 1
-    loop: 1
+    pitch: 1.17
+    loop: 0
     source: {fileID: 0}
   playingSounds: []
