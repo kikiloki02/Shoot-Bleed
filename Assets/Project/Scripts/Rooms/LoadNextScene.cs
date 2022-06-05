@@ -66,11 +66,17 @@ public class LoadNextScene : MonoBehaviour
             if (actualSceneType != SceneType.Upgrade)
             {
                 roomSys.fightingRoomsCompleted++;
+
+                BloodGenerator[] _bloods = Resources.FindObjectsOfTypeAll(typeof(BloodGenerator)) as BloodGenerator[];
+
+                for (int i = 0; i < _bloods.Length; i++)
+                {
+                    Destroy(_bloods[i].gameObject);
+                }
             }
             roomSys.UnloadRoom();
             SceneManager.LoadScene(NextScene, LoadSceneMode.Additive);
         }
-
     }
 
     private void SetNextRoomType()
