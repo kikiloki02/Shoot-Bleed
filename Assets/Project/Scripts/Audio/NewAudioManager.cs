@@ -59,20 +59,27 @@ public class NewAudioManager : MonoBehaviour
     {
         float volume;
         Master.audioMixer.GetFloat(mixer, out volume);
-        StartCoroutine(FadeOutCorrutine(volume, mixer));
+        StartCoroutine(FadeOutMasterCorrutine(volume, mixer));
     }
 
     public void FadeInMaster(string mixer) //To use for menus
     {
         float volume;
         Master.audioMixer.GetFloat(mixer, out volume);
-        StartCoroutine(FadeInCorrutine(volume, mixer));
+        StartCoroutine(FadeInMasterCorrutine(volume, mixer));
+    }
+
+    public void SetMasterVolume(float volume)
+    {
+        Master.audioMixer.SetFloat("MasterVolume", volume);
     }
 
     public void SetPitch(float pitch)
     {
         Master.audioMixer.SetFloat("MasterPitch", pitch);
     }
+
+    
 
     IEnumerator FadeOutCorrutine(float vol, string mixer)
     {
@@ -83,7 +90,7 @@ public class NewAudioManager : MonoBehaviour
         {
             vol -= 2.0f;
             Sounds.audioMixer.SetFloat(mixer, vol);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 
@@ -95,8 +102,39 @@ public class NewAudioManager : MonoBehaviour
         while (vol < 0.0f && keepFadingIn)
         {
             vol += 4.0f;
+            if (vol > 0)
+                vol = 0;
             Sounds.audioMixer.SetFloat(mixer, vol);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
+
+
+    IEnumerator FadeOutMasterCorrutine(float vol, string mixer)
+    {
+        keepFadingIn = false;
+        keepFadingOut = true;
+
+        while (vol >= -78.0f && keepFadingOut)
+        {
+            vol -= 10.0f;
+            Sounds.audioMixer.SetFloat(mixer, vol);
+            yield return new WaitForSecondsRealtime(0.1f);
+        }
+    }
+
+    IEnumerator FadeInMasterCorrutine(float vol, string mixer)
+    {
+        keepFadingIn = true;
+        keepFadingOut = false;
+
+        while (vol < 0.0f && keepFadingIn)
+        {
+            vol += 10.0f;
+            if (vol > 0)
+                vol = 0;
+            Sounds.audioMixer.SetFloat(mixer, vol);
+            yield return new WaitForSecondsRealtime(0.1f);
         }
     }
 }
