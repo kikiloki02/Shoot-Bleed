@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseMenu : MonoBehaviour
 {
@@ -11,32 +12,47 @@ public class PauseMenu : MonoBehaviour
     public GameObject pauseMenuUI;
     public GameObject aim;
     public GameObject SettingsCanvas;
+    public Button forfaitButton;
     [SerializeField] GameObject playerController;
+
+    private NewAudioManager audioManager;
+    private string actualScene;
+    
+
 
 
     private void Start()
     {
         playerController = FindObjectOfType<Player_Controller>().gameObject;
+
+        audioManager = FindObjectOfType<NewAudioManager>();
+
+        actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
+
+        forfaitButton.interactable = false;
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Escape))
+
+        if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (GamePaused && SettingsMenu)
             {
-                Pause(); 
+                Pause();
             }
             else if (GamePaused)
             {
                 Resume();
             }
-            else if(!GamePaused)
+            else if (!GamePaused)
             {
                 Pause();
+                audioManager.FadeOutMaster("MasterVolume");
             }
         }
+
         else if (Input.GetKeyDown(KeyCode.R))
         {
             if (GamePaused)
@@ -44,10 +60,17 @@ public class PauseMenu : MonoBehaviour
                 Forfait();
             }
         }
-        
+
+        else if (actualScene != "Lobby")
+        {
+            forfaitButton.interactable = true;
+        }
+
     }
+
    public void Resume()
     {
+        audioManager.FadeInMaster("MasterVolume");
         Cursor.visible = false;
         aim.SetActive(true);
         pauseMenuUI.SetActive(false);
@@ -81,6 +104,8 @@ public class PauseMenu : MonoBehaviour
     }
     public void Forfait()
     {
+
+        audioManager.SetMasterVolume(0.0f);
         SceneManager.LoadScene("ScoreReward");
         pauseMenuUI.SetActive(false);
         Time.timeScale = 1.0f;
