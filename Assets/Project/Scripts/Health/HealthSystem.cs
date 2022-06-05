@@ -85,7 +85,7 @@ public class HealthSystem : MonoBehaviour
     }
     public void DestroyAfterDeath()
     {
-        Instantiate(_blood, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+       Instantiate(_blood, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
 
         Destroy(this.gameObject);
     }

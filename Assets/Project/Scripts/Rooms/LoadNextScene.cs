@@ -67,11 +67,11 @@ public class LoadNextScene : MonoBehaviour
             {
                 roomSys.fightingRoomsCompleted++;
 
-                BloodGenerator[] _bloods = Resources.FindObjectsOfTypeAll(typeof(BloodGenerator)) as BloodGenerator[];
+                GameObject[] _bloods = GameObject.FindGameObjectsWithTag("Blood");
 
                 for (int i = 0; i < _bloods.Length; i++)
                 {
-                    Destroy(_bloods[i].gameObject);
+                    Destroy(_bloods[i]);
                 }
             }
             roomSys.UnloadRoom();
