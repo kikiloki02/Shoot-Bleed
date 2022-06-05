@@ -123,6 +123,17 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!114 &20698628 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4913870265404108768, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+  m_PrefabInstance: {fileID: 1361333619114483287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &167938329 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 4980406151714934711, guid: 8492c442324131a44ad41f4dfb702fb7, type: 3}
@@ -369,6 +380,17 @@ RectTransform:
   m_CorrespondingSourceObject: {fileID: 6960044941372647164, guid: c2f5318720c03e947985c6058272dd43, type: 3}
   m_PrefabInstance: {fileID: 6960044942631795872}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &652899502 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4913870264556681509, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+  m_PrefabInstance: {fileID: 1361333619114483287}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &679087779
 GameObject:
   m_ObjectHideFlags: 0
@@ -1659,13 +1681,45 @@ PrefabInstance:
       propertyPath: m_Name
       value: Forfeit Run
       objectReference: {fileID: 0}
+    - target: {fileID: 4913870264692736955, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4278912463
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870264947555006, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4294967295
+      objectReference: {fileID: 0}
     - target: {fileID: 4913870265297332067, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgument
       value: 
       objectReference: {fileID: 622074490}
+    - target: {fileID: 4913870265404108770, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_text
       value: Forfeit
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870265561349269, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_fontColor32.rgba
+      value: 4285427313
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870265622805809, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4913870266486824912, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_Pivot.x
@@ -1756,12 +1810,24 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 245978893}
     - target: {fileID: 4913870266486824913, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: forfaitButton
+      value: 
+      objectReference: {fileID: 652899502}
+    - target: {fileID: 4913870266486824913, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: SettingsCanvas
       value: 
       objectReference: {fileID: 622074490}
+    - target: {fileID: 4913870266486824913, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: mainMenuButton
+      value: 
+      objectReference: {fileID: 20698628}
     - target: {fileID: 4913870266486824915, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
       propertyPath: m_Name
       value: Pause Canvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 4913870266486824915, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 97077706bae17ad4b89dc7535e8304a1, type: 3}

@@ -13,11 +13,14 @@ public class PauseMenu : MonoBehaviour
     public GameObject aim;
     public GameObject SettingsCanvas;
     public Button forfaitButton;
+    public Button mainMenuButton;
+
+
     [SerializeField] GameObject playerController;
 
     private NewAudioManager audioManager;
     private string actualScene;
-    
+    private bool once = true;
 
 
 
@@ -27,17 +30,26 @@ public class PauseMenu : MonoBehaviour
 
         audioManager = FindObjectOfType<NewAudioManager>();
 
-        actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
-
         forfaitButton.interactable = false;
+
+        actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        
         if (Input.GetKeyDown(KeyCode.Escape))
         {
+            mainMenuButton.animator.Play("Normal");
+
+            if (once)
+            {
+                StartCoroutine(CheckActualScene());
+                once = !once;
+            }
+            
             if (GamePaused && SettingsMenu)
             {
                 Pause();
@@ -53,22 +65,21 @@ public class PauseMenu : MonoBehaviour
             }
         }
 
-        else if (Input.GetKeyDown(KeyCode.R))
+        if (actualScene != "Lobby")
         {
-            if (GamePaused)
+            if (Input.GetKeyDown(KeyCode.R))
             {
-                Forfait();
+                if (GamePaused)
+                {
+                    Forfait();
+                }
             }
-        }
-
-        else if (actualScene != "Lobby")
-        {
             forfaitButton.interactable = true;
         }
 
     }
 
-   public void Resume()
+    public void Resume()
     {
         audioManager.FadeInMaster("MasterVolume");
         Cursor.visible = false;
@@ -119,6 +130,18 @@ public class PauseMenu : MonoBehaviour
         
         component.SetActive(true);
         Time.timeScale = 0.0f;
+    }
+
+    IEnumerator CheckActualScene()
+    {
+        do
+        {
+            Debug.Log("Corrutine");
+            actualScene = SceneManager.GetSceneAt(SceneManager.sceneCount - 1).name;
+            yield return new WaitForSecondsRealtime(0.25f);
+
+        } while (true);
+
     }
 
 
