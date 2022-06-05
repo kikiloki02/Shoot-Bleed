@@ -69,11 +69,8 @@ public class NewAudioManager : MonoBehaviour
         StartCoroutine(FadeInCorrutine(volume, mixer));
     }
 
-    public void LerpPitch(float pitch, float time)
+    public void SetPitch(float pitch)
     {
-        float actualPitch;
-        Master.audioMixer.GetFloat("MasterPitch", out actualPitch);
-        Mathf.Lerp(actualPitch, pitch, time);
         Master.audioMixer.SetFloat("MasterPitch", pitch);
     }
 
