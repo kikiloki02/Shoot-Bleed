@@ -1,0 +1,141 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &4512861508201206148
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4512861508201206146}
+  - component: {fileID: 4512861508201206149}
+  m_Layer: 0
+  m_Name: NewAudioManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4512861508201206146
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512861508201206148}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4512861508201206149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4512861508201206148}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0e176226ac3ab484d8c11f8f5386a8dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Music: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+  Sounds: {fileID: 6985906024015715318, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+  Master: {fileID: 24300002, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+  sounds:
+  - name: Music1
+    clip: {fileID: 8300000, guid: caf9028ea729a564b83ea83299620abb, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music2
+    clip: {fileID: 8300000, guid: 73fe5ae98e37adb48b755265d482c9c6, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music3
+    clip: {fileID: 8300000, guid: 8efb80182fcfc5a4ab86d6f821111575, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music4
+    clip: {fileID: 8300000, guid: cb45565497dffbb48beb23cbd6f7d2c0, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music5
+    clip: {fileID: 8300000, guid: feb166a098bdc5b47b530494b040354a, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music6
+    clip: {fileID: 8300000, guid: 6bbd4caa8cce17545b4baf7a952317e0, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music7
+    clip: {fileID: 8300000, guid: 51574f6124a847a45a7ffa95c303019e, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music8
+    clip: {fileID: 8300000, guid: 39736b7f728b46c46b883879dbc3accb, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: Music9
+    clip: {fileID: 8300000, guid: 3101e60bbe9d82c4b9f03be5867265f0, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.1
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
+  - name: UpgradeRoomMusic
+    clip: {fileID: 8300000, guid: feae97be5a700554cb96529aed79e9ba, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: MainMenuMusic
+    clip: {fileID: 8300000, guid: 7b064061d9e31944cb781dcefa6eea40, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: LobbyMusic
+    clip: {fileID: 8300000, guid: 667035b3f373b814389f20039d99945a, type: 3}
+    mixer: {fileID: -5098762254284796235, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1
+    loop: 1
+    source: {fileID: 0}
+  - name: DoorEffect
+    clip: {fileID: 8300000, guid: dc306d84a0f0f964db8b7db9c29cb69f, type: 3}
+    mixer: {fileID: 6985906024015715318, guid: c2b545c0e43d647409072505a9aa6779, type: 2}
+    volume: 0.15
+    pitch: 1.17
+    loop: 0
+    source: {fileID: 0}
+  playingSounds: []

@@ -42,9 +42,12 @@ public class PlayerLifeManagement : HealthSystem
 
     public GameObject _healingAnimation;
 
+    private NewAudioManager newAudioManager;
+
     // Start is called before the first frame update
     void Start()
     {
+        newAudioManager = FindObjectOfType<NewAudioManager>();
         rewdSys = FindObjectOfType<RewardSystem>();
         currentHealth = maxHealth;
         healthBar.SetMaxHealth(maxHealth);
@@ -65,7 +68,10 @@ public class PlayerLifeManagement : HealthSystem
         currentTime = Mathf.Min(0.85f, currentTime + Time.unscaledDeltaTime);
         // Time.timeScale = Mathf.Sin((currentTime / 0.5f) * Mathf.PI * 0.5f);
         if(Time.timeScale > 0.0f)
+        {
             Time.timeScale = Mathf.Pow((currentTime / 0.85f), 0.75f);
+            newAudioManager.SetPitch(Mathf.Pow((Mathf.Max(currentTime - 0.3f, 0.29f)/ 0.55f), 0.25f));
+        }
 
         criticalState = isCritical();
 
