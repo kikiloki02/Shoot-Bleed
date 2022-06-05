@@ -18,6 +18,8 @@ public class HealthSystem : MonoBehaviour
 
     private Player_Controller player_Controller;
 
+    public GameObject _blood;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -46,12 +48,10 @@ public class HealthSystem : MonoBehaviour
             dead = true;
             if (this.gameObject.CompareTag("Enemy"))
             {
-
                 FindObjectOfType<ManageRoom>().totalEnemies--;
                 RewardSystem rewdSys = FindObjectOfType<RewardSystem>();
                 rewdSys.enemiesKilled++;
                 rewdSys.AddCombo();
-
             }
             for (int i = 0; i < player_Controller._playerUpgrades.Count; i++)
             {
@@ -85,6 +85,8 @@ public class HealthSystem : MonoBehaviour
     }
     public void DestroyAfterDeath()
     {
-        Destroy(this.gameObject); // <-- AQU�
+       Instantiate(_blood, this.gameObject.transform.position, Quaternion.Euler(0, 0, 0));
+
+        Destroy(this.gameObject);
     }
 }

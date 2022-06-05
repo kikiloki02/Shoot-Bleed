@@ -9,6 +9,7 @@ TagManager:
   - Bullet
   - Object
   - BlueBullet
+  - Blood
   layers:
   - Default
   - TransparentFX
